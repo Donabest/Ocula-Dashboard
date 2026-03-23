@@ -1,5 +1,5 @@
 function Dashboard() {
-  return <div>Dashboarb nxznbvvnasnakjhsjkqljahskd</div>;
+  return <div className="flex justify-center text-center ">Dashborder</div>;
 }
 
 export default Dashboard;
