@@ -10,3 +10,13 @@
   --font-roboto: "Roboto", sans-serif;
   --font-raleway: "Raleway", sans-serif;
 }
+
+@layer base {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
