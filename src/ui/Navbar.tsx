@@ -5,7 +5,7 @@ import { RiNotificationLine } from "react-icons/ri";
 
 function Navbar() {
   return (
-    <div className="flex justify-end items-center bg-white/80 py-4.5 px-8">
+    <div className="flex justify-end items-center bg-white/80 py-4.5 px-8 dark:bg-black/30  dark:text-white">
       <ul className="flex justify-center items-center gap-2 ">
         <li className=" px-2 py-1 hover:bg-blue-100/30  hover:text-blue-800 cursor-pointer">
           <RiNotificationLine />

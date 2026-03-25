@@ -36,13 +36,15 @@ function SidebarList() {
     <ul className="w-full space-y-2 mt-10">
       {SideList.map((item) => (
         <motion.li
-          className="flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800"
+          className="flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-white/70"
           key={item.list}
           whileHover={{ y: -5 }}
           transition={{ stiffness: 850 }}
         >
           <span>{item.icon}</span>
-          <span className="text-black font-poppin">{item.list}</span>
+          <span className="text-black font-poppin dark:text-white ">
+            {item.list}
+          </span>
         </motion.li>
       ))}
     </ul>

@@ -31,11 +31,11 @@ function Sidebar() {
 
         <div className="mt-15">
           <motion.h1
-            className="flex justify-start items-center gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800"
+            className="flex justify-start items-center gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-white/70"
             whileHover={{ y: -3 }}
           >
             <CiSettings />
-            <span className="text-black">Settings</span>
+            <span className="text-black dark:text-white ">Settings</span>
           </motion.h1>
 
           <Invite />
