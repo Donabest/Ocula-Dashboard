@@ -3,7 +3,7 @@ import { BiTask } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { CiBoxList } from "react-icons/ci";
 
-function DashboardTaskHeader() {
+function DashboardCard1Header() {
   return (
     <div className="flex justify-between ">
       <div className="flex items-center gap-2 font-poppin font-medium">
@@ -21,4 +21,4 @@ function DashboardTaskHeader() {
   );
 }
 
-export default DashboardTaskHeader;
+export default DashboardCard1Header;

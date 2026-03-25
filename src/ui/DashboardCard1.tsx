@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
-import DashboardTaskHeader from "./DashboardTaskHeader";
-import DashboardTask from "./DashboardTask";
+import DashboardCard1Header from "./DashboardCard1Header";
+import DashboardCard1Items from "./DashboardCard1Items";
 function DashboardCard1() {
   return (
     <div className="border border-dashed border-gray-200/45 bg-gray-200/80 rounded-lg">
@@ -13,8 +13,8 @@ function DashboardCard1() {
         }}
         transition={{ type: "spring", stiffness: 300, duration: 0.5 }}
       >
-        <DashboardTaskHeader />
-        <DashboardTask />
+        <DashboardCard1Header />
+        <DashboardCard1Items />
         {/* <div className="flex justify-between"> */}
       </motion.div>
     </div>

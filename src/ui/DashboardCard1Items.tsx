@@ -1,7 +1,7 @@
 import { FaChevronDown } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
 
-function DashboardTask() {
+function DashboardCard1Items() {
   return (
     <>
       <div className="flex items-center gap-3 pl-3">
@@ -73,4 +73,4 @@ function DashboardTask() {
   );
 }
 
-export default DashboardTask;
+export default DashboardCard1Items;
