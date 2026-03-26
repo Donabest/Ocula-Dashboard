@@ -15,7 +15,6 @@ function DashboardCard1() {
       >
         <DashboardCard1Header />
         <DashboardCard1Items />
-        {/* <div className="flex justify-between"> */}
       </motion.div>
     </div>
   );

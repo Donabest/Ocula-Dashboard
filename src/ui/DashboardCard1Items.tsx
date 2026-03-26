@@ -1,6 +1,37 @@
 import { FaChevronDown } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
 
+type dashboardTask = {
+  title: string;
+  priority: string;
+  day: string;
+};
+
+type priorityBg = {
+  High: string;
+  Low: string;
+  Medium: string;
+};
+const dashboardTask: dashboardTask[] = [
+  {
+    title: "One-on-One-Meeting",
+    priority: "High",
+    day: "today",
+  },
+  {
+    title: "Send a summary email to stakeholders",
+    priority: "Low",
+    day: "3 days left",
+  },
+];
+
+const priorityBg = {
+  High: "bg-red-200",
+  Low: "bg-gray-200",
+  Medium: "bg-green-200",
+};
+console.log(priorityBg.High);
+
 function DashboardCard1Items() {
   return (
     <>
@@ -20,34 +51,28 @@ function DashboardCard1Items() {
             <span>Due Date</span>
           </div>
         </div>
-        <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200">
-          <div className="flex items-center gap-2 col-span-2 ">
-            <FaChevronDown className="cursor-pointer" />
-            <span className="bg-green-200 p-1.5 rounded-sm"></span>
-            <span>One-on-One-Meeting</span>
+        {dashboardTask.map((task) => (
+          <div
+            className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200"
+            key={task.title}
+          >
+            <div className="flex items-center gap-2 col-span-2 ">
+              <FaChevronDown className="cursor-pointer" />
+              <span className="bg-green-200 p-1.5 rounded-sm"></span>
+              <span>{task.title}</span>
+            </div>
+            <div className="flex justify-between text-center items-center">
+              <span
+                className={`font-poppin text-sm ${priorityBg[task?.priority]} px-3 py-1 rounded-lg uppercase`}
+              >
+                {task.priority}
+              </span>
+              <span className={`${task.priority === "High" && "text-red-500"}`}>
+                {task.day}
+              </span>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span className="font-poppin text-sm bg-red-200 px-3 py-1 rounded-lg uppercase">
-              High
-            </span>
-            <span className="text-red-500">Today</span>
-          </div>
-        </div>
-        <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200">
-          <div className="flex items-center gap-2 col-span-2">
-            <FaChevronDown className="cursor-pointer" />
-            <span className="bg-green-200 p-1.5 rounded-sm"></span>
-            <span className="text-sm">
-              Send a summary email to stakeholders
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="font-poppin text-sm  bg-gray-200 px-3 py-1 rounded-lg uppercase">
-              Low
-            </span>
-            <span>3 days left</span>
-          </div>
-        </div>
+        ))}
       </div>
 
       <button className="flex justify-start pl-3 font-medium cursor-pointer ">
@@ -59,7 +84,7 @@ function DashboardCard1Items() {
         <p className="bg-gray-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase">
           To Do
         </p>
-        <span className="font-medium">. 1 task</span>
+        <span className="font-medium text-gray-500">. 1 task</span>
       </div>
 
       <div className="flex items-center gap-3 pl-3">
@@ -67,7 +92,7 @@ function DashboardCard1Items() {
         <p className="bg-yellow-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase">
           Up Comming
         </p>
-        <span className="font-medium"> . 1 task</span>
+        <span className="font-medium text-gray-500"> . 1 task</span>
       </div>
     </>
   );

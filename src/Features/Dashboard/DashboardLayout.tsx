@@ -3,7 +3,7 @@ import DashboardBox from "./DashboardBox";
 
 function DashboardLayout() {
   return (
-    <div>
+    <div className="">
       <Welcome />
       <DashboardBox />
     </div>
