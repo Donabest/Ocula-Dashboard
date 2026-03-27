@@ -36,7 +36,7 @@ function SidebarList() {
     <ul className="w-full space-y-2 mt-10">
       {SideList.map((item) => (
         <motion.li
-          className="flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-white/70"
+          className="flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-blue-900 dark:hover:bg-black/30"
           key={item.list}
           whileHover={{ y: -5 }}
           transition={{ stiffness: 850 }}

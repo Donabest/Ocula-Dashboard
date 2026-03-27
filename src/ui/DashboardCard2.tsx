@@ -24,9 +24,9 @@ const Goals: Goals[] = [
 
 function DashboardCard2() {
   return (
-    <div className="bg-white mt-12 mb-4 px-6 py-5 rounded-2xl">
+    <div className="bg-white mt-12 mb-4 px-6 py-5 rounded-2xl dark:bg-slate-800 dark:text-white">
       <h1 className="flex items-center gap-2 font-poppin font-medium mb-2">
-        <TbTargetArrow className="text-blue-800/80" />
+        <TbTargetArrow className="text-blue-800/80 dark:text-green-600" />
         My Goals
       </h1>
 
@@ -38,13 +38,15 @@ function DashboardCard2() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="w-30 bg-gray-300 rounded-full h-2">
+            <div className="w-30 bg-gray-300 rounded-full h-2 dark:bg-slate-700">
               <div
                 className={`${goal.prog <= "49" ? "bg-red-500" : "bg-green-500"} h-2 rounded-full `}
                 style={{ width: `${goal.prog}%` }}
               ></div>
             </div>
-            <span className="text-sm text-gray-500">{goal.prog}%</span>
+            <span className="text-sm text-gray-500 dark:text-slate-400">
+              {goal.prog}%
+            </span>
           </div>
         </div>
       ))}

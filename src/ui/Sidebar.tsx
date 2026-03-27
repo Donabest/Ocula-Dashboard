@@ -19,7 +19,7 @@ function Sidebar() {
           <div className="flex justify-between items-center">
             <h1>My Projects</h1>
             <motion.button
-              className="px-3 py-1 bg-violet-200 rounded-4xl cursor-pointer hover:bg-violet-300"
+              className="px-3 py-1 bg-violet-200 rounded-4xl cursor-pointer hover:bg-violet-300 dark:bg-blue-600 dark:hover:bg-blue-500"
               whileHover={{ y: -2 }}
             >
               +Add

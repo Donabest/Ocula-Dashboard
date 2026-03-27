@@ -27,7 +27,7 @@ function ProjectList() {
         <li key={index} className="flex items-center justify-start gap-2">
           <span className=" bg-green-400 p-1 rounded-lg"></span>
           <motion.p
-            className="py-1 px-4 w-full rounded-lg hover:bg-blue-100/30 hover:text-blue-800"
+            className="py-1 px-4 w-full rounded-lg hover:bg-blue-100/30 hover:text-blue-800 dark:hover:text-white"
             whileHover={{ x: 8 }}
           >
             {project}

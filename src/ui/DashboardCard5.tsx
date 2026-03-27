@@ -10,9 +10,9 @@ const Reminder: string[] = [
 
 function DashboardCard5() {
   return (
-    <div className="bg-white my-6 px-8 py-6 rounded-2xl">
-      <h1 className="flex items-center gap-2  font-medium text-black">
-        <CiClock1 className="text-red-800" />
+    <div className="bg-white my-6 px-8 py-6 rounded-2xl dark:bg-slate-800 dark:text-white/90">
+      <h1 className="flex items-center gap-2  font-medium text-black dark:text-white/90">
+        <CiClock1 className="text-red-800 dark:text-red-600" />
         Reminders
       </h1>
 
@@ -21,9 +21,14 @@ function DashboardCard5() {
           <MdKeyboardArrowUp className="cursor-pointer" />
           Today <span className="text-gray-400 text-sm"> . 2</span>
         </h1>
-        {Reminder.map((remind) => (
-          <div className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300 ">
-            <h2 className="font-medium text-black/80">{remind}</h2>
+        {Reminder.map((remind, index) => (
+          <div
+            className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300 dark:border-b-slate-500 "
+            key={index}
+          >
+            <h2 className="font-medium text-black/80 dark:text-slate-300 ">
+              {remind}
+            </h2>
             <div className="flex justify-center items-center gap-2 ">
               <HiOutlineBellAlert className="cursor-pointer" />
               <IoTrashBinOutline className="cursor-pointer" />

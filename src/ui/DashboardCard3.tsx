@@ -24,7 +24,7 @@ const Projects = [
 ];
 function DashboardCard3() {
   return (
-    <div className="bg-white p-7 rounded-2xl">
+    <div className="bg-white p-7 rounded-2xl dark:bg-slate-800 dark:text-white/90">
       <div className="flex items-center gap-4">
         <h1 className="flex items-center font-medium gap-1.5">
           <BiSolidShoppingBags className="text-blue-700/90" />
@@ -44,12 +44,12 @@ function DashboardCard3() {
         </div>
         {Projects.map((project, index) => (
           <div className="flex items-center gap-2" key={index}>
-            <span className=" bg-green-200 text-black px-4 py-3 rounded-lg">
+            <span className=" bg-green-200 text-black px-4 py-3 rounded-lg dark:bg-green-500">
               <FaRProject />
             </span>
-            <h1 className="flex flex-col text-gray-800">
+            <h1 className="flex flex-col text-gray-800 dark:text-white/90">
               {project.projectContent}
-              <span className=" font-montserrat text-xs text-gray-500">
+              <span className=" font-montserrat text-xs text-gray-500 dark:text-slate-400">
                 {project.group}
               </span>
             </h1>

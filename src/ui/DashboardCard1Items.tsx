@@ -30,7 +30,11 @@ const priorityBg = {
   Low: "bg-gray-200",
   Medium: "bg-green-200",
 };
-console.log(priorityBg.High);
+const priorityDarkMode = {
+  High: "bg-red-700",
+  Low: "bg-slate-700",
+  Medium: "bg-green-300",
+};
 
 function DashboardCard1Items() {
   return (
@@ -44,16 +48,17 @@ function DashboardCard1Items() {
       </div>
 
       <div className="flex flex-col gap-5 pt-1.5 pl-3">
-        <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200  ">
+        <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200  dark:text-gray-400 dark:border-b-slate-500">
           <h1 className="col-span-2">Name</h1>
           <div className="flex justify-between">
             <span>Priority</span>
             <span>Due Date</span>
           </div>
         </div>
+
         {dashboardTask.map((task) => (
           <div
-            className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200"
+            className="grid grid-cols-3 gap-3 text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500"
             key={task.title}
           >
             <div className="flex items-center gap-2 col-span-2 ">
@@ -63,11 +68,13 @@ function DashboardCard1Items() {
             </div>
             <div className="flex justify-between text-center items-center">
               <span
-                className={`font-poppin text-sm ${priorityBg[task?.priority]} px-3 py-1 rounded-lg uppercase`}
+                className={`font-poppin text-sm ${priorityBg[task?.priority]} px-3 py-1 rounded-lg uppercase ${priorityDarkMode[task?.priority]}`}
               >
                 {task.priority}
               </span>
-              <span className={`${task.priority === "High" && "text-red-500"}`}>
+              <span
+                className={`${task.priority === "High" && "text-red-500 "}`}
+              >
                 {task.day}
               </span>
             </div>
@@ -81,18 +88,23 @@ function DashboardCard1Items() {
 
       <div className="flex items-center gap-3 pl-3">
         <FaChevronDown className="cursor-pointer" />
-        <p className="bg-gray-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase">
+        <p className="bg-gray-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase dark:bg-slate-700">
           To Do
         </p>
-        <span className="font-medium text-gray-500">. 1 task</span>
+        <span className="font-medium text-gray-500 dark:text-slate-400">
+          . 1 task
+        </span>
       </div>
 
       <div className="flex items-center gap-3 pl-3">
         <FaChevronDown className="cursor-pointer" />
-        <p className="bg-yellow-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase">
+        <p className="bg-yellow-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase dark:bg-amber-300 dark:text-white">
           Up Comming
         </p>
-        <span className="font-medium text-gray-500"> . 1 task</span>
+        <span className="font-medium text-gray-500 dark:text-slate-400">
+          {" "}
+          . 1 task
+        </span>
       </div>
     </>
   );
