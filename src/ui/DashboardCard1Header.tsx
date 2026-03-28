@@ -8,7 +8,7 @@ function DashboardCard1Header() {
     <div className="flex justify-between ">
       <div className="flex items-center gap-2 font-poppin font-medium">
         <CiBoxList />
-        <BiTask className="text-blue-800/80 dark:text-purple-500 " />
+        <BiTask className="text-blue-800/80 dark:text-blue-400 " />
         <p>My Task</p>
       </div>
 

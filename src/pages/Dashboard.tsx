@@ -1,11 +1,7 @@
 import DashboardLayout from "../Features/Dashboard/DashboardLayout";
 
 function Dashboard() {
-  return (
-    <div className="">
-      <DashboardLayout />
-    </div>
-  );
+  return <DashboardLayout />;
 }
 
 export default Dashboard;

@@ -31,9 +31,9 @@ const priorityBg = {
   Medium: "bg-green-200",
 };
 const priorityDarkMode = {
-  High: "bg-red-700",
-  Low: "bg-slate-700",
-  Medium: "bg-green-300",
+  High: "dark:bg-red-700",
+  Low: "dark:bg-slate-700",
+  Medium: "dark:bg-emerald-400",
 };
 
 function DashboardCard1Items() {
@@ -41,7 +41,7 @@ function DashboardCard1Items() {
     <>
       <div className="flex items-center gap-3 pl-3">
         <IoIosArrowUp />
-        <p className="bg-green-300 text-black text-sm px-3 py-1 rounded-lg  uppercase">
+        <p className="bg-green-300 text-black text-sm px-3 py-1 rounded-lg uppercase">
           In Progress
         </p>
         <span className="font-poppin">. 2 tasks</span>
@@ -98,7 +98,7 @@ function DashboardCard1Items() {
 
       <div className="flex items-center gap-3 pl-3">
         <FaChevronDown className="cursor-pointer" />
-        <p className="bg-yellow-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase dark:bg-amber-300 dark:text-white">
+        <p className="bg-yellow-200 text-sm text-center font-poppin px-3 py-1 rounded-lg uppercase dark:bg-yellow-900 dark:text-white">
           Up Comming
         </p>
         <span className="font-medium text-gray-500 dark:text-slate-400">

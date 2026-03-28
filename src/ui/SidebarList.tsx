@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
@@ -12,22 +13,27 @@ const SideList: SidebarListType[] = [
   {
     icon: <MdOutlineDashboardCustomize />,
     list: "Dashboard",
+    to: "Dashboard",
   },
   {
     icon: <WiStars />,
     list: "Ocula Ai",
+    to: "OculaAi",
   },
   {
     icon: <BiTask />,
-    list: "My Task",
+    list: "My Tasks",
+    to: "MyTasks",
   },
   {
     icon: <SlCalender />,
     list: "Calendar",
+    to: "Calender",
   },
   {
     icon: <LuChartNoAxesCombined />,
     list: "Analytics",
+    to: "Analytics",
   },
 ];
 
@@ -42,9 +48,12 @@ function SidebarList() {
           transition={{ stiffness: 850 }}
         >
           <span>{item.icon}</span>
-          <span className="text-black font-poppin dark:text-white ">
+          <Link
+            to={item.to}
+            className="text-black font-poppin dark:text-white "
+          >
             {item.list}
-          </span>
+          </Link>
         </motion.li>
       ))}
     </ul>

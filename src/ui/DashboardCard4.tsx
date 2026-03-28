@@ -11,7 +11,7 @@ function DashboardCard4() {
     <div className="bg-white mt-8 px-8 py-6 space-y-4 rounded-2xl dark:bg-slate-800 dark:text-white">
       <div className="flex items-center gap-5 font-poppin font-medium text-gray-600 dark:text-slate-300">
         <h1 className="flex items-center gap-2 ">
-          <SlCalender className="text-blue-800 " />
+          <SlCalender className="text-blue-800 dark:text-blue-400" />
           Calendar
         </h1>
         <p className="flex items-center gap-2 ">

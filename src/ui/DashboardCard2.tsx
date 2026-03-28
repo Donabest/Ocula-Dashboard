@@ -26,7 +26,7 @@ function DashboardCard2() {
   return (
     <div className="bg-white mt-12 mb-4 px-6 py-5 rounded-2xl dark:bg-slate-800 dark:text-white">
       <h1 className="flex items-center gap-2 font-poppin font-medium mb-2">
-        <TbTargetArrow className="text-blue-800/80 dark:text-green-600" />
+        <TbTargetArrow className="text-blue-800/80 dark:text-emerald-400" />
         My Goals
       </h1>
 
