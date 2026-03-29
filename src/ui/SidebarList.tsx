@@ -8,6 +8,7 @@ import { LuChartNoAxesCombined } from "react-icons/lu";
 import { WiStars } from "react-icons/wi";
 
 import type { SidebarListType } from "../utilities/type";
+import { useState } from "react";
 
 const SideList: SidebarListType[] = [
   {
@@ -38,14 +39,17 @@ const SideList: SidebarListType[] = [
 ];
 
 function SidebarList() {
+  const [active, setActive] = useState<string>("Dashboard");
+
   return (
     <ul className="w-full space-y-2 mt-10">
       {SideList.map((item) => (
         <motion.li
-          className="flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-blue-900 dark:hover:bg-black/30"
+          className={`flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-blue-900 dark:hover:bg-black/30 active:text-blue-800 ${item.list === active && "bg-blue-100/30"}`}
           key={item.list}
           whileHover={{ y: -5 }}
           transition={{ stiffness: 850 }}
+          onClick={() => setActive(item.list)}
         >
           <span>{item.icon}</span>
           <Link
