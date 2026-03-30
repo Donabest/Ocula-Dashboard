@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
@@ -7,34 +7,34 @@ import { SlCalender } from "react-icons/sl";
 import { LuChartNoAxesCombined } from "react-icons/lu";
 import { WiStars } from "react-icons/wi";
 
-import type { SidebarListType } from "../utilities/type";
+import type { ListType } from "../utilities/type";
 import { useState } from "react";
 
-const SideList: SidebarListType[] = [
+const SideList: ListType[] = [
   {
     icon: <MdOutlineDashboardCustomize />,
     list: "Dashboard",
-    to: "Dashboard",
+    To: "Dashboard",
   },
   {
     icon: <WiStars />,
     list: "Ocula Ai",
-    to: "OculaAi",
+    To: "OculaAi",
   },
   {
     icon: <BiTask />,
     list: "My Tasks",
-    to: "MyTasks",
+    To: "MyTasks",
   },
   {
     icon: <SlCalender />,
     list: "Calendar",
-    to: "Calender",
+    To: "Calender",
   },
   {
     icon: <LuChartNoAxesCombined />,
     list: "Analytics",
-    to: "Analytics",
+    To: "Analytics",
   },
 ];
 
@@ -52,12 +52,12 @@ function SidebarList() {
           onClick={() => setActive(item.list)}
         >
           <span>{item.icon}</span>
-          <Link
-            to={item.to}
+          <NavLink
+            to={`${item.To}`}
             className="text-black font-poppin dark:text-white "
           >
             {item.list}
-          </Link>
+          </NavLink>
         </motion.li>
       ))}
     </ul>

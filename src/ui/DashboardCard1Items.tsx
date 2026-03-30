@@ -1,5 +1,6 @@
 import { FaChevronDown } from "react-icons/fa6";
 import { IoIosArrowUp } from "react-icons/io";
+import type { priorityBg } from "../utilities/type";
 
 type dashboardTask = {
   title: string;
@@ -7,11 +8,6 @@ type dashboardTask = {
   day: string;
 };
 
-type priorityBg = {
-  High: string;
-  Low: string;
-  Medium: string;
-};
 const dashboardTask: dashboardTask[] = [
   {
     title: "One-on-One-Meeting",
@@ -25,12 +21,12 @@ const dashboardTask: dashboardTask[] = [
   },
 ];
 
-const priorityBg = {
+const priorityBg: priorityBg = {
   High: "bg-red-200",
   Low: "bg-gray-200",
   Medium: "bg-green-200",
 };
-const priorityDarkMode = {
+const priorityDarkMode: priorityBg = {
   High: "dark:bg-red-700",
   Low: "dark:bg-slate-700",
   Medium: "dark:bg-emerald-400",
