@@ -10,7 +10,7 @@ function Layout() {
       </div>
       <section className=" flex-1 bg-gray-100  overflow-auto">
         <Navbar />
-        <main className="dark:bg-[#111827]">
+        <main className="dark:bg-[#111827] ">
           <Outlet />
         </main>
       </section>

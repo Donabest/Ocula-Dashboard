@@ -29,17 +29,20 @@ function OverAllStats() {
   return (
     <div className="flex items-center gap-2">
       {Tab.map((card, index) => (
-        <div className="bg-white p-4 space-y-6 rounded-lg flex-1" key={index}>
+        <div
+          className="bg-white p-4 space-y-6 rounded-lg flex-1 shadow-md dark:bg-slate-800 dark:text-white"
+          key={index}
+        >
           <div className="flex justify-between items-center ">
             {card.icon}
-            <p className="flex items-center font-medium text-gray-500 text-sm cursor-pointer">
+            <p className="flex items-center font-medium text-gray-500 text-sm cursor-pointer dark:text-slate-500">
               View details
               <MdOutlineKeyboardArrowRight className="text-xl" />
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <p className="text-gray-500">{card.status}</p>
-            <span className="text-2xl font-raleway font-medium">
+            <p className="text-gray-500 dark:text-slate-300">{card.status}</p>
+            <span className="text-2xl font-raleway font-medium ">
               {card.total}
             </span>
           </div>
