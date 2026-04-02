@@ -31,10 +31,11 @@ interface tabsProps {
 function TaskTabs({ active, handleActive }: tabsProps) {
   return (
     <div className="flex items-center gap-6 pt-8 ">
-      {TasksTabs.map((tab) => (
+      {TasksTabs.map((tab, index) => (
         <div
           className={`flex items-center gap-1 pb-2 text-gray-700 ${active === tab.list && "border-b-2 border-b-purple-700"} cursor-pointer dark:text-slate-300`}
           onClick={() => handleActive(tab.list)}
+          key={index}
         >
           {tab.icon}
           <span className="text-medium ">{tab.list}</span>

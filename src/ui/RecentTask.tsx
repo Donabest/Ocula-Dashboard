@@ -9,27 +9,27 @@ const Recents: recentsCard[] = [
     decs: "Update component libary with new color tosken and typography scales.",
   },
   {
-    status: "Medium",
+    status: "Med",
     title: "User Research Analytics",
     decs: "Update component libary with new color tosken and typography scales.",
   },
 ];
 
-const priorityBg: priorityBg = {
+const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
   Low: "bg-gray-200 text-gray-700 dark:bg-slate-200",
-  Medium: "bg-green-200 text-emerald-700 dark:bg-emerald-200",
+  Med: "bg-green-200 text-emerald-700 dark:bg-emerald-200",
 };
 
 function RecentTask() {
   return (
-    <div className=" bg-white  p-4 rounded-lg  dark:bg-slate-800 dark:text-slate-100">
+    <section className=" bg-white p-4 rounded-lg  dark:bg-slate-800 dark:text-slate-100">
       <div className="flex items-center justify-between font-poppin font-medium ">
         Recents Tasks
         <BsThreeDots className="cursor-pointer" />
       </div>
 
-      <div className="flex flex-col items-center gap-4 mt-3">
+      <div className="flex flex-col mx-3 gap-4 mt-3">
         {Recents.map((rcard, index) => (
           <div
             className=" bg-gray-100 py-3 px-4 rounded-lg space-y-3  dark:bg-slate-700 dark:text-slate-100"
@@ -54,7 +54,7 @@ function RecentTask() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -28,7 +28,7 @@ const schedule: schedule[] = [
 
 function ScheduleTask() {
   return (
-    <motion.div
+    <motion.section
       className="flex flex-col bg-white p-6 space-y-4 rounded-lg dark:bg-slate-800 dark:text-slate-100 "
       initial={{ x: 40, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
@@ -40,8 +40,11 @@ function ScheduleTask() {
         <BsThreeDots className="cursor-pointer" />
       </div>
 
-      {schedule.map((schTask) => (
-        <div className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100">
+      {schedule.map((schTask, index) => (
+        <div
+          className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100"
+          key={index}
+        >
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <h1 className=" text-sm font-medium">{schTask.title}</h1>
@@ -68,7 +71,7 @@ function ScheduleTask() {
           </div>
         </div>
       ))}
-    </motion.div>
+    </motion.section>
   );
 }
 

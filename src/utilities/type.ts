@@ -13,17 +13,18 @@ export interface cardTab {
 }
 
 export interface recentsCard {
-  status: string;
+  status: priorityBg;
   title: string;
   decs: string;
 }
 
-export type priorityBg = {
-  High: string;
-  Low: string;
-  Medium: string;
-};
+export type priorityBg = "High" | "Low" | "Med";
+export type status = "Inprogress" | "Todo" | "Upcomming" | "Completed";
 
 export type List = {
   head: string;
 };
+
+export interface ActiveProp {
+  active: string;
+}

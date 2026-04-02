@@ -2,7 +2,12 @@ function TableHeader() {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-medium text-xl">Task list.</h1>
+        <h1 className="font-medium text-xl">
+          Task list{" "}
+          <span className="text-slate-500 font-poppin font-normal text-[16px] dark:text-slate-400">
+            .4
+          </span>
+        </h1>
 
         <div className="flex items-center gap-3">
           <label htmlFor="filter">Filter :</label>

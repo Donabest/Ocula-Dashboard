@@ -4,10 +4,8 @@ import { useState } from "react";
 
 import MyTasksHeader from "../../ui/MyTasksHeader";
 import TaskTabs from "./TaskTabs";
-import OverAllStats from "../../ui/OverAllStats";
-import RecentTask from "../../ui/RecentTask";
-import ScheduleTask from "../../ui/ScheduleTask";
-import TaskLists from "./TaskLists";
+import TasksOverview from "./TasksOverview";
+import ListsTasksSection from "./ListsTasksSection";
 
 function MyTasksLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
@@ -30,25 +28,8 @@ function MyTasksLayout() {
       </div>
 
       <TaskTabs active={activeTab} handleActive={setactiveTab} />
-
-      {activeTab === "Overview" && (
-        <section>
-          <div className="grid grid-cols-2 gap-3 pt-8  ">
-            <motion.div
-              className="flex flex-col gap-4"
-              initial={{ y: 40, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              viewport={{ once: true }}
-            >
-              <OverAllStats />
-              <RecentTask />
-            </motion.div>
-            <ScheduleTask />
-          </div>
-          <TaskLists />
-        </section>
-      )}
+      <TasksOverview active={activeTab} />
+      <ListsTasksSection active={activeTab} />
     </div>
   );
 }
