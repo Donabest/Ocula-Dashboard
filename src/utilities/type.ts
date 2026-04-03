@@ -1,5 +1,8 @@
 import type { JSX } from "react";
 
+export type priorityBg = "High" | "Low" | "Med" | string;
+export type status = "Inprogress" | "Todo" | "Upcomming" | "Completed";
+
 export type ListType = {
   icon: JSX.Element;
   list: string;
@@ -12,14 +15,12 @@ export interface cardTab {
   total: number;
 }
 
-export interface recentsCard {
-  status: priorityBg;
+export interface Tasks {
+  priority: priorityBg;
   title: string;
-  decs: string;
+  desc: string;
+  Assignee?: string;
 }
-
-export type priorityBg = "High" | "Low" | "Med";
-export type status = "Inprogress" | "Todo" | "Upcomming" | "Completed";
 
 export type List = {
   head: string;

@@ -1,7 +1,7 @@
-import Assignee from "../../assets/person-1.jpg";
-import ListTaskCard from "../../ui/ListTaskCard";
+import Assignee from "../assets/person-1.jpg";
+import ListTaskCard from "./ListTaskCard";
 
-const UpCommingTasks = [
+const InprogessTask = [
   {
     title: "One-on-One-Meeting",
     priority: "High",
@@ -15,12 +15,13 @@ const UpCommingTasks = [
     Assignee,
   },
 ];
-function UpcommingTaskList() {
+
+function InprogressTaskList() {
   return (
     <div className="space-y-4 bg-white p-6 mt-6 rounded-lg  cursor-pointer dark:bg-slate-800 dark:text-white">
-      <ListTaskCard Tasks={UpCommingTasks} status="Upcomming" Assignee={true} />
+      <ListTaskCard Tasks={InprogessTask} status="Inprogress" Assignee={true} />
     </div>
   );
 }
 
-export default UpcommingTaskList;
+export default InprogressTaskList;

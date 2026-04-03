@@ -1,7 +1,7 @@
-import ListTaskCard from "../../ui/ListTaskCard";
-import Assignee from "../../assets/person-1.jpg";
+import Assignee from "../assets/person-1.jpg";
+import ListTaskCard from "./ListTaskCard";
 
-const CompletedTasks = [
+const TodoTasks = [
   {
     title: "One-on-One-Meeting",
     priority: "High",
@@ -16,12 +16,12 @@ const CompletedTasks = [
   },
 ];
 
-function CompletedTaskList() {
+function TodoTaskList() {
   return (
     <div className="space-y-4 bg-white p-6 mt-6 rounded-lg  cursor-pointer dark:bg-slate-800 dark:text-white">
-      <ListTaskCard Tasks={CompletedTasks} status="Completed" Assignee={true} />
+      <ListTaskCard Tasks={TodoTasks} status="Todo" Assignee={true} />
     </div>
   );
 }
 
-export default CompletedTaskList;
+export default TodoTaskList;

@@ -39,23 +39,21 @@ const SideList: ListType[] = [
 ];
 
 function SidebarList() {
-  const [active, setActive] = useState<string>("Dashboard");
-
   return (
-    <ul className="w-full space-y-2 mt-10">
+    <ul className="w-full space-y-3 mt-10">
       {SideList.map((item) => (
         <motion.li
-          className={`flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-blue-900 dark:hover:bg-black/30 active:text-blue-800 ${item.list === active && "bg-blue-100/30"}`}
           key={item.list}
           whileHover={{ y: -5 }}
           transition={{ stiffness: 850 }}
-          onClick={() => setActive(item.list)}
         >
-          <span>{item.icon}</span>
           <NavLink
             to={`${item.To}`}
-            className="text-black font-poppin dark:text-white "
+            className={({ isActive }) =>
+              `flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-blue-900 dark:hover:bg-black/30  text-black font-poppin w-full dark:text-white ${isActive && "bg-blue-100/30"} `
+            }
           >
+            <span>{item.icon}</span>
             {item.list}
           </NavLink>
         </motion.li>

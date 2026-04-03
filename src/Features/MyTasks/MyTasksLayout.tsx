@@ -6,6 +6,7 @@ import MyTasksHeader from "../../ui/MyTasksHeader";
 import TaskTabs from "./TaskTabs";
 import TasksOverview from "./TasksOverview";
 import ListsTasksSection from "./ListsTasksSection";
+import MyTasksBoardView from "./MyTasksBoardView";
 
 function MyTasksLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
@@ -30,6 +31,7 @@ function MyTasksLayout() {
       <TaskTabs active={activeTab} handleActive={setactiveTab} />
       <TasksOverview active={activeTab} />
       <ListsTasksSection active={activeTab} />
+      <MyTasksBoardView active={activeTab} />
     </div>
   );
 }

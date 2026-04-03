@@ -1,7 +1,7 @@
-import ListTaskCard from "../../ui/ListTaskCard";
-import Assignee from "../../assets/person-1.jpg";
+import Assignee from "../assets/person-1.jpg";
+import ListTaskCard from "./ListTaskCard";
 
-const InprogessTask = [
+const CompletedTasks = [
   {
     title: "One-on-One-Meeting",
     priority: "High",
@@ -16,12 +16,12 @@ const InprogessTask = [
   },
 ];
 
-function InprogressTaskList() {
+function CompletedTaskList() {
   return (
     <div className="space-y-4 bg-white p-6 mt-6 rounded-lg  cursor-pointer dark:bg-slate-800 dark:text-white">
-      <ListTaskCard Tasks={InprogessTask} status="Inprogress" Assignee={true} />
+      <ListTaskCard Tasks={CompletedTasks} status="Completed" Assignee={true} />
     </div>
   );
 }
 
-export default InprogressTaskList;
+export default CompletedTaskList;

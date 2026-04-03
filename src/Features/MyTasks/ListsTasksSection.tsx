@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 
 import type { ActiveProp } from "../../utilities/type";
-import CompletedTaskList from "./CompletedTaskList";
-import InprogressTaskList from "./InprogressTaskList";
-import TodoTaskList from "./TodoTaskList";
-import UpcommingTaskList from "./UpcommingTaskList";
+import InprogressTaskList from "../../ui/InprogressTaskList";
+import TodoTaskList from "../../ui/TodoTaskList";
+import UpcommingTaskList from "../../ui/UpcommingTaskList";
+import CompletedTaskList from "../../ui/CompletedTaskList";
 
 function ListsTasksSection({ active }: ActiveProp) {
   return (

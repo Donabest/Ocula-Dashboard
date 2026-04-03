@@ -50,7 +50,7 @@ const StatusBg: Record<status, string> = {
 };
 
 const priorityBg: Record<priorityBg, string> = {
-  High: "bg-red-200 text-red-200 dark:bg-red-700 dark:text-red-100",
+  High: "bg-red-200 text-red-600 dark:bg-red-700 dark:text-red-100",
   Low: "bg-gray-200 text-gray-600 dark:bg-slate-700 dark:text-gray-100",
   Med: "bg-green-200 text-emerald-700 dark:bg-emerald-400 dark:text-emerald-50",
 };
