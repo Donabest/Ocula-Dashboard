@@ -40,17 +40,19 @@ const SideList: ListType[] = [
 
 function SidebarList() {
   return (
-    <ul className="w-full space-y-3 mt-10">
+    <ul className="w-full space-y-3 mt-8">
       {SideList.map((item) => (
         <motion.li
           key={item.list}
-          whileHover={{ y: -5 }}
+          whileHover={{ y: -3 }}
           transition={{ stiffness: 850 }}
         >
           <NavLink
             to={`${item.To}`}
             className={({ isActive }) =>
-              `flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-blue-900 dark:hover:bg-black/30  text-black font-poppin w-full dark:text-white ${isActive && "bg-blue-100/30"} `
+              `flex items-center justify-start gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-white/80 dark:hover:bg-slate-800  text-black font-poppin w-full dark:text-white ${
+                isActive && "bg-blue-100/40 text-blue-800 dark:bg-slate-800"
+              } `
             }
           >
             <span>{item.icon}</span>

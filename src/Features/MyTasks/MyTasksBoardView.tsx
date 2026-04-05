@@ -22,14 +22,16 @@ function MyTasksBoardView({ active }: ActiveProp) {
           <ul className="grid grid-cols-4 gap-4">
             {BoardHeader.map((head, index) => (
               <li
-                className="flex justify-between items-center bg-gray-200/60 px-4 py-3 rounded-lg"
+                className="flex justify-between items-center bg-gray-200/60 px-4 py-3 rounded-lg dark:bg-slate-800"
                 key={index}
               >
-                <h2 className="flex items-center gap-2 font-medium text-gray-800">
+                <h2 className="flex items-center gap-2 font-medium text-gray-800 dark:text-slate-200">
                   {head}
-                  <span className="text-gray-600 font-raleway">.2</span>
+                  <span className="text-gray-600 font-raleway dark:text-slate-300">
+                    .2
+                  </span>
                 </h2>
-                <IoIosArrowUp className="text-gray-500 cursor-pointer" />
+                <IoIosArrowUp className="text-gray-500 cursor-pointer dark:text-slate-400" />
               </li>
             ))}
           </ul>
