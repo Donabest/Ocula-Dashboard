@@ -4,7 +4,7 @@ import Navbar from "../ui/Navbar";
 
 function Layout() {
   return (
-    <div className="font-montserrat flex h-screen">
+    <div className="font-montserrat flex h-screen ">
       <div className="flex bg-white/80 w-66 mx-auto  dark:bg-[#18212f] dark:text-white">
         <Sidebar />
       </div>

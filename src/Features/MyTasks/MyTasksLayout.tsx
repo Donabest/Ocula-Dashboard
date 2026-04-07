@@ -7,6 +7,7 @@ import TaskTabs from "./TaskTabs";
 import TasksOverview from "./TasksOverview";
 import ListsTasksSection from "./ListsTasksSection";
 import MyTasksBoardView from "./MyTasksBoardView";
+import MyTasksCalendar from "./MyTasksCalendar";
 
 function MyTasksLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
@@ -32,6 +33,7 @@ function MyTasksLayout() {
       <TasksOverview active={activeTab} />
       <ListsTasksSection active={activeTab} />
       <MyTasksBoardView active={activeTab} />
+      <MyTasksCalendar active={activeTab} />
     </div>
   );
 }

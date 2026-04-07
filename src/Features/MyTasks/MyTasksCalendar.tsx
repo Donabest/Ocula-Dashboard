@@ -1,0 +1,73 @@
+import type { ActiveProp } from "../../utilities/type";
+import { useState } from "react";
+import { format } from "date-fns";
+import { Link } from "react-router-dom";
+import ScheduleTaskItem from "../../ui/ScheduleTaskItem";
+import MyTasksCalenderItem from "../../ui/MyTasksCalendarItem";
+
+interface schedule {
+  date: string;
+  title: string;
+  priority: string;
+  meet: string;
+  time: string;
+}
+const schedules: schedule[] = [
+  {
+    date: "Apr 7, 2026",
+    title: "Sprinting Planning",
+    priority: "Starting soon",
+    meet: "Zoom meeting",
+    time: "05:00 PM - 06:00 PM",
+  },
+  {
+    date: "Apr 8, 2026",
+    title: "Design Review",
+    priority: "Schedule",
+    meet: "Google meeting",
+    time: "01:00 PM - 02:00 PM",
+  },
+];
+
+function MyTasksCalendar({ active }: ActiveProp) {
+  const [selectDate, setSelectDate] = useState<string>();
+
+  const scheduleTask = schedules.filter((task) => task.date === selectDate);
+  const hasTask = schedules.map((taskDate) =>
+    format(new Date(taskDate.date), "MMM d, yyyy"),
+  );
+
+  return (
+    <>
+      {active === "Calendar" && (
+        <section className="grid grid-cols-2 gap-4 mt-8 font-raleway font-medium text-gray-500 bg-white p-6 rounded-lg">
+          <MyTasksCalenderItem set={setSelectDate} hasTask={hasTask} />
+          <div className="pl-4">
+            {scheduleTask.length ? (
+              <h1 className="font-medium pb-3">Task for {selectDate}</h1>
+            ) : (
+              <div className="flex flex-col justify-center items-center h-full space-y-4 ">
+                <h1 className="font-[530] text-gray-400">
+                  No Task is schedule for {selectDate} !!
+                </h1>
+                <Link
+                  to="/Calendar"
+                  className="text-sm bg-blue-700 text-white px-6 py-1.5 rounded-lg cursor-pointer transition-all  hover:bg-blue-800"
+                >
+                  Schedule Task Now
+                </Link>
+              </div>
+            )}
+            <div className="space-y-2">
+              {scheduleTask.map((schTask) => (
+                <ScheduleTaskItem task={schTask} detail={false} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
+
+export default MyTasksCalendar;

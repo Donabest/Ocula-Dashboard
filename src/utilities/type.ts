@@ -29,3 +29,10 @@ export type List = {
 export interface ActiveProp {
   active: string;
 }
+
+export interface schedule {
+  title: string;
+  priority: string;
+  meet: string;
+  time: string;
+}

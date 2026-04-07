@@ -8,7 +8,6 @@ import { LuChartNoAxesCombined } from "react-icons/lu";
 import { WiStars } from "react-icons/wi";
 
 import type { ListType } from "../utilities/type";
-import { useState } from "react";
 
 const SideList: ListType[] = [
   {
