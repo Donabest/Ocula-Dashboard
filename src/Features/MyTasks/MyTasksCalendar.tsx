@@ -1,9 +1,9 @@
 import type { ActiveProp } from "../../utilities/type";
 import { useState } from "react";
-import { format } from "date-fns";
+import { format, isFuture } from "date-fns";
 import { Link } from "react-router-dom";
 import ScheduleTaskItem from "../../ui/ScheduleTaskItem";
-import MyTasksCalenderItem from "../../ui/MyTasksCalendarItem";
+import CalenderItem from "../../ui/CalendarItem";
 
 interface schedule {
   date: string;
@@ -14,14 +14,14 @@ interface schedule {
 }
 const schedules: schedule[] = [
   {
-    date: "Apr 7, 2026",
+    date: "Apr 8, 2026",
     title: "Sprinting Planning",
     priority: "Starting soon",
     meet: "Zoom meeting",
     time: "05:00 PM - 06:00 PM",
   },
   {
-    date: "Apr 8, 2026",
+    date: "Apr 10, 2026",
     title: "Design Review",
     priority: "Schedule",
     meet: "Google meeting",
@@ -30,7 +30,8 @@ const schedules: schedule[] = [
 ];
 
 function MyTasksCalendar({ active }: ActiveProp) {
-  const [selectDate, setSelectDate] = useState<string>();
+  const Today = format(new Date(), "MMM d, yyyy");
+  const [selectDate, setSelectDate] = useState<string>(Today);
 
   const scheduleTask = schedules.filter((task) => task.date === selectDate);
   const hasTask = schedules.map((taskDate) =>
@@ -41,21 +42,27 @@ function MyTasksCalendar({ active }: ActiveProp) {
     <>
       {active === "Calendar" && (
         <section className="grid grid-cols-2 gap-4 mt-8 font-raleway font-medium text-gray-500 bg-white p-6 rounded-lg">
-          <MyTasksCalenderItem set={setSelectDate} hasTask={hasTask} />
+          <CalenderItem set={setSelectDate} hasTask={hasTask} />
+
           <div className="pl-4">
             {scheduleTask.length ? (
               <h1 className="font-medium pb-3">Task for {selectDate}</h1>
             ) : (
               <div className="flex flex-col justify-center items-center h-full space-y-4 ">
                 <h1 className="font-[530] text-gray-400">
-                  No Task is schedule for {selectDate} !!
+                  {selectDate === Today
+                    ? "No task schedule for Today"
+                    : `No task is schedule for ${selectDate}`}
                 </h1>
-                <Link
-                  to="/Calendar"
-                  className="text-sm bg-blue-700 text-white px-6 py-1.5 rounded-lg cursor-pointer transition-all  hover:bg-blue-800"
-                >
-                  Schedule Task Now
-                </Link>
+
+                {isFuture(selectDate) && (
+                  <Link
+                    to="/Calendar"
+                    className="text-sm bg-blue-700 text-white px-6 py-1.5 rounded-lg cursor-pointer transition-all  hover:bg-blue-800"
+                  >
+                    Schedule Task Now
+                  </Link>
+                )}
               </div>
             )}
             <div className="space-y-2">

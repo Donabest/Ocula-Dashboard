@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   addMonths,
   eachDayOfInterval,
@@ -7,18 +8,16 @@ import {
   startOfMonth,
   subMonths,
 } from "date-fns";
-
-import { useState } from "react";
-
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
 interface MyCalenderProp {
-  set: React.Dispatch<React.SetStateAction<string | undefined>>;
+  set: React.Dispatch<React.SetStateAction<string>>;
   hasTask: string[];
 }
-function MyTasksCalenderItem({ set, hasTask }: MyCalenderProp) {
+
+function CalenderItem({ set, hasTask }: MyCalenderProp) {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   const start = startOfMonth(currentDate);
@@ -66,10 +65,14 @@ function MyTasksCalenderItem({ set, hasTask }: MyCalenderProp) {
           {days.map((day) => (
             <div
               key={day.toISOString()}
-              className={`cursor-pointer  ${hasTask.includes(format(day, "MMM d, yyyy")) && "bg-blue-700 text-white hover:bg-blue-600"} rounded-full`}
+              className={`cursor-pointer   rounded-full`}
               onClick={() => set(format(day, "MMM d, yyyy"))}
             >
-              <span>{format(day, "d")}</span>
+              <span
+                className={`${hasTask.includes(format(day, "MMM d, yyyy")) && "px-3 py-2 bg-blue-700 text-white rounded-full text-center hover:bg-blue-600"}`}
+              >
+                {format(day, "d")}
+              </span>
             </div>
           ))}
         </div>
@@ -78,4 +81,4 @@ function MyTasksCalenderItem({ set, hasTask }: MyCalenderProp) {
   );
 }
 
-export default MyTasksCalenderItem;
+export default CalenderItem;
