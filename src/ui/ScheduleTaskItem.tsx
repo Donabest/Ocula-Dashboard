@@ -11,10 +11,7 @@ interface scheduleTaskItemProps {
 
 function ScheduleTaskItem({ task, detail }: scheduleTaskItemProps) {
   return (
-    <div
-      className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100"
-      key={task.title}
-    >
+    <div className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <h1 className=" text-sm font-medium">{task.title}</h1>

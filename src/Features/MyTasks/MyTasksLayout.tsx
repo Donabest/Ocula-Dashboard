@@ -2,20 +2,20 @@ import { GoPlus } from "react-icons/go";
 import { motion } from "motion/react";
 import { useState } from "react";
 
-import MyTasksHeader from "../../ui/MyTasksHeader";
 import TaskTabs from "./TaskTabs";
 import TasksOverview from "./TasksOverview";
 import ListsTasksSection from "./ListsTasksSection";
 import MyTasksBoardView from "./MyTasksBoardView";
 import MyTasksCalendar from "./MyTasksCalendar";
+import PageHeader from "../../ui/PageHeader";
 
 function MyTasksLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
 
   return (
-    <div className="pt-20 pb-10 px-8 max-w-7xl ">
+    <div className="pt-20 pb-10 px-8 max-w-7xl">
       <div className="flex justify-between items-center">
-        <MyTasksHeader
+        <PageHeader
           title={`${activeTab}`}
           description="Monitor all your projects and tasks here"
         />

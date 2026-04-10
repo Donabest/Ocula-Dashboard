@@ -1,5 +1,7 @@
+import CalendarLayout from "../Features/Calender/CalendarLayout";
+
 function Calender() {
-  return <div></div>;
+  return <CalendarLayout />;
 }
 
 export default Calender;

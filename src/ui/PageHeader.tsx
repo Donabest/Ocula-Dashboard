@@ -3,7 +3,7 @@ interface headerProp {
   description: string;
 }
 
-function MyTasksHeader({ title, description }: headerProp) {
+function PageHeader({ title, description }: headerProp) {
   return (
     <div>
       <h1 className="text-xl font-poppin font-medium dark:text-slate-100">
@@ -16,4 +16,4 @@ function MyTasksHeader({ title, description }: headerProp) {
   );
 }
 
-export default MyTasksHeader;
+export default PageHeader;

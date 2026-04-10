@@ -33,8 +33,8 @@ function ScheduleTask() {
         <BsThreeDots className="cursor-pointer" />
       </div>
 
-      {schedule.map((schTask) => (
-        <ScheduleTaskItem task={schTask} detail={true} />
+      {schedule.map((schTask, index) => (
+        <ScheduleTaskItem task={schTask} detail={true} key={index} />
       ))}
     </motion.section>
   );

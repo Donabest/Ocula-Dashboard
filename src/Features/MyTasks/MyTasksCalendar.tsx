@@ -41,15 +41,17 @@ function MyTasksCalendar({ active }: ActiveProp) {
   return (
     <>
       {active === "Calendar" && (
-        <section className="grid grid-cols-2 gap-4 mt-8 font-raleway font-medium text-gray-500 bg-white p-6 rounded-lg">
+        <section className="grid grid-cols-2 gap-4 mt-8 font-raleway font-medium text-gray-500 bg-white p-6 rounded-lg  dark:bg-slate-800 ">
           <CalenderItem set={setSelectDate} hasTask={hasTask} />
 
-          <div className="pl-4">
+          <div className=" border-l border-l-gray-300 pl-6 dark:border-l-slate-700">
             {scheduleTask.length ? (
-              <h1 className="font-medium pb-3">Task for {selectDate}</h1>
+              <h1 className="font-medium pb-3 dark:text-slate-400">
+                Task for {selectDate}
+              </h1>
             ) : (
               <div className="flex flex-col justify-center items-center h-full space-y-4 ">
-                <h1 className="font-[530] text-gray-400">
+                <h1 className="font-[530] text-gray-400 dark:text-slate-400">
                   {selectDate === Today
                     ? "No task schedule for Today"
                     : `No task is schedule for ${selectDate}`}
@@ -57,7 +59,7 @@ function MyTasksCalendar({ active }: ActiveProp) {
 
                 {isFuture(selectDate) && (
                   <Link
-                    to="/Calendar"
+                    to="/Calender"
                     className="text-sm bg-blue-700 text-white px-6 py-1.5 rounded-lg cursor-pointer transition-all  hover:bg-blue-800"
                   >
                     Schedule Task Now
@@ -66,8 +68,8 @@ function MyTasksCalendar({ active }: ActiveProp) {
               </div>
             )}
             <div className="space-y-2">
-              {scheduleTask.map((schTask) => (
-                <ScheduleTaskItem task={schTask} detail={false} />
+              {scheduleTask.map((schTask, index) => (
+                <ScheduleTaskItem task={schTask} detail={false} key={index} />
               ))}
             </div>
           </div>

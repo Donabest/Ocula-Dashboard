@@ -7,7 +7,7 @@ import Invite from "./Invite";
 
 function Sidebar() {
   return (
-    <div className=" pb-4 px-7 pt-10">
+    <div className="fixed w-66 pb-4 px-7 pt-10">
       <div className="flex flex-col items-center justify-center">
         <User />
         <SidebarList />
