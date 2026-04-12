@@ -20,7 +20,6 @@ function CalenderProvider({ children }: { children: ReactNode }) {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const start = startOfMonth(currentDate);
-
   const end = endOfMonth(currentDate);
   const startDay = getDay(start);
   const emptyDays = Array.from({ length: startDay });

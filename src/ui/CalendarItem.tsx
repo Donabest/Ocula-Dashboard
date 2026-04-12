@@ -48,7 +48,7 @@ function CalenderItem({ set, hasTask }: MyCalenderProp) {
             onClick={() => set(format(day, "MMM d, yyyy"))}
           >
             <span
-              className={`${hasTask?.includes(format(day, "MMM d, yyyy")) && "px-3 py-2 bg-blue-700 text-white rounded-full text-center hover:bg-blue-600"} hover:text-white`}
+              className={`${hasTask?.includes(format(day, "MMM d, yyyy")) && "px-3 py-2 bg-blue-700 text-white rounded-full text-center hover:bg-blue-600"} dark:hover:text-white`}
             >
               {format(day, "d")}
             </span>
