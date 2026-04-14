@@ -4,11 +4,10 @@ import { useCalendar } from "../Context/useCalender";
 
 interface MyCalenderProp {
   set: React.Dispatch<React.SetStateAction<string>>;
-  hasTask: string[];
 }
 
-function CalenderItem({ set, hasTask }: MyCalenderProp) {
-  const { currentDate, setCurrentDate, WEEKDAYS, days, emptyDays } =
+function CalenderItem({ set }: MyCalenderProp) {
+  const { currentDate, setCurrentDate, WEEKDAYS, days, emptyDays, hasTask } =
     useCalendar();
 
   return (
@@ -45,10 +44,10 @@ function CalenderItem({ set, hasTask }: MyCalenderProp) {
           <div
             key={day.toISOString()}
             className={`cursor-pointer   rounded-full`}
-            onClick={() => set(format(day, "MMM d, yyyy"))}
+            onClick={() => set(format(day, "MMM dd yyyy"))}
           >
             <span
-              className={`${hasTask?.includes(format(day, "MMM d, yyyy")) && "px-3 py-2 bg-blue-700 text-white rounded-full text-center hover:bg-blue-600"} dark:hover:text-white`}
+              className={`${hasTask?.includes(format(day, "MMM dd yyyy")) && "px-3 py-2 bg-blue-700 text-white rounded-full text-center hover:bg-blue-600"} dark:hover:text-white`}
             >
               {format(day, "d")}
             </span>

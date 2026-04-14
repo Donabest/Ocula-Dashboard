@@ -1,33 +1,56 @@
+import { format } from "date-fns";
+import { parseTime } from "../utilities/TimeParse";
+import { TiGroupOutline } from "react-icons/ti";
+import { useState } from "react";
+
 interface schedule {
-  date: number;
+  date: string;
   title: string;
   priority: string;
   meet: string;
-  start: string;
-  end: string;
+  time: string;
 }
 interface taskProp {
   task: schedule;
+  WeekDate: string[];
 }
-function CalendarTaskBlock({ task }: taskProp) {
-  const hh = 60;
-  const [s, m] = task.start.split(":").map(Number);
-  const [e, em] = task.end.split(":").map(Number);
+function CalendarTaskBlock({ task, WeekDate }: taskProp) {
+  const [onHover, setOnHover] = useState<boolean>(false);
+  const hourHeight = 120 / 4;
+  const [start, end] = task.time.split(" - ");
+  const startInMinutes = parseTime(start);
+  const endInMinutes = parseTime(end);
 
-  const siM = s * 60 + m;
-  const eiM = e * 60 + em;
+  const top = (startInMinutes / 60) * hourHeight;
+  const height = ((endInMinutes - startInMinutes) / 60) * hourHeight;
 
-  const t = (siM / 60) * hh;
-  const h = ((eiM - siM) / 60) * hh;
+  const index = WeekDate.findIndex(
+    (day) => day === format(new Date(task.date), "eee dd"),
+  );
 
-  const left = `${task.date * 20}%`;
+  if (index === -1) return;
 
+  const left = `${index * 20}%`;
+
+  const isMedium = height > 50;
+  const isSmall = height >= 40;
   return (
     <div
-      className="absolute"
-      style={{ top: `${t}px`, height: `${h}px`, left, width: "20%" }}
+      className="absolute bg-blue-200 rounded-lg text-xs px-3 py-2 cursor-pointer text-start"
+      style={{ top: `${top}px`, height: `${height}px`, left, width: "20%" }}
+      onMouseOver={() => setOnHover(true)}
     >
-      {task.title}
+      <h1 className="font-medium pb-1.5">{task.title}</h1>
+      {isSmall && (
+        <div className=" flex flex-col space-y-1.5 items-start justify-center ">
+          {isMedium && (
+            <h4 className="flex items-start gap-2 p-1.5  font-medium bg-white/80 rounded-xl dark:bg-slate-700 dark:border dark:border-slate-400 ">
+              <TiGroupOutline className="text-red-600" /> {task.meet}
+            </h4>
+          )}
+          <p className="text-gray-600">{task.time}</p>
+        </div>
+      )}
     </div>
   );
 }

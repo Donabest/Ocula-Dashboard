@@ -2,7 +2,14 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
 
 import User from "../assets/person-1.jpg";
-import type { schedule } from "../utilities/type";
+
+interface schedule {
+  date: string;
+  title: string;
+  priority: string;
+  meet: string;
+  time: string;
+}
 
 interface scheduleTaskItemProps {
   task: schedule;
