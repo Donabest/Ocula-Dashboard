@@ -2,45 +2,7 @@ import { CiFlag1 } from "react-icons/ci";
 import { motion } from "motion/react";
 import User from "../assets/person-1.jpg";
 import type { priorityBg, status } from "../utilities/type";
-
-interface Row {
-  name: string;
-  StartDate: string;
-  EndDate: string;
-  priority: priorityBg;
-  status: status;
-}
-
-const Rows: Row[] = [
-  {
-    name: "Homepage redesign",
-    StartDate: "jan 26,2027",
-    EndDate: "jan 28,2027",
-    priority: "High",
-    status: "Inprogress",
-  },
-  {
-    name: "Api Integration",
-    StartDate: "jan 18,2027",
-    EndDate: "jan 30,2027",
-    priority: "Low",
-    status: "Completed",
-  },
-  {
-    name: "User testing session",
-    StartDate: "jan 20,2027",
-    EndDate: "feb 2,2027",
-    priority: "Med",
-    status: "Todo",
-  },
-  {
-    name: "Ui Handoff",
-    StartDate: "jan 26,2027",
-    EndDate: "feb 08,2027",
-    priority: "High",
-    status: "Upcomming",
-  },
-];
+import { Tasks } from "../data/data-task";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
@@ -58,7 +20,7 @@ const priorityBg: Record<priorityBg, string> = {
 function TableRows() {
   return (
     <>
-      {Rows.map((row, index) => (
+      {Tasks.map((row, index) => (
         <motion.div
           className="grid grid-cols-[4fr_2fr_2fr] gap-5 font-medium text-gray-600 pt-4 mt-5 w-full border-t-2 border-gray-200 dark:text-slate-200 dark:border-slate-700"
           initial={{ y: 5, opacity: 0 }}
@@ -71,7 +33,7 @@ function TableRows() {
             <span
               className={`${StatusBg[row.status]} p-1.5 rounded-sm cursor-pointer`}
             ></span>
-            <span className="truncate">{row.name}</span>
+            <span className="truncate">{row.title}</span>
           </div>
           <div className="flex items-center text-center gap-8 w-full">
             <span>{row.StartDate}</span>

@@ -2,12 +2,14 @@ import { motion } from "motion/react";
 import { SiRobotframework } from "react-icons/si";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { GiEmptyHourglass } from "react-icons/gi";
+import { format } from "date-fns";
 
 function Welcome() {
+  const Today = format(new Date(), "eeee, do MMMM");
   return (
     <div className="flex flex-col px-7 py-6 gap-3 pt-25">
       <div>
-        <span className="font-poppin text-gray-400">Thursday, 26th March</span>
+        <span className="font-poppin text-gray-400">{Today}</span>
         <motion.h1
           className="font-inter font-medium  tracking-wide text-[30px] pt-1.5 capitalize dark:text-white"
           initial={{ opacity: 0, y: 20 }}

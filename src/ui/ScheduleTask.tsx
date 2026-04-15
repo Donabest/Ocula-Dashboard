@@ -2,24 +2,11 @@ import { BsThreeDots } from "react-icons/bs";
 import { motion } from "motion/react";
 
 import ScheduleTaskItem from "./ScheduleTaskItem";
-import type { schedule } from "../utilities/type";
-
-const schedule: schedule[] = [
-  {
-    title: "Sprinting Planning",
-    priority: "Starting soon",
-    meet: "Zoom meeting",
-    time: "05:00 PM - 06:00 PM",
-  },
-  {
-    title: "Design Review",
-    priority: "Schedule",
-    meet: "Google meeting",
-    time: "01:00 PM - 02:00 PM",
-  },
-];
+import { useCalendar } from "../Context/useCalender";
 
 function ScheduleTask() {
+  const { schedules } = useCalendar();
+  const FirstTwoSchedules = schedules.slice(0, 2);
   return (
     <motion.section
       className="flex flex-col bg-white p-6 space-y-4 rounded-lg dark:bg-slate-800 dark:text-slate-100 "
@@ -33,7 +20,7 @@ function ScheduleTask() {
         <BsThreeDots className="cursor-pointer" />
       </div>
 
-      {schedule.map((schTask, index) => (
+      {FirstTwoSchedules.map((schTask, index) => (
         <ScheduleTaskItem task={schTask} detail={true} key={index} />
       ))}
     </motion.section>

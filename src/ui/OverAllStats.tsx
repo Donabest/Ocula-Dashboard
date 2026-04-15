@@ -6,12 +6,13 @@ import {
 } from "react-icons/md";
 
 import type { cardTab } from "../utilities/type";
+import { Tasks } from "../data/data-task";
 
 const Tab: cardTab[] = [
   {
     icon: <BiTask className="text-purple-400 " />,
     status: "Total Tasks",
-    total: 128,
+    total: Tasks.length,
   },
   {
     icon: <MdOutlineAccessTime className="text-yellow-400 " />,

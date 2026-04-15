@@ -18,7 +18,6 @@ function DashboardCard4() {
     hasTask,
     selectDayScheduleTask,
     index,
-    selectDay,
   } = useCalendar();
 
   const First7DaysArray = [...days];
@@ -65,8 +64,11 @@ function DashboardCard4() {
         />
       </div>
 
-      {selectDayScheduleTask.map((task) => (
-        <div className="bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700">
+      {selectDayScheduleTask.map((task, index) => (
+        <div
+          className="bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700"
+          key={index}
+        >
           <div className="flex justify-between items-center">
             <div className="space-y-2">
               <h1 className="font-poppin font-medium">{task.title}</h1>
@@ -91,9 +93,11 @@ function DashboardCard4() {
         </div>
       ))}
 
-      <div className="bg-blue-100/80 p-4 rounded-lg">
-        <NoScheduleTask />
-      </div>
+      {!selectDayScheduleTask.length && (
+        <div className="bg-blue-100/80 p-4 rounded-lg">
+          <NoScheduleTask />
+        </div>
+      )}
     </div>
   );
 }

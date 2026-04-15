@@ -36,7 +36,7 @@ function CalendarTaskBlock({ task, WeekDate }: taskProp) {
   const isSmall = height >= 40;
   return (
     <div
-      className="absolute bg-blue-200 rounded-lg text-xs px-3 py-2 cursor-pointer text-start"
+      className="absolute bg-blue-200 rounded-lg text-xs p-2 cursor-pointer text-start"
       style={{ top: `${top}px`, height: `${height}px`, left, width: "20%" }}
       onMouseOver={() => setOnHover(true)}
     >
@@ -44,7 +44,7 @@ function CalendarTaskBlock({ task, WeekDate }: taskProp) {
       {isSmall && (
         <div className=" flex flex-col space-y-1.5 items-start justify-center ">
           {isMedium && (
-            <h4 className="flex items-start gap-2 p-1.5  font-medium bg-white/80 rounded-xl dark:bg-slate-700 dark:border dark:border-slate-400 ">
+            <h4 className="flex justify-center items-start gap-1.5 p-1.5 bg-white/80 rounded-xl dark:bg-slate-700 dark:border dark:border-slate-400 ">
               <TiGroupOutline className="text-red-600" /> {task.meet}
             </h4>
           )}
