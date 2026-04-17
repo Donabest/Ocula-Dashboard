@@ -6,7 +6,7 @@ import {
 } from "react-icons/md";
 
 import type { cardTab } from "../utilities/type";
-import { Tasks } from "../data/data-task";
+import { CompletedTasks, InprogressTasks, Tasks } from "../data/data-task";
 
 const Tab: cardTab[] = [
   {
@@ -17,12 +17,12 @@ const Tab: cardTab[] = [
   {
     icon: <MdOutlineAccessTime className="text-yellow-400 " />,
     status: "In progress",
-    total: 18,
+    total: InprogressTasks.length,
   },
   {
     icon: <FaRegCircleCheck className="text-emerald-500 " />,
     status: "Completed",
-    total: 76,
+    total: CompletedTasks.length,
   },
 ];
 

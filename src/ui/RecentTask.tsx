@@ -3,8 +3,7 @@ import type { priorityBg } from "../utilities/type";
 import { CiFlag1 } from "react-icons/ci";
 import { Tasks } from "../data/data-task";
 
-const AllTasks = [...Tasks];
-const RecentTasks = AllTasks.slice(0, 2);
+const RecentTasks = [...Tasks].slice(0, 2);
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
@@ -20,10 +19,10 @@ function RecentTask() {
         <BsThreeDots className="cursor-pointer" />
       </div>
 
-      <div className="flex flex-col items-center gap-4 mt-3">
+      <div className="flex flex-col items-center gap-4 mt-3 mx-2">
         {RecentTasks.map((rcard, index) => (
           <div
-            className=" bg-gray-100 py-3 px-4 rounded-lg space-y-3  dark:bg-slate-700 dark:text-slate-100"
+            className="bg-gray-100 py-3 px-4 rounded-lg space-y-3 w-full dark:bg-slate-700 dark:text-slate-100"
             key={index}
           >
             <div className=" flex justify-between items-center">

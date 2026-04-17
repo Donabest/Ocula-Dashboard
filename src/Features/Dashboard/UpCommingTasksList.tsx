@@ -9,6 +9,8 @@ type Props = {
   handler: (tab: string) => void;
 };
 function UpCommingTasksList({ active, handler }: Props) {
+  const UpComming = [...UpCommingTasks].slice(0, 3);
+
   return (
     <div>
       <div className="flex items-center gap-3 pl-3">
@@ -24,7 +26,7 @@ function UpCommingTasksList({ active, handler }: Props) {
       </div>
 
       {active === "Upcomming" && (
-        <ListTaskCard tasks={UpCommingTasks} Assignee={false} />
+        <ListTaskCard tasks={UpComming} Assignee={false} />
       )}
     </div>
   );

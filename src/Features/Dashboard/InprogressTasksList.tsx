@@ -9,6 +9,8 @@ type Props = {
 };
 
 function InprogressTasksList({ active, handler }: Props) {
+  const Inprogress = [...InprogressTasks].slice(0, 3);
+
   return (
     <div>
       <div className="flex items-center gap-3 pl-3">
@@ -25,7 +27,7 @@ function InprogressTasksList({ active, handler }: Props) {
         </span>
       </div>
       {active === "Inprogress" && (
-        <ListTaskCard tasks={InprogressTasks} Assignee={false} />
+        <ListTaskCard tasks={Inprogress} Assignee={false} />
       )}
     </div>
   );

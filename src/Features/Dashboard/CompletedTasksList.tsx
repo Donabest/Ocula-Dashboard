@@ -7,6 +7,8 @@ type Props = {
   handler: (tab: string) => void;
 };
 function CompletedTasksList({ active, handler }: Props) {
+  const Completed = [...CompletedTasks].slice(0, 3);
+
   return (
     <div>
       <div className="flex items-center gap-3 pl-3">
@@ -21,7 +23,7 @@ function CompletedTasksList({ active, handler }: Props) {
         </span>
       </div>
       {active === "Completed" && (
-        <ListTaskCard tasks={CompletedTasks} Assignee={false} />
+        <ListTaskCard tasks={Completed} Assignee={false} />
       )}
     </div>
   );

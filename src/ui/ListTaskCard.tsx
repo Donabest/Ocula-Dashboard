@@ -1,4 +1,3 @@
-import { IoIosArrowUp } from "react-icons/io";
 import type { priorityBg, status, Task } from "../utilities/type";
 import { FaChevronDown } from "react-icons/fa6";
 import TimeDiff from "../utilities/TimeDiff";
@@ -21,8 +20,6 @@ const StatusBg: Record<status, string> = {
   Completed: "bg-blue-300",
 };
 function ListTaskCard({ tasks, Assignee }: CardProps) {
-  const Tasks = [...tasks].slice(0, 3);
-
   return (
     <>
       <div className="flex flex-col gap-5 pt-1.5 pl-3">
@@ -34,7 +31,7 @@ function ListTaskCard({ tasks, Assignee }: CardProps) {
           </div>
         </div>
 
-        {Tasks.map((task, index) => (
+        {tasks.map((task, index) => (
           <div
             className="grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500"
             key={index}

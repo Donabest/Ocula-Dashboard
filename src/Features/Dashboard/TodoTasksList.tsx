@@ -8,6 +8,8 @@ type Props = {
 };
 
 function TodoTasksList({ active, handler }: Props) {
+  const Todo = [...TodoTasks].slice(0, 3);
+
   return (
     <div>
       <div className="flex items-center gap-3 pl-3">
@@ -22,7 +24,7 @@ function TodoTasksList({ active, handler }: Props) {
         </span>
       </div>
 
-      {active === "Todo" && <ListTaskCard tasks={TodoTasks} Assignee={false} />}
+      {active === "Todo" && <ListTaskCard tasks={Todo} Assignee={false} />}
     </div>
   );
 }
