@@ -36,3 +36,14 @@ export interface schedule {
   meet: string;
   time: string;
 }
+
+export interface Task {
+  title: string;
+  description: string;
+  priority: string;
+  date: string;
+  Assignee: string;
+  StartDate: string;
+  EndDate: string;
+  status: status;
+}

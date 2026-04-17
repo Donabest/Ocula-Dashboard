@@ -3,6 +3,7 @@ import { SiRobotframework } from "react-icons/si";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { GiEmptyHourglass } from "react-icons/gi";
 import { format } from "date-fns";
+import { CompletedTasks, InprogressTasks } from "../data/data-task";
 
 function Welcome() {
   const Today = format(new Date(), "eeee, do MMMM");
@@ -32,14 +33,15 @@ function Welcome() {
 
             <div className="flex items-center gap-1.5 font-medium bg-white px-4 py-1.5 rounded-full cursor-pointer dark:bg-slate-800 dark:text-white">
               <IoMdCheckmarkCircleOutline className="text-emerald-400" />
-              24
+              {CompletedTasks.length}
               <span className="font-normal text-gray-700 dark:text-gray-200">
                 Project completed
               </span>
             </div>
 
             <div className="flex items-center gap-1.5 font-medium bg-white px-4 py-1.5 rounded-full cursor-pointer dark:bg-slate-800 dark:text-white">
-              <GiEmptyHourglass className="text-blue-500" />7
+              <GiEmptyHourglass className="text-blue-500" />
+              {InprogressTasks.length}
               <span className="font-normal text-gray-700 dark:text-gray-200">
                 Projects in progress
               </span>

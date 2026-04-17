@@ -5,8 +5,31 @@ import CompletedTaskBoard from "../../ui/CompletedTaskBoard";
 import InprogressTaskBoard from "../../ui/InprogressTaskBoard";
 import TodoTaskBoard from "../../ui/TodoTaskBoard";
 import UpcommingTaskBoard from "../../ui/UpcommingTaskBoard";
+import {
+  CompletedTasks,
+  InprogressTasks,
+  TodoTasks,
+  UpCommingTasks,
+} from "../../data/data-task";
 
-const BoardHeader: string[] = ["Inprogress", "Todo", "UpComming", "Completed"];
+const BoardHeader = [
+  {
+    Title: "Inprogress",
+    Tasklength: InprogressTasks.length,
+  },
+  {
+    Title: "Todo",
+    Tasklength: TodoTasks.length,
+  },
+  {
+    Title: "UpComming",
+    Tasklength: UpCommingTasks.length,
+  },
+  {
+    Title: "Completed",
+    Tasklength: CompletedTasks.length,
+  },
+];
 
 function MyTasksBoardView({ active }: ActiveProp) {
   return (
@@ -14,18 +37,20 @@ function MyTasksBoardView({ active }: ActiveProp) {
       {active === "Board" && (
         <div className="mt-6">
           <ul className="grid grid-cols-4 gap-4">
-            {BoardHeader.map((head, index) => (
+            {BoardHeader.map((header, index) => (
               <li
                 className="flex justify-between items-center bg-gray-200/60 px-4 py-3 rounded-lg dark:bg-slate-800"
                 key={index}
               >
                 <h2 className="flex items-center gap-2 font-medium text-gray-800 dark:text-slate-200">
-                  {head}
+                  {header.Title}
                   <span className="text-gray-600 font-raleway dark:text-slate-300">
-                    .2
+                    .{header.Tasklength}
                   </span>
                 </h2>
-                <IoIosArrowUp className="text-gray-500 cursor-pointer dark:text-slate-400" />
+                <span>
+                  <IoIosArrowUp className="text-gray-500 cursor-pointer dark:text-slate-400" />
+                </span>
               </li>
             ))}
           </ul>

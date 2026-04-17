@@ -1,17 +1,8 @@
 import BoardTaskCard from "./BoardTaskCard";
-import Assignee from "../assets/person-1.jpg";
-
-const CompletedTask = [
-  {
-    priority: "High",
-    title: "Trip Creation Flow",
-    desc: "Outline step to create a new trip",
-    Assignee,
-  },
-];
+import { CompletedTasks } from "../data/data-task";
 
 function CompletedTaskBoard() {
-  return <BoardTaskCard Tasks={CompletedTask} />;
+  return <BoardTaskCard Tasks={CompletedTasks} />;
 }
 
 export default CompletedTaskBoard;

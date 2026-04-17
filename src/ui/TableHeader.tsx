@@ -1,11 +1,13 @@
+import { Tasks } from "../data/data-task";
+
 function TableHeader() {
   return (
     <div>
       <div className="flex justify-between">
         <h1 className="font-medium text-xl">
-          Task list{" "}
+          Task list
           <span className="text-slate-500 font-poppin font-normal text-[16px] dark:text-slate-400">
-            .4
+            . {Tasks.length}
           </span>
         </h1>
 

@@ -1,8 +1,8 @@
 import { BsThreeDots } from "react-icons/bs";
-import type { priorityBg, Tasks } from "../utilities/type";
+import type { priorityBg, Task } from "../utilities/type";
 
 interface BoardTaskProp {
-  Tasks: Tasks[];
+  Tasks: Task[];
 }
 
 const priorityBg: Record<priorityBg, string> = {
@@ -32,7 +32,7 @@ function BoardTaskCard({ Tasks }: BoardTaskProp) {
               {task.title}
             </h1>
             <p className="font-raleway text-gray-500 truncate text-sm dark:text-slate-300">
-              {task.desc}
+              {task.description}
             </p>
           </div>
           <img

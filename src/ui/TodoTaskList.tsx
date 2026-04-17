@@ -1,25 +1,10 @@
-import Assignee from "../assets/person-1.jpg";
+import { TodoTasks } from "../data/data-task";
 import ListTaskCard from "./ListTaskCard";
-
-const TodoTasks = [
-  {
-    title: "One-on-One-Meeting",
-    priority: "High",
-    day: "feb 2,2027",
-    Assignee,
-  },
-  {
-    title: "Send a summary email to stakeholders",
-    priority: "Low",
-    day: "jan 20,2027",
-    Assignee,
-  },
-];
 
 function TodoTaskList() {
   return (
     <div className="space-y-4 bg-white p-6 mt-6 rounded-lg  cursor-pointer dark:bg-slate-800 dark:text-white">
-      <ListTaskCard Tasks={TodoTasks} status="Todo" Assignee={true} />
+      <ListTaskCard tasks={TodoTasks} Assignee={true} />
     </div>
   );
 }
