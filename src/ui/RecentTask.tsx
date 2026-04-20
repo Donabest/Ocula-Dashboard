@@ -3,7 +3,7 @@ import type { priorityBg } from "../utilities/type";
 import { CiFlag1 } from "react-icons/ci";
 import { Tasks } from "../data/data-task";
 
-const RecentTasks = [...Tasks].slice(0, 2);
+const RecentTasks = [...Tasks].slice(-2);
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",

@@ -22,7 +22,7 @@ const Projects = [
     group: "4 tasks",
   },
 ];
-function DashboardCard3() {
+function DashboardCardThree() {
   return (
     <div className="bg-white p-7 rounded-2xl dark:bg-slate-800 dark:text-white/90 dark:shadow-2xl dark:shadow-black/20">
       <div className="flex items-center gap-4">
@@ -60,4 +60,4 @@ function DashboardCard3() {
   );
 }
 
-export default DashboardCard3;
+export default DashboardCardThree;

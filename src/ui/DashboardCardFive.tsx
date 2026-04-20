@@ -8,7 +8,7 @@ const Reminder: string[] = [
   "outline key points for tomorrow's stand up meeting",
 ];
 
-function DashboardCard5() {
+function DashboardCardFive() {
   return (
     <div className="bg-white my-6 px-8 py-6 rounded-2xl dark:bg-slate-800 dark:text-white/90">
       <h1 className="flex items-center gap-2  font-medium text-black dark:text-white/90">
@@ -41,4 +41,4 @@ function DashboardCard5() {
   );
 }
 
-export default DashboardCard5;
+export default DashboardCardFive;

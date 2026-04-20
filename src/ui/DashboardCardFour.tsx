@@ -8,7 +8,7 @@ import { format, isPast } from "date-fns";
 import TimeDiff from "../utilities/TimeDiff";
 import NoScheduleTask from "./NoScheduleTask";
 
-function DashboardCard4() {
+function DashboardCardFour() {
   const {
     currentDate,
     days,
@@ -102,4 +102,4 @@ function DashboardCard4() {
   );
 }
 
-export default DashboardCard4;
+export default DashboardCardFour;

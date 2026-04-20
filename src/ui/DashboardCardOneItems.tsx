@@ -4,7 +4,7 @@ import UpCommingTasksList from "../Features/Dashboard/UpCommingTasksList";
 import CompletedTasksList from "../Features/Dashboard/CompletedTasksList";
 import { useState } from "react";
 
-function DashboardCard1Items() {
+function DashboardCardOneItems() {
   const [activeTab, setActiveTab] = useState<string | null>("Inprogress");
 
   function handleActiveTab(tab: string) {
@@ -20,4 +20,4 @@ function DashboardCard1Items() {
   );
 }
 
-export default DashboardCard1Items;
+export default DashboardCardOneItems;
