@@ -16,7 +16,6 @@ interface CardProps {
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
   Todo: "bg-gray-200",
-  Upcomming: "bg-yellow-400",
   Completed: "bg-blue-300",
 };
 function ListTaskCard({ tasks, Assignee }: CardProps) {

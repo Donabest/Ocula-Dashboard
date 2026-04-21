@@ -74,7 +74,7 @@ export const Tasks: Task[] = [
     description:
       "Update component libary with new color tosken and typography scales.",
     Assignee,
-    StartDate: "Apr 4 2026",
+    StartDate: "Oct 4 2026",
     EndDate: "jan 28,2027",
     status: "Todo",
   },
@@ -84,7 +84,7 @@ export const Tasks: Task[] = [
     date: "Apr 25 2026",
     description: "Outline step to create a new trip",
     Assignee,
-    StartDate: "Apr 4 2026",
+    StartDate: "Sep 4 2026",
     EndDate: "jan 28,2027",
     status: "Todo",
   },
@@ -95,9 +95,9 @@ export const Tasks: Task[] = [
     description:
       "Update component libary with new color tosken and typography scales.",
     Assignee,
-    StartDate: "Apr 4 2026",
+    StartDate: "Aug 4 2026",
     EndDate: "jan 28,2027",
-    status: "Upcomming",
+    status: "Inprogress",
   },
   {
     title: "One-on-One-Meeting",
@@ -106,19 +106,30 @@ export const Tasks: Task[] = [
     description:
       "Update component libary with new color tosken and typography scales.",
     Assignee,
-    StartDate: "Apr 4 2026",
+    StartDate: "Dec 4 2026",
     EndDate: "jan 28,2027",
-    status: "Upcomming",
+    status: "Completed",
   },
   {
-    title: "One-on-One-Meeting",
-    priority: "High",
-    date: "Apr 15 2026",
-    description: "check smooth navigation,loading,display and so on",
+    title: "Trip Creation Flow",
+    priority: "Med",
+    date: "Apr 25 2026",
+    description: "Outline step to create a new trip",
     Assignee,
-    StartDate: "Apr 4 2026",
+    StartDate: "Sep 4 2026",
     EndDate: "jan 28,2027",
-    status: "Upcomming",
+    status: "Todo",
+  },
+  {
+    priority: "Med",
+    title: "User Research Analytics",
+    description:
+      "Update component libary with new color tosken and typography scales.",
+    date: "Apr 30 2026",
+    Assignee,
+    StartDate: "jun 4 2026",
+    EndDate: "jan 28,2027",
+    status: "Completed",
   },
 ];
 
@@ -129,6 +140,6 @@ export const CompletedTasks = Tasks.filter(
   (task) => task.status === "Completed",
 );
 export const TodoTasks = Tasks.filter((task) => task.status === "Todo");
-export const UpCommingTasks = Tasks.filter(
-  (task) => task.status === "Upcomming",
+export const isUpComming = Tasks.filter(
+  (upcomming) => new Date(upcomming.StartDate) > new Date(),
 );

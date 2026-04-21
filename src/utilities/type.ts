@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 
 export type priorityBg = "High" | "Low" | "Med" | string;
-export type status = "Inprogress" | "Todo" | "Upcomming" | "Completed";
+export type status = "Inprogress" | "Todo" | "Completed";
 
 export type ListType = {
   icon: JSX.Element;

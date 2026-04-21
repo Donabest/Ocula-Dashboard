@@ -1,8 +1,8 @@
-import { UpCommingTasks } from "../data/data-task";
+import { isUpComming } from "../data/data-task";
 import BoardTaskCard from "./BoardTaskCard";
 
 function UpcommingTaskBoard() {
-  return <BoardTaskCard Tasks={UpCommingTasks} />;
+  return <BoardTaskCard Tasks={isUpComming} />;
 }
 
 export default UpcommingTaskBoard;

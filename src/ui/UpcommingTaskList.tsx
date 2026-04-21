@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UpCommingTasks } from "../data/data-task";
+import { isUpComming } from "../data/data-task";
 import ListTaskCard from "./ListTaskCard";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -15,11 +15,11 @@ function UpcommingTaskList() {
           {isUpCommig ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>
         <p className="bg-yellow-200 text-yellow-700 px-4 py-1 rounded-lg">
-          Completed
+          Upcomming
         </p>
-        <span> . {UpCommingTasks.length} Tasks</span>
+        <span> . {isUpComming.length} Tasks</span>
       </div>
-      {isUpCommig && <ListTaskCard tasks={UpCommingTasks} Assignee={true} />}
+      {isUpCommig && <ListTaskCard tasks={isUpComming} Assignee={true} />}
     </div>
   );
 }

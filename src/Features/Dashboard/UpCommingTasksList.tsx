@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
-import { UpCommingTasks } from "../../data/data-task";
+import { isUpComming } from "../../data/data-task";
 import ListTaskCard from "../../ui/ListTaskCard";
 
 type Props = {
@@ -9,8 +8,7 @@ type Props = {
   handler: (tab: string) => void;
 };
 function UpCommingTasksList({ active, handler }: Props) {
-  const UpComming = [...UpCommingTasks].slice(0, 3);
-
+  const upComming = [...isUpComming].slice(-3);
   return (
     <div>
       <div className="flex items-center gap-3 pl-3">
@@ -21,12 +19,12 @@ function UpCommingTasksList({ active, handler }: Props) {
           Up Comming
         </p>
         <span className="font-medium text-gray-500 dark:text-slate-400">
-          . {UpCommingTasks.length} tasks
+          . {isUpComming.length} tasks
         </span>
       </div>
 
       {active === "Upcomming" && (
-        <ListTaskCard tasks={UpComming} Assignee={false} />
+        <ListTaskCard tasks={upComming} Assignee={false} />
       )}
     </div>
   );

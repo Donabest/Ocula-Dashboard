@@ -24,11 +24,13 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
   function onSubmit(data: dataType) {
     console.log(data);
     toast.success("Task Created Successfully");
+    handleCancel();
   }
 
   function onError() {
     toast.error("Please fill the required field");
   }
+
   const { errors } = formState;
 
   return (
@@ -165,7 +167,6 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                   <label key={level} className="flex items-center gap-2">
                     <input
                       type="radio"
-                      name="priority"
                       value={level}
                       {...register("Priority", {
                         required: "This field is required",
@@ -185,7 +186,6 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 Description
               </label>
               <textarea
-                name="Description"
                 placeholder="Task Description"
                 className="px-4 py-2 h-20 border border-gray-300 outline-0 rounded-sm w-full"
                 {...register("Description")}

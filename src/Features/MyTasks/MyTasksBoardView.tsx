@@ -9,7 +9,7 @@ import {
   CompletedTasks,
   InprogressTasks,
   TodoTasks,
-  UpCommingTasks,
+  isUpComming,
 } from "../../data/data-task";
 
 const BoardHeader = [
@@ -23,7 +23,7 @@ const BoardHeader = [
   },
   {
     Title: "UpComming",
-    Tasklength: UpCommingTasks.length,
+    Tasklength: isUpComming.length,
   },
   {
     Title: "Completed",
