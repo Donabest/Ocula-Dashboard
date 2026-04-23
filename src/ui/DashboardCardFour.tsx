@@ -25,6 +25,8 @@ function DashboardCardFour() {
     format(day, "MMM dd yyyy"),
   );
 
+  const scheduleTask = [...selectDayScheduleTask].slice(-1);
+
   return (
     <div className="bg-white mt-8 px-8 py-6 space-y-4 rounded-2xl dark:bg-slate-800 dark:text-white">
       <div className="flex justify-between items-center gap-5 font-poppin font-medium text-gray-600 dark:text-slate-300">
@@ -64,21 +66,23 @@ function DashboardCardFour() {
         />
       </div>
 
-      {selectDayScheduleTask.map((task, index) => (
+      {scheduleTask.map((task, index) => (
         <div
           className="bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700"
           key={index}
         >
           <div className="flex justify-between items-center">
             <div className="space-y-2">
-              <h1 className="font-poppin font-medium">{task.title}</h1>
+              <h1 className="font-poppin font-medium">{task.EventTitle}</h1>
               <div className="flex  items-center justify-start gap-2 font-raleway text-gray-400 text-[15px]  ">
                 <span
-                  className={`${TimeDiff(task.date)?.includes("days ago") && "bg-red-100 text-red-400"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl`}
+                  className={`${TimeDiff(task.Date)?.includes("days ago") && "bg-red-100 text-red-400"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl`}
                 >
-                  {TimeDiff(task.date)}
+                  {TimeDiff(task.Date)}
                 </span>
-                <p> {task.time}</p>
+                <p>
+                  {task.StartTime} - {task.EndTime}
+                </p>
               </div>
             </div>
             <BsThreeDots className="cursor-pointer" />
@@ -87,7 +91,7 @@ function DashboardCardFour() {
           <div className="inline-block font-raleway font-medium bg-white px-4 py-1.5 mt-6 rounded-3xl dark:bg-slate-800">
             <p className="flex items-center gap-2">
               <SiGooglemeet className="text-red-500" />
-              {task.meet}
+              {task.Meet}
             </p>
           </div>
         </div>

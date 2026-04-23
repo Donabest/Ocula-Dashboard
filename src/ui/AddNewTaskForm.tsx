@@ -3,6 +3,7 @@ import { LuAsterisk } from "react-icons/lu";
 import { MdOutlineCancel } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import type { status } from "../utilities/type";
 
 type NewTasksProps = {
   handleCancel: () => void;
@@ -11,11 +12,11 @@ type NewTasksProps = {
 type dataType = {
   TaskName: string;
   Priority: string;
-  Reminder: string;
   ProjectName: string;
   StartDate: Date;
   EndDate: Date;
   Description: string;
+  Status: status;
 };
 
 function AddNewTaskForm({ handleCancel }: NewTasksProps) {
@@ -24,7 +25,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
   function onSubmit(data: dataType) {
     console.log(data);
     toast.success("Task Created Successfully");
-    handleCancel();
+    // handleCancel();
   }
 
   function onError() {
@@ -75,37 +76,21 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2  items-center gap-1.5">
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="Project"
-                  className="flex items-start text-sm font-medium text-gray-500"
-                >
-                  Project Name <LuAsterisk color="red" size={10} />
-                </label>
-                <input
-                  type="text"
-                  placeholder="Project Name"
-                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full"
-                  {...register("ProjectName", {
-                    required: "This field is required",
-                  })}
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="Reminder"
-                  className="flex items-start text-sm font-medium text-gray-500"
-                >
-                  Reminder <LuAsterisk color="red" size={10} />
-                </label>
-                <input
-                  type="text"
-                  placeholder="In 3days"
-                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full"
-                  {...register("Reminder")}
-                />
-              </div>
+            <div className="space-y-1.5">
+              <label
+                htmlFor="Project"
+                className="flex items-start text-sm font-medium text-gray-500"
+              >
+                Project Name <LuAsterisk color="red" size={10} />
+              </label>
+              <input
+                type="text"
+                placeholder="Project Name"
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full"
+                {...register("ProjectName", {
+                  required: "This field is required",
+                })}
+              />
             </div>
 
             <div className=" space-y-1.5">
@@ -158,23 +143,43 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </div>
             </div>
 
-            <div>
-              <p className="flex items-start text-sm font-medium text-gray-500">
-                Priority <LuAsterisk color="red" size={10} />
-              </p>
-              <div className="flex items-center gap-2 text-gray-500 font-medium pt-1.5">
-                {["High", "Med", "Low"].map((level) => (
-                  <label key={level} className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      value={level}
-                      {...register("Priority", {
-                        required: "This field is required",
-                      })}
-                    />
-                    {level}
-                  </label>
-                ))}
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="flex items-start text-sm font-medium text-gray-500">
+                  Priority <LuAsterisk color="red" size={10} />
+                </p>
+                <div className="flex items-center gap-2 text-gray-500 font-medium pt-1.5">
+                  {["High", "Med", "Low"].map((level) => (
+                    <label key={level} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        value={level}
+                        {...register("Priority", {
+                          required: "This field is required",
+                        })}
+                      />
+                      {level}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm font-medium text-gray-500">Status</p>
+                <div className="flex items-center gap-2 text-gray-500 font-medium pt-1.5">
+                  {["Todo", "InProgress", "Completed"].map((s) => (
+                    <label key={s} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        value={s}
+                        {...register("Status", {
+                          required: "This field is required",
+                        })}
+                      />
+                      {s}
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -193,12 +198,16 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             </div>
             <div className="flex justify-between items-center pt-5 ">
               <button
+                type="reset"
                 className="bg-transparent border border-gray-200 px-4 py-1.5 rounded-lg cursor-pointer active:scale-105"
                 onClick={handleCancel}
               >
                 Cancel
               </button>
-              <button className="bg-blue-700 text-white px-4 py-1.5 rounded-lg cursor-pointer active:scale-105">
+              <button
+                type="submit"
+                className="bg-blue-700 text-white px-4 py-1.5 rounded-lg cursor-pointer active:scale-105"
+              >
                 Create Task
               </button>
             </div>

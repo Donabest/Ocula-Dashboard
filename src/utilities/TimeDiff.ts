@@ -15,3 +15,8 @@ function TimeDiff(date: string) {
 }
 
 export default TimeDiff;
+
+export function ReminderCountDown(Time: string) {
+  const date = new Date();
+  // date.getH
+}

@@ -13,43 +13,44 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
-
-interface schedule {
-  date: string;
-  title: string;
-  priority: string;
-  meet: string;
-  time: string;
-}
+import type { schedule } from "../utilities/type";
 
 const schedules: schedule[] = [
   {
-    date: "Apr 23 2026",
-    title: "Sprinting Planning",
-    priority: "Starting soon",
-    meet: "Zoom meeting",
-    time: "05:30 AM - 12:00 PM",
+    Date: "Apr 23 2026",
+    EventTitle: "Sprinting Planning",
+    Meet: "Zoom meeting",
+    StartTime: "05:30 AM",
+    EndTime: "12:00 PM",
+    Reminder: "none",
+    Description: "What",
   },
   {
-    date: "Apr 14 2026",
-    title: "Design Review",
-    priority: "Schedule",
-    meet: "Google meeting",
-    time: "01:00 PM - 02:00 PM",
+    Date: "Apr 23 2026",
+    EventTitle: "Design Review",
+    Meet: "Google meeting",
+    StartTime: "01:00 PM",
+    EndTime: "02:00 PM",
+    Reminder: "1 hour before",
+    Description: "Agree",
   },
   {
-    date: "Apr 28 2026",
-    title: "Design Review",
-    priority: "Starting Sonn",
-    meet: "Google meeting",
-    time: "01:00 PM - 02:40 PM",
+    Date: "Apr 23 2026",
+    EventTitle: "Design Review",
+    Meet: "Google meeting",
+    StartTime: "01:00 PM ",
+    EndTime: "02:40 PM",
+    Reminder: "10 min before",
+    Description: "HMMMM",
   },
   {
-    date: "Apr 02 2026",
-    title: "Design Review",
-    priority: "Schedule",
-    meet: "Google meeting",
-    time: "09:00 AM - 12:00 PM",
+    Date: "Apr 02 2026",
+    EventTitle: "Design Review",
+    Meet: "Google meeting",
+    StartTime: "09:00 AM",
+    EndTime: "12:00 PM",
+    Reminder: "2 days before",
+    Description: "Okay",
   },
 ];
 
@@ -86,7 +87,7 @@ function CalenderProvider({ children }: { children: ReactNode }) {
   });
 
   const hasTask = schedules.map((taskDate) =>
-    format(new Date(taskDate.date), "MMM dd yyyy"),
+    format(new Date(taskDate.Date), "MMM dd yyyy"),
   );
 
   function handleNextDay(nextNum: number) {
@@ -100,7 +101,7 @@ function CalenderProvider({ children }: { children: ReactNode }) {
   const [selectDay, setSelectDay] = useState<string>(Today);
 
   const selectDayScheduleTask = schedules.filter(
-    (task) => task.date === selectDay,
+    (task) => task.Date === selectDay,
   );
 
   const index = days.findIndex(

@@ -30,12 +30,15 @@ export interface ActiveProp {
   active: string;
 }
 
-export interface schedule {
-  title: string;
-  priority: string;
-  meet: string;
-  time: string;
-}
+export type schedule = {
+  EventTitle: string;
+  Date: string;
+  StartTime: string;
+  EndTime: string;
+  Reminder: string;
+  Description: string;
+  Meet: string;
+};
 
 export interface Task {
   title: string;

@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CalenderItem from "../../ui/CalendarItem";
 import PageHeader from "../../ui/PageHeader";
 import { format } from "date-fns";
 import { useCalendar } from "../../Context/useCalender";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import CalendarBox from "./CalendarBox";
+import AddEvent from "../../ui/AddEvent";
 
 function CalendarLayout() {
   const {
@@ -16,12 +17,17 @@ function CalendarLayout() {
     setSelectDay,
   } = useCalendar();
 
+  const [openSchedule, setOpenSchedule] = useState<boolean>();
+
   useEffect(() => {
     if (selectDay) {
       setCurrentDate(new Date(selectDay));
     }
   }, [selectDay, setCurrentDate]);
 
+  function handleCloseSchedule() {
+    setOpenSchedule(false);
+  }
   return (
     <section className="pt-25 pb-10 px-10 max-w-8xl dark:text-slate-400">
       <PageHeader
@@ -39,7 +45,10 @@ function CalendarLayout() {
             <MdKeyboardArrowRight />
           </span>
         </div>
-        <button className="flex gap-2 items-center justify-center bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-600 active:scale-101">
+        <button
+          className="flex gap-2 items-center justify-center bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-600 active:scale-101"
+          onClick={() => setOpenSchedule(true)}
+        >
           <span>+</span> Add Schedule
         </button>
       </div>
@@ -50,6 +59,8 @@ function CalendarLayout() {
           <CalenderItem set={setSelectDay} />
         </section>
       </div>
+
+      {openSchedule && <AddEvent handler={handleCloseSchedule} />}
     </section>
   );
 }
