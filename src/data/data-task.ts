@@ -102,7 +102,7 @@ export const Tasks: Task[] = [
   {
     title: "One-on-One-Meeting",
     priority: "High",
-    date: "Apr 15 2026",
+    date: "Apr 26 2026",
     description:
       "Update component libary with new color tosken and typography scales.",
     Assignee,
@@ -113,7 +113,7 @@ export const Tasks: Task[] = [
   {
     title: "Trip Creation Flow",
     priority: "Med",
-    date: "Apr 25 2026",
+    date: "Apr 26 2026",
     description: "Outline step to create a new trip",
     Assignee,
     StartDate: "Sep 4 2026",
@@ -125,7 +125,7 @@ export const Tasks: Task[] = [
     title: "User Research Analytics",
     description:
       "Update component libary with new color tosken and typography scales.",
-    date: "Apr 30 2026",
+    date: "Apr 26 2026",
     Assignee,
     StartDate: "jun 4 2026",
     EndDate: "jan 28,2027",

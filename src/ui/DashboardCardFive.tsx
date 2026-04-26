@@ -1,10 +1,9 @@
 import { CiClock1 } from "react-icons/ci";
-import { HiOutlineBellAlert } from "react-icons/hi2";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import { IoTrashBinOutline } from "react-icons/io5";
-import { BsFillPatchCheckFill } from "react-icons/bs";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { useCalendar } from "../Context/useCalender";
 import { format } from "date-fns";
+import TodayReminderList from "./TodayReminderList";
+import { useState } from "react";
 
 function DashboardCardFive() {
   const { schedules } = useCalendar();
@@ -14,6 +13,7 @@ function DashboardCardFive() {
       format(new Date(sch.Date), "MMM dd yyyy") ===
         format(new Date(), "MMM dd yyyy"),
   );
+  const [showRemind, setShowRemind] = useState<boolean>(false);
 
   return (
     <div className="bg-white my-6 px-8 py-6 rounded-2xl dark:bg-slate-800 dark:text-white/90">
@@ -24,26 +24,29 @@ function DashboardCardFive() {
 
       <div>
         <h1 className="flex items-center gap-2 font-poppin font-medium pt-3">
-          <MdKeyboardArrowUp className="cursor-pointer" />
-          Today{" "}
+          <span
+            onClick={() => setShowRemind((show) => !show)}
+            className="cursor-pointer"
+          >
+            {showRemind ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+          </span>
+          Today
           <span className="text-gray-400 text-sm">
-            {" "}
             . {TodayReminders.length}
           </span>
         </h1>
-        {TodayReminders.map((remind, index) => (
-          <div
-            className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300 dark:border-b-slate-500 "
-            key={index}
-          >
-            <h2 className="font-medium text-black/80 dark:text-slate-300 ">
-              {remind.EventTitle}
-            </h2>
-            <div className="flex justify-center items-center gap-2 ">
-              <span>12:02:01</span>
-            </div>
-          </div>
-        ))}
+
+        {showRemind &&
+          (TodayReminders.length ? (
+            TodayReminders.map((remind, index) => (
+              <TodayReminderList remind={remind} key={index} />
+            ))
+          ) : (
+            <span className="text-gray-400 ml-7 pt-3 flex text-start">
+              You don't have any reminder Today,check notification for all
+              Remind Schedule
+            </span>
+          ))}
       </div>
     </div>
   );
