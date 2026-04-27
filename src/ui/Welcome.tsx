@@ -4,9 +4,11 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { GiEmptyHourglass } from "react-icons/gi";
 import { format } from "date-fns";
 import { CompletedTasks, InprogressTasks } from "../data/data-task";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
   const Today = format(new Date(), "eeee, do MMMM");
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col px-7 py-6 gap-3 pt-25">
       <div>
@@ -26,7 +28,10 @@ function Welcome() {
           transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
         >
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 bg-white px-4 py-1.5 rounded-full cursor-pointer dark:bg-slate-800 dark:text-white">
+            <div
+              className="flex items-center gap-1.5 bg-white px-4 py-1.5 rounded-full cursor-pointer dark:bg-slate-800 dark:text-white"
+              onClick={() => navigate("/OculaAi")}
+            >
               <SiRobotframework className="text-red-400" />
               Ask Ocula
             </div>

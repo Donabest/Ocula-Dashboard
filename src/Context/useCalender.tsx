@@ -17,21 +17,21 @@ import type { schedule } from "../utilities/type";
 
 const schedules: schedule[] = [
   {
-    Date: "Apr 23 2026",
+    Date: "Apr 27 2026",
     EventTitle: "Sprinting Planning",
     Meet: "Zoom meeting",
-    StartTime: "05:30 AM",
-    EndTime: "12:00 PM",
-    Reminder: "none",
+    StartTime: "11:45 AM",
+    EndTime: "1:00 PM",
+    Reminder: "10 min before",
     Description: "What",
   },
   {
     Date: "Apr 27 2026",
-    EventTitle: "Design Review",
-    Meet: "Google meeting",
-    StartTime: "06:00 PM",
-    EndTime: "09:00 PM",
-    Reminder: "5 min before",
+    EventTitle: "Start Class",
+    Meet: "One on One meeting",
+    StartTime: "12:00 PM",
+    EndTime: "4:00 PM",
+    Reminder: "10 min before",
     Description: "Agree",
   },
   {

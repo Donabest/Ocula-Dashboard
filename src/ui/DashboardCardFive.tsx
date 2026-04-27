@@ -2,7 +2,7 @@ import { CiClock1 } from "react-icons/ci";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { useCalendar } from "../Context/useCalender";
 import { format } from "date-fns";
-import TodayReminderList from "./TodayReminderList";
+import ReminderList from "./ReminderList";
 import { useState } from "react";
 
 function DashboardCardFive() {
@@ -13,7 +13,7 @@ function DashboardCardFive() {
       format(new Date(sch.Date), "MMM dd yyyy") ===
         format(new Date(), "MMM dd yyyy"),
   );
-  const [showRemind, setShowRemind] = useState<boolean>(false);
+  const [showRemind, setShowRemind] = useState<boolean>(true);
 
   return (
     <div className="bg-white my-6 px-8 py-6 rounded-2xl dark:bg-slate-800 dark:text-white/90">
@@ -39,7 +39,7 @@ function DashboardCardFive() {
         {showRemind &&
           (TodayReminders.length ? (
             TodayReminders.map((remind, index) => (
-              <TodayReminderList remind={remind} key={index} />
+              <ReminderList remind={remind} key={index} />
             ))
           ) : (
             <span className="text-gray-400 ml-7 pt-3 flex text-start">

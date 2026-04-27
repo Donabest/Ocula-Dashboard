@@ -33,7 +33,7 @@ function DashboardCardOne({ handleAddTask }: Prop) {
             <AiOutlineExpandAlt className="cursor-pointer" />
             <BsThreeDots className="cursor-pointer" />
           </div>
-        </div>{" "}
+        </div>
         <DashboardCardOneItems />
       </motion.div>
     </div>

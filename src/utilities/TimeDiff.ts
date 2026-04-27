@@ -43,9 +43,21 @@ function getStartDateTime(task: schedule) {
   return date;
 }
 
+function getEndDateTime(task: schedule) {
+  const { hour, minutes } = converTime(task.EndTime);
+
+  const date = new Date(task.Date);
+  date.setHours(hour);
+  date.setMinutes(minutes);
+  date.setSeconds(0);
+
+  return date;
+}
+
 export function ReminderCountDown(task: schedule) {
   const now = new Date();
   const startTime = getStartDateTime(task);
+  const endTime = getEndDateTime(task);
   const reminderMinutes = parseReminder(task.Reminder);
 
   const reminderStart = new Date(startTime);
@@ -63,11 +75,26 @@ export function ReminderCountDown(task: schedule) {
 
     return `${hour}h:${min}m:${sec}s`;
   }
-  return "Time reached";
+
+  if (now >= startTime && now <= endTime) {
+    const diff = endTime.getTime() - now.getTime();
+    const totalSec = Math.floor(diff / 1000);
+    const hour = Math.floor(totalSec / 3600);
+    const min = Math.floor((totalSec % 3600) / 60);
+    const sec = totalSec % 60;
+
+    const format = (n: number) => n.toString().padStart(2, "0");
+
+    return `Ongoing (${format(hour)}h:${format(min)}m:${format(sec)}s)`;
+  }
+
+  if (now > endTime) {
+    return "overdue";
+  }
 }
 
 export function LiveCountDown(task: schedule) {
-  const [time, setTime] = useState<string | null>(null);
+  const [time, setTime] = useState<string | undefined>();
 
   useEffect(() => {
     const update = () => {

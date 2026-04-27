@@ -4,15 +4,15 @@ import type { schedule } from "../utilities/type";
 type prop = {
   remind: schedule;
 };
-function TodayReminderList({ remind }: prop) {
+function ReminderList({ remind }: prop) {
   return (
-    <div className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300 dark:border-b-slate-500 ">
+    <div className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300  dark:border-b-slate-500 ">
       <h2 className="font-medium text-black/80 dark:text-slate-300 ">
         {remind.EventTitle}
       </h2>
       <div className="flex justify-center items-center gap-2 ">
         <span
-          className={`${ReminderCountDown(remind) === "Time reached" ? "text-red-400" : ReminderCountDown(remind) === "Upcomming" ? "text-emerald-300" : "text-gray-400"} `}
+          className={`${ReminderCountDown(remind) === "overdue" ? "text-red-400" : ReminderCountDown(remind) === "Upcomming" ? "text-blue-500" : ReminderCountDown(remind)?.includes("Ongoing") ? "text-emerald-500" : "text-gray-400"} `}
         >
           {LiveCountDown(remind)}
         </span>
@@ -21,4 +21,4 @@ function TodayReminderList({ remind }: prop) {
   );
 }
 
-export default TodayReminderList;
+export default ReminderList;
