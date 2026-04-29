@@ -4,6 +4,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import type { status } from "../utilities/type";
+import useClickOutSide from "../hooks/useClickOutSide";
 
 type NewTasksProps = {
   handleCancel: () => void;
@@ -21,7 +22,7 @@ type dataType = {
 
 function AddNewTaskForm({ handleCancel }: NewTasksProps) {
   const { register, handleSubmit, formState } = useForm<dataType>();
-
+  const { ref } = useClickOutSide(handleCancel);
   function onSubmit(data: dataType) {
     console.log(data);
     toast.success("Task Created Successfully");
@@ -36,13 +37,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
 
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-99 bg-black/10 backdrop-blur-xs "
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0 }}
-      >
-        <div className="max-w-xl mx-auto mt-20 bg-white px-6 py-4 rounded-2xl">
+      <div className="fixed inset-0 z-99 bg-black/10 backdrop-blur-xs ">
+        <motion.div
+          className="max-w-xl mx-auto mt-20 bg-white px-6 py-4 rounded-2xl"
+          ref={ref}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+        >
           <div className="flex justify-between items-center border-b border-gray-200 p-2">
             <h1 className="font-medium">Create New Task</h1>
             <p
@@ -212,8 +214,8 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </button>
             </div>
           </form>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </AnimatePresence>
   );
 }

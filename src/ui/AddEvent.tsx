@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useForm } from "react-hook-form";
 import { RiArrowRightLongLine } from "react-icons/ri";
 import type { schedule } from "../utilities/type";
+import useClickOutSide from "../hooks/useClickOutSide";
 
 type handlerType = {
   handler: () => void;
@@ -9,6 +10,7 @@ type handlerType = {
 
 function AddEvent({ handler }: handlerType) {
   const { register, handleSubmit } = useForm<schedule>();
+  const { ref } = useClickOutSide(handler);
   function onSubmit(data: schedule) {
     console.log(data);
   }
@@ -19,6 +21,7 @@ function AddEvent({ handler }: handlerType) {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
+        ref={ref}
       >
         <div className="flex justify-between items-center ">
           <h3 className="text-[17px] font-raleway font-medium">New event</h3>

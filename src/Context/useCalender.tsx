@@ -26,12 +26,12 @@ const schedules: schedule[] = [
     Description: "What",
   },
   {
-    Date: "Apr 27 2026",
-    EventTitle: "Start Class",
+    Date: "Apr 28 2026",
+    EventTitle: "build my project",
     Meet: "One on One meeting",
-    StartTime: "12:00 PM",
+    StartTime: "2:00 PM",
     EndTime: "4:00 PM",
-    Reminder: "10 min before",
+    Reminder: "30 min before",
     Description: "Agree",
   },
   {
@@ -44,13 +44,13 @@ const schedules: schedule[] = [
     Description: "HMMMM",
   },
   {
-    Date: "Apr 02 2026",
+    Date: "Apr 29 2026",
     EventTitle: "Design Review",
     Meet: "Google meeting",
-    StartTime: "09:00 AM",
+    StartTime: "02:00 AM",
     EndTime: "12:00 PM",
-    Reminder: "2 days before",
-    Description: "Okay",
+    Reminder: "10 min before",
+    Description: "Welll Welll",
   },
 ];
 

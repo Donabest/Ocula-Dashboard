@@ -73,7 +73,7 @@ export function ReminderCountDown(task: schedule) {
     const min = Math.floor((totalSec % 3600) / 60);
     const sec = totalSec % 60;
 
-    return `${hour}h:${min}m:${sec}s`;
+    return `Start in ${hour}h:${min}m:${sec}s`;
   }
 
   if (now >= startTime && now <= endTime) {
