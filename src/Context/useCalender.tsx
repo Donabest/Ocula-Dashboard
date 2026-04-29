@@ -68,12 +68,16 @@ type CalenderContextType = {
   selectDayScheduleTask: schedule[];
   index: number;
   selectDay: string;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CalenderContext = createContext<CalenderContextType | null>(null);
 
 function CalenderProvider({ children }: { children: ReactNode }) {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const start = startOfMonth(currentDate);
   const end = endOfMonth(currentDate);
@@ -124,6 +128,8 @@ function CalenderProvider({ children }: { children: ReactNode }) {
         handleNextDay,
         handlePrevDay,
         setSelectDay,
+        isOpen,
+        setIsOpen,
       }}
     >
       {children}

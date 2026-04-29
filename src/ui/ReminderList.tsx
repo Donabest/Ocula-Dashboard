@@ -1,4 +1,3 @@
-import { color } from "motion/react";
 import { LiveCountDown, ReminderCountDown } from "../utilities/TimeDiff";
 import type { schedule } from "../utilities/type";
 

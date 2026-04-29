@@ -3,7 +3,7 @@ import { parseTime } from "../utilities/TimeParse";
 import { TiGroupOutline } from "react-icons/ti";
 import type { schedule } from "../utilities/type";
 import CalendarDetails from "./CalendarDetails";
-import { useState } from "react";
+import { useCalendar } from "../Context/useCalender";
 
 interface taskProp {
   task: schedule;
@@ -11,10 +11,7 @@ interface taskProp {
 }
 
 function CalendarTaskBlock({ task, WeekDate }: taskProp) {
-  const [details, setDetails] = useState<schedule | undefined>();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const handleClose = () => setIsOpen(false);
+  const { isOpen, setIsOpen } = useCalendar();
   const handleClick = () => setIsOpen(true);
 
   const hourHeight = 120 / 4;
@@ -55,9 +52,7 @@ function CalendarTaskBlock({ task, WeekDate }: taskProp) {
           </div>
         )}
       </div>
-      {isOpen && (
-        <CalendarDetails scheduleDetails={task} Closehandler={handleClose} />
-      )}
+      {isOpen && <CalendarDetails scheduleDetails={task} />}
     </>
   );
 }

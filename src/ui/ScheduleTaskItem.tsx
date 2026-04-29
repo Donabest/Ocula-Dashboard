@@ -4,6 +4,8 @@ import { TiGroupOutline } from "react-icons/ti";
 import User from "../assets/person-1.jpg";
 import type { schedule } from "../utilities/type";
 import TimeDiff from "../utilities/TimeDiff";
+import CalendarDetails from "./CalendarDetails";
+import { useCalendar } from "../Context/useCalender";
 
 interface scheduleTaskItemProps {
   task: schedule;
@@ -11,42 +13,49 @@ interface scheduleTaskItemProps {
 }
 
 function ScheduleTaskItem({ task, detail }: scheduleTaskItemProps) {
+  const { isOpen, setIsOpen } = useCalendar();
   return (
-    <div className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <h1 className=" text-sm font-medium">{task.EventTitle}</h1>
-          <span
-            className={`text-sm ${TimeDiff(task.Date) === "Today" ? "text-yellow-600 bg-yellow-100 " : TimeDiff(task.Date)?.includes("days ago") ? "bg-red-100 text-red-500" : "text-green-600 bg-green-100 dark:text-green-700"} px-2 py-1 rounded-lg`}
-          >
-            {TimeDiff(task.Date) === "Today"
-              ? "Starting Soon"
-              : TimeDiff(task.Date)?.includes("days ago")
-                ? "overdue"
-                : "Schedule"}
-          </span>
+    <>
+      <div className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <h1 className=" text-sm font-medium">{task.EventTitle}</h1>
+            <span
+              className={`text-sm ${TimeDiff(task.Date) === "Today" ? "text-yellow-600 bg-yellow-100 " : TimeDiff(task.Date)?.includes("days ago") ? "bg-red-100 text-red-500" : "text-green-600 bg-green-100 dark:text-green-700"} px-2 py-1 rounded-lg`}
+            >
+              {TimeDiff(task.Date) === "Today"
+                ? "Starting Soon"
+                : TimeDiff(task.Date)?.includes("days ago")
+                  ? "overdue"
+                  : "Schedule"}
+            </span>
+          </div>
+          <p className="text-gray-500 dark:text-slate-400">Start at</p>
         </div>
-        <p className="text-gray-500 dark:text-slate-400">Start at</p>
-      </div>
-      <div className="flex justify-between items-center py-1.5">
-        <h4 className="flex items-center gap-3 text-sm font-medium bg-white/80 px-4 py-1 rounded-full dark:bg-slate-700 dark:border dark:border-slate-400 ">
-          <TiGroupOutline className="text-red-600" /> {task.Meet}
-        </h4>
-        <p className="text-sm ">
-          {task.StartTime} - {task.EndTime}
-        </p>
-      </div>
-
-      {detail && (
-        <div className="flex justify-between items-center pt-3 border-t-2 border-gray-300 dark:border-slate-600">
-          <img src={User} alt={User} className="w-7 h-7 rounded-full" />
-          <p className="flex  items-center gap-2 cursor-pointer">
-            View Detail
-            <MdOutlineKeyboardArrowRight />
+        <div className="flex justify-between items-center py-1.5">
+          <h4 className="flex items-center gap-3 text-sm font-medium bg-white/80 px-4 py-1 rounded-full dark:bg-slate-700 dark:border dark:border-slate-400 ">
+            <TiGroupOutline className="text-red-600" /> {task.Meet}
+          </h4>
+          <p className="text-sm ">
+            {task.StartTime} - {task.EndTime}
           </p>
         </div>
-      )}
-    </div>
+
+        {detail && (
+          <div className="flex justify-between items-center pt-3 border-t-2 border-gray-300 dark:border-slate-600">
+            <img src={User} alt={User} className="w-7 h-7 rounded-full" />
+            <p
+              className="flex  items-center gap-2 cursor-pointer"
+              onClick={() => setIsOpen(true)}
+            >
+              View Detail
+              <MdOutlineKeyboardArrowRight />
+            </p>
+          </div>
+        )}
+      </div>
+      {isOpen && <CalendarDetails scheduleDetails={task} />}
+    </>
   );
 }
 

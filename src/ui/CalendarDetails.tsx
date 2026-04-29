@@ -4,18 +4,22 @@ import { LiaAudioDescriptionSolid } from "react-icons/lia";
 import { MdCancelPresentation } from "react-icons/md";
 import { RxNotionLogo } from "react-icons/rx";
 import { SiGooglemeet } from "react-icons/si";
-import useClickOutSide from "../hooks/useClickOutSide";
 import { AnimatePresence, motion } from "motion/react";
 import type { schedule } from "../utilities/type";
 import { format } from "date-fns";
+
+import useClickOutSide from "../hooks/useClickOutSide";
 import { ReminderCountDown } from "../utilities/TimeDiff";
+import { useCalendar } from "../Context/useCalender";
 
 type props = {
   scheduleDetails: schedule;
-  Closehandler: () => void;
 };
-function CalendarDetails({ scheduleDetails, Closehandler }: props) {
-  const { ref } = useClickOutSide(Closehandler);
+function CalendarDetails({ scheduleDetails }: props) {
+  const { setIsOpen } = useCalendar();
+  const handleClose = () => setIsOpen(false);
+  const { ref } = useClickOutSide(handleClose);
+
   const colorCond =
     ReminderCountDown(scheduleDetails) === "overdue"
       ? "text-red-700 bg-red-200"
@@ -49,7 +53,7 @@ function CalendarDetails({ scheduleDetails, Closehandler }: props) {
                 <h3 className="text-sm">Task Details</h3>
               </div>
               <span className="cursor-pointer">
-                <MdCancelPresentation onClick={Closehandler} />
+                <MdCancelPresentation onClick={handleClose} />
               </span>
             </div>
 
