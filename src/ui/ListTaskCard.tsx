@@ -10,9 +10,6 @@ interface CardProps {
 function ListTaskCard({ tasks, Assignee }: CardProps) {
   const [OpenId, setOpenId] = useState<number | null>(null);
 
-  function handleOpenMenu(id: number) {
-    setOpenId((prevId) => (prevId === id ? null : id));
-  }
   return (
     <>
       <section className="flex flex-col gap-5 pt-1.5 pl-3">
@@ -30,7 +27,7 @@ function ListTaskCard({ tasks, Assignee }: CardProps) {
             key={task.id}
             AssignTo={Assignee}
             Open={OpenId}
-            OpenMenu={handleOpenMenu}
+            openMenu={setOpenId}
           />
         ))}
 

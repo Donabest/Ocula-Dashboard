@@ -18,11 +18,20 @@ const StatusBg: Record<status, string> = {
 interface props {
   task: Task;
   AssignTo: boolean;
-  OpenMenu: (id: number) => void;
+  openMenu: React.Dispatch<React.SetStateAction<number | null>>;
   Open: number | null;
 }
 
-function ListTaskCardItem({ task, AssignTo, OpenMenu, Open }: props) {
+function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
+  function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
+    e.stopPropagation();
+    openMenu((prevId) => (prevId === id ? null : id));
+  }
+
+  function close() {
+    openMenu(null);
+  }
+
   return (
     <>
       <div className="relative grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500">
@@ -30,7 +39,7 @@ function ListTaskCardItem({ task, AssignTo, OpenMenu, Open }: props) {
           <FaChevronDown className="cursor-pointer" />
           <span
             className={`${StatusBg[task.status]}  p-1.5 rounded-sm cursor-pointer`}
-            onClick={() => OpenMenu(task.id)}
+            onMouseDown={(e) => handleOpenMenu(task.id, e)}
           ></span>
           <span>{task.title}</span>
         </div>
@@ -55,7 +64,9 @@ function ListTaskCardItem({ task, AssignTo, OpenMenu, Open }: props) {
             {TimeDiff(task.EndDate)}
           </span>
         </div>
-        {Open === task.id && <StatusToggleMenu value={task.status} />}
+        {Open === task.id && (
+          <StatusToggleMenu value={task.status} handler={close} />
+        )}
       </div>
     </>
   );

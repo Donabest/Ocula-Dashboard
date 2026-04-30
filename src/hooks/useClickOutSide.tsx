@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function useClickOutSide(handler: () => void, listenCapturing = true) {
+function useClickOutSide(handler: () => void) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -10,11 +10,10 @@ function useClickOutSide(handler: () => void, listenCapturing = true) {
       }
     }
 
-    document.addEventListener("mousedown", handleClick, listenCapturing);
+    document.addEventListener("mousedown", handleClick);
 
-    return () =>
-      document.removeEventListener("mousedown", handleClick, listenCapturing);
-  }, [handler, listenCapturing]);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [handler]);
 
   return { ref };
 }

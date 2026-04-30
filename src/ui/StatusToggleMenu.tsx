@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 import type { status } from "../utilities/type";
+import useClickOutSide from "../hooks/useClickOutSide";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
@@ -9,9 +10,15 @@ const StatusBg: Record<status, string> = {
   Completed: "bg-blue-300",
 };
 
-function StatusToggleMenu({ value }: { value: string }) {
+function StatusToggleMenu({
+  value,
+  handler,
+}: {
+  value: string;
+  handler: () => void;
+}) {
   const [isChecked, setIsChecked] = useState<string>(value);
-
+  const { ref } = useClickOutSide(handler);
   return (
     <AnimatePresence>
       <motion.div
@@ -19,7 +26,8 @@ function StatusToggleMenu({ value }: { value: string }) {
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 1 }}
         exit={{ opacity: 0, y: 0 }}
-        transition={{ ease: "easeInOut", duration: 0.5 }}
+        transition={{ ease: "easeInOut" }}
+        ref={ref}
       >
         {["Inprogress", "Todo", "Completed"].map((status, i) => (
           <div

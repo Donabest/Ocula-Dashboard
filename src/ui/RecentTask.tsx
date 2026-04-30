@@ -2,6 +2,8 @@ import { BsThreeDots } from "react-icons/bs";
 import type { priorityBg } from "../utilities/type";
 import { CiFlag1 } from "react-icons/ci";
 import { Tasks } from "../data/data-task";
+import { useState } from "react";
+import Menu from "./Menu";
 
 const RecentTasks = [...Tasks].slice(-2);
 
@@ -12,17 +14,25 @@ const priorityBg: Record<priorityBg, string> = {
 };
 
 function RecentTask() {
+  const [openId, setOpenId] = useState<number | null>();
+  function handleOpenMenu(id: number, e: React.MouseEvent<SVGElement>) {
+    e.stopPropagation();
+    setOpenId((prevId) => (prevId === id ? null : id));
+  }
+
+  function handler() {
+    setOpenId(null);
+  }
   return (
     <div className=" bg-white p-4 rounded-lg  dark:bg-slate-800 dark:text-slate-100">
       <div className="flex items-center justify-between font-poppin font-medium ">
         Recents Tasks
-        <BsThreeDots className="cursor-pointer" />
       </div>
 
       <div className="flex flex-col items-center gap-4 mt-3 mx-2">
         {RecentTasks.map((rcard, index) => (
           <div
-            className="bg-gray-100 py-3 px-4 rounded-lg space-y-3 w-full dark:bg-slate-700 dark:text-slate-100"
+            className="relative bg-gray-100 py-3 px-4 rounded-lg space-y-3 w-full dark:bg-slate-700 dark:text-slate-100"
             key={index}
           >
             <div className=" flex justify-between items-center">
@@ -32,7 +42,10 @@ function RecentTask() {
                 <CiFlag1 />
                 {rcard.priority}
               </p>
-              <BsThreeDots className="cursor-pointer" />
+              <BsThreeDots
+                className="cursor-pointer"
+                onMouseDown={(e) => handleOpenMenu(rcard.id, e)}
+              />
             </div>
 
             <div className="space-y-1">
@@ -41,6 +54,8 @@ function RecentTask() {
                 {rcard.description}
               </p>
             </div>
+
+            {openId === rcard.id && <Menu handler={handler} />}
           </div>
         ))}
       </div>

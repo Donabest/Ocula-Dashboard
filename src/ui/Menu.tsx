@@ -1,13 +1,46 @@
 import { MdEditNote } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
+import useClickOutSide from "../hooks/useClickOutSide";
+import { AnimatePresence, motion } from "motion/react";
 
-function Menu() {
+type menuType = {
+  icon: any;
+  text: string;
+};
+
+const menus: menuType[] = [
+  {
+    icon: <MdEditNote color="gray" size={20} />,
+    text: "Edit Task",
+  },
+  {
+    icon: <RiDeleteBinLine color="gray" size={20} />,
+    text: "Delete Task",
+  },
+];
+function Menu({ handler }: { handler: () => void }) {
+  const { ref } = useClickOutSide(handler);
   return (
-    <div>
-      <div>
-        <span>Edit</span>
-        <MdEditNote />
-      </div>
-    </div>
+    <AnimatePresence>
+      <motion.div
+        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg"
+        ref={ref}
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 1 }}
+        exit={{ opacity: 0, y: 0 }}
+        transition={{ ease: "easeInOut" }}
+      >
+        {menus.map((menu, i) => (
+          <div
+            className="flex items-center gap-2  px-4 py-1 cursor-pointer hover:bg-black/5 hover:transition-all duration-150"
+            key={i}
+          >
+            {menu.icon}
+            <span>{menu.text}</span>
+          </div>
+        ))}
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
