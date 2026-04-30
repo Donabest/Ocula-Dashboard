@@ -17,6 +17,7 @@ import type { schedule } from "../utilities/type";
 
 const schedules: schedule[] = [
   {
+    id: 1,
     Date: "Apr 27 2026",
     EventTitle: "Sprinting Planning",
     Meet: "Zoom meeting",
@@ -26,6 +27,7 @@ const schedules: schedule[] = [
     Description: "What",
   },
   {
+    id: 2,
     Date: "Apr 28 2026",
     EventTitle: "build my project",
     Meet: "One on One meeting",
@@ -35,6 +37,7 @@ const schedules: schedule[] = [
     Description: "Agree",
   },
   {
+    id: 3,
     Date: "Apr 27 2026",
     EventTitle: "Design Review",
     Meet: "Google meeting",
@@ -44,6 +47,7 @@ const schedules: schedule[] = [
     Description: "HMMMM",
   },
   {
+    id: 4,
     Date: "Apr 29 2026",
     EventTitle: "Design Review",
     Meet: "Google meeting",

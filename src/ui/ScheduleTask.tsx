@@ -3,9 +3,15 @@ import { motion } from "motion/react";
 
 import ScheduleTaskItem from "./ScheduleTaskItem";
 import { useCalendar } from "../Context/useCalender";
+import { useState } from "react";
+import type { schedule } from "../utilities/type";
+import CalendarDetails from "./CalendarDetails";
 
 function ScheduleTask() {
   const { schedules } = useCalendar();
+  const [selectedSchedule, setSelectedSchedule] = useState<schedule | null>(
+    null,
+  );
   const FirstTwoSchedules = schedules.slice(0, 2);
   return (
     <motion.section
@@ -21,8 +27,16 @@ function ScheduleTask() {
       </div>
 
       {FirstTwoSchedules.map((schTask, index) => (
-        <ScheduleTaskItem task={schTask} detail={true} key={index} />
+        <ScheduleTaskItem
+          task={schTask}
+          detail={true}
+          key={index}
+          setSelect={setSelectedSchedule}
+        />
       ))}
+      {selectedSchedule && (
+        <CalendarDetails scheduleDetails={selectedSchedule} />
+      )}
     </motion.section>
   );
 }

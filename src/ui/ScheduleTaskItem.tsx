@@ -4,16 +4,20 @@ import { TiGroupOutline } from "react-icons/ti";
 import User from "../assets/person-1.jpg";
 import type { schedule } from "../utilities/type";
 import TimeDiff from "../utilities/TimeDiff";
-import CalendarDetails from "./CalendarDetails";
 import { useCalendar } from "../Context/useCalender";
 
 interface scheduleTaskItemProps {
   task: schedule;
   detail: boolean;
+  setSelect?: React.Dispatch<React.SetStateAction<schedule | null>>;
 }
 
-function ScheduleTaskItem({ task, detail }: scheduleTaskItemProps) {
-  const { isOpen, setIsOpen } = useCalendar();
+function ScheduleTaskItem({ task, detail, setSelect }: scheduleTaskItemProps) {
+  const { setIsOpen } = useCalendar();
+  const handleClick = (task: schedule) => {
+    setSelect?.(task);
+    setIsOpen(true);
+  };
   return (
     <>
       <div className="bg-blue-100 p-5 space-y-3 rounded-xl dark:bg-slate-700 dark:text-slate-100">
@@ -44,17 +48,16 @@ function ScheduleTaskItem({ task, detail }: scheduleTaskItemProps) {
         {detail && (
           <div className="flex justify-between items-center pt-3 border-t-2 border-gray-300 dark:border-slate-600">
             <img src={User} alt={User} className="w-7 h-7 rounded-full" />
-            <p
+            <button
               className="flex  items-center gap-2 cursor-pointer"
-              onClick={() => setIsOpen(true)}
+              onClick={() => handleClick(task)}
             >
               View Detail
               <MdOutlineKeyboardArrowRight />
-            </p>
+            </button>
           </div>
         )}
       </div>
-      {isOpen && <CalendarDetails scheduleDetails={task} />}
     </>
   );
 }

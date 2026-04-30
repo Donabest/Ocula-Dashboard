@@ -31,6 +31,7 @@ export interface ActiveProp {
 }
 
 export type schedule = {
+  id: number;
   EventTitle: string;
   Date: string;
   StartTime: string;

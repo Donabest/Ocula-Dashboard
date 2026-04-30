@@ -1,6 +1,9 @@
 import { format } from "date-fns";
 import { useCalendar } from "../../Context/useCalender";
 import CalendarTaskBlock from "../../ui/CalendarTaskBlock";
+import CalendarDetails from "../../ui/CalendarDetails";
+import type { schedule } from "../../utilities/type";
+import { useState } from "react";
 
 const TIME: string[] = [
   "12:00 AM",
@@ -18,7 +21,9 @@ function CalendarBox() {
   const WEEKDAYS = First5DaysArray.slice(index, index + 5).map((day) =>
     format(day, "EEE dd"),
   );
-
+  const [selectedSchedule, setSelectedSchedule] = useState<schedule | null>(
+    null,
+  );
   return (
     <section className="flex-1">
       <div className="flex items-start justify-center text-center mt-3 ">
@@ -45,7 +50,6 @@ function CalendarBox() {
               </div>
             ))}
           </div>
-
           {/* Box */}
           {TIME.map((_, i) => (
             <div key={i}>
@@ -59,12 +63,19 @@ function CalendarBox() {
               </div>
             </div>
           ))}
-
           <div className="absolute inset-0">
             {schedules.map((task, i) => (
-              <CalendarTaskBlock task={task} WeekDate={WEEKDAYS} key={i} />
+              <CalendarTaskBlock
+                task={task}
+                WeekDate={WEEKDAYS}
+                key={i}
+                onClick={setSelectedSchedule}
+              />
             ))}
           </div>
+          {selectedSchedule && (
+            <CalendarDetails scheduleDetails={selectedSchedule} />
+          )}
         </div>
       </div>
     </section>
