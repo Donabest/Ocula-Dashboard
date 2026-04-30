@@ -3,6 +3,7 @@ import type { Task } from "../utilities/type";
 
 export const Tasks: Task[] = [
   {
+    id: 1,
     priority: "High",
     title: "Design System Updates",
     description:
@@ -14,6 +15,8 @@ export const Tasks: Task[] = [
     status: "Inprogress",
   },
   {
+    id: 2,
+
     priority: "Low",
     title: "Design System Updates",
     description:
@@ -25,6 +28,8 @@ export const Tasks: Task[] = [
     status: "Inprogress",
   },
   {
+    id: 3,
+
     priority: "Med",
     title: "Design System Updates",
     description:
@@ -36,6 +41,8 @@ export const Tasks: Task[] = [
     status: "Inprogress",
   },
   {
+    id: 4,
+
     priority: "High",
     title: "Review Navigation",
     description: "check smooth navigation,loading,display and so on",
@@ -46,6 +53,8 @@ export const Tasks: Task[] = [
     status: "Inprogress",
   },
   {
+    id: 5,
+
     priority: "Med",
     title: "User Research Analytics",
     description:
@@ -57,6 +66,8 @@ export const Tasks: Task[] = [
     status: "Completed",
   },
   {
+    id: 6,
+
     priority: "Med",
     title: "User Research Analytics",
     description:
@@ -68,6 +79,8 @@ export const Tasks: Task[] = [
     status: "Completed",
   },
   {
+    id: 7,
+
     title: "Send a summary email to stakeholders",
     priority: "Med",
     date: "Apr 25 2026",
@@ -79,6 +92,8 @@ export const Tasks: Task[] = [
     status: "Todo",
   },
   {
+    id: 8,
+
     title: "Trip Creation Flow",
     priority: "Med",
     date: "Apr 25 2026",
@@ -89,6 +104,8 @@ export const Tasks: Task[] = [
     status: "Todo",
   },
   {
+    id: 9,
+
     title: "One-on-One-Meeting",
     priority: "High",
     date: "Apr 15 2026",
@@ -100,6 +117,8 @@ export const Tasks: Task[] = [
     status: "Inprogress",
   },
   {
+    id: 10,
+
     title: "One-on-One-Meeting",
     priority: "High",
     date: "Apr 26 2026",
@@ -111,6 +130,8 @@ export const Tasks: Task[] = [
     status: "Completed",
   },
   {
+    id: 11,
+
     title: "Trip Creation Flow",
     priority: "Med",
     date: "Apr 26 2026",
@@ -121,6 +142,8 @@ export const Tasks: Task[] = [
     status: "Todo",
   },
   {
+    id: 12,
+
     priority: "Med",
     title: "User Research Analytics",
     description:

@@ -1,0 +1,42 @@
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
+import { IoMdCheckmark } from "react-icons/io";
+import type { status } from "../utilities/type";
+
+const StatusBg: Record<status, string> = {
+  Inprogress: "bg-green-300",
+  Todo: "bg-gray-200",
+  Completed: "bg-blue-300",
+};
+
+function StatusToggleMenu({ value }: { value: string }) {
+  const [isChecked, setIsChecked] = useState<string>(value);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="absolute top-7 mt-2 left-8 z-1 bg-white/2 backdrop-blur-lg w-70 space-y-6 p-4 border border-black/8 shadow-2xl rounded-xl"
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 1 }}
+        exit={{ opacity: 0, y: 0 }}
+        transition={{ ease: "easeInOut", duration: 0.5 }}
+      >
+        {["Inprogress", "Todo", "Completed"].map((status, i) => (
+          <div
+            key={i}
+            className="flex justify-between items-center gap-2  cursor-pointer"
+            onClick={() => setIsChecked(status)}
+          >
+            <div className="flex items-center gap-2 col-span-2 ">
+              <span className={`${StatusBg[status]}  p-1.5 rounded-sm`}></span>
+              <p className="uppercase font-medium">{status}</p>
+            </div>
+            <span>{isChecked === status && <IoMdCheckmark />}</span>
+          </div>
+        ))}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+export default StatusToggleMenu;

@@ -2,12 +2,13 @@ import { useState } from "react";
 import { InprogressTasks } from "../data/data-task";
 import ListTaskCard from "./ListTaskCard";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import StatusToggleMenu from "./StatusToggleMenu";
 
 function InprogressTaskList() {
   const [isProgress, setIsProgress] = useState<boolean>(true);
 
   return (
-    <div className="space-y-4 bg-white p-6 mt-6 rounded-lg   dark:bg-slate-800 dark:text-white">
+    <div className="relative space-y-4 bg-white p-6 mt-6 rounded-lg   dark:bg-slate-800 dark:text-white">
       <div className="flex items-center gap-2">
         <span
           className="cursor-pointer"

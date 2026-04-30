@@ -15,9 +15,7 @@ function TodoTaskList() {
         >
           {isTodo ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>
-        <p className="bg-gray-200 text-gray-900 px-4 py-1 rounded-lg">
-          Completed
-        </p>
+        <p className="bg-gray-200 text-gray-900 px-4 py-1 rounded-lg">Todo</p>
         <span> . {TodoTasks.length} Tasks</span>
       </div>
       {isTodo && <ListTaskCard tasks={TodoTasks} Assignee={true} />}

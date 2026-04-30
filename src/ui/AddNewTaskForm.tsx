@@ -24,7 +24,6 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
   const { register, handleSubmit, formState } = useForm<dataType>();
   const { ref } = useClickOutSide(handleCancel);
   function onSubmit(data: dataType) {
-    console.log(data);
     toast.success("Task Created Successfully");
     // handleCancel();
   }

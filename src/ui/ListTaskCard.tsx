@@ -1,27 +1,21 @@
-import type { priorityBg, status, Task } from "../utilities/type";
-import { FaChevronDown } from "react-icons/fa6";
-import TimeDiff from "../utilities/TimeDiff";
-
-const priorityBg: Record<priorityBg, string> = {
-  High: "bg-red-200 dark:bg-red-700",
-  Low: "bg-gray-200 dark:bg-slate-700",
-  Med: "bg-green-200 dark:bg-emerald-400",
-};
+import type { Task } from "../utilities/type";
+import { useState } from "react";
+import ListTaskCardItem from "./ListTaskCardItem";
 
 interface CardProps {
   tasks: Task[];
   Assignee: boolean;
 }
 
-const StatusBg: Record<status, string> = {
-  Inprogress: "bg-green-300",
-  Todo: "bg-gray-200",
-  Completed: "bg-blue-300",
-};
 function ListTaskCard({ tasks, Assignee }: CardProps) {
+  const [OpenId, setOpenId] = useState<number | null>(null);
+
+  function handleOpenMenu(id: number) {
+    setOpenId((prevId) => (prevId === id ? null : id));
+  }
   return (
     <>
-      <div className="flex flex-col gap-5 pt-1.5 pl-3">
+      <section className="flex flex-col gap-5 pt-1.5 pl-3">
         <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200  dark:text-gray-400 dark:border-b-slate-500">
           <h1 className="col-span-2">Name</h1>
           <div className="flex justify-between items-center">
@@ -30,45 +24,23 @@ function ListTaskCard({ tasks, Assignee }: CardProps) {
           </div>
         </div>
 
-        {tasks.map((task, index) => (
-          <div
-            className="grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500"
-            key={index}
-          >
-            <div className="flex items-center gap-2 col-span-2 ">
-              <FaChevronDown className="cursor-pointer" />
-              <span
-                className={`${StatusBg[task.status]} p-1.5 rounded-sm`}
-              ></span>
-              <span>{task.title}</span>
-            </div>
-            <div className="flex justify-between text-center items-center">
-              {Assignee && (
-                <span>
-                  <img
-                    src={task.Assignee}
-                    alt="Assignee"
-                    className="w-8 h-8 rounded-full"
-                  />
-                </span>
-              )}
-              <span
-                className={`${Assignee && "ml-8"} font-poppin text-sm ${priorityBg[task.priority]} px-3 py-1 rounded-lg uppercase`}
-              >
-                {task.priority}
-              </span>
-              <span
-                className={`${TimeDiff(task.EndDate) === "Today" && "text-red-500 "}`}
-              >
-                {TimeDiff(task.EndDate)}
-              </span>
-            </div>
-          </div>
+        {tasks.map((task) => (
+          <ListTaskCardItem
+            task={task}
+            key={task.id}
+            AssignTo={Assignee}
+            Open={OpenId}
+            OpenMenu={handleOpenMenu}
+          />
         ))}
-        <button className="flex justify-start pl-3 font-medium cursor-pointer ">
+
+        {/* <button
+          className="flex justify-start pl-3 font-medium cursor-pointer "
+          onClick={handleAddTask}
+        >
           + Add Task
-        </button>
-      </div>
+        </button> */}
+      </section>
     </>
   );
 }
