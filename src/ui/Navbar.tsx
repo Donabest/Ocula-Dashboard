@@ -1,15 +1,17 @@
 import { AnimatePresence, motion } from "motion/react";
 import { LuSunMoon } from "react-icons/lu";
-// import { IoMoonOutline } from "react-icons/io5";
+import { IoMoonOutline } from "react-icons/io5";
 import { HiOutlineLogout } from "react-icons/hi";
 import { RiNotificationLine } from "react-icons/ri";
 import { useCalendar } from "../Context/useCalender";
 import { useState } from "react";
 import SeeNotification from "./SeeNotification";
 import useClickOutSide from "../hooks/useClickOutSide";
+import { useDark } from "../Context/DarkModeContext";
 
 function Navbar() {
   const { schedules } = useCalendar();
+  const { ToogleDarkMode, isDarkMode } = useDark();
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isDropDown, setIsDropDown] = useState<boolean | null>(null);
 
@@ -58,9 +60,11 @@ function Navbar() {
             )}
           </li>
 
-          <li className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer">
-            <LuSunMoon />
-            {/* <IoMoonOutline /> */}
+          <li
+            className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer"
+            onClick={ToogleDarkMode}
+          >
+            {isDarkMode ? <LuSunMoon /> : <IoMoonOutline />}
           </li>
           <li className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer">
             <HiOutlineLogout />
