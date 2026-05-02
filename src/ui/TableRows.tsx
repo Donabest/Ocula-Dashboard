@@ -35,7 +35,7 @@ function TableRows() {
             ></span>
             <span className="truncate">{row.title}</span>
           </div>
-          <div className="flex items-center text-center gap-8 w-full">
+          <div className="flex items-center text-center text-sm gap-8 w-fit mx-auto ">
             <span>{row.StartDate}</span>
             <span>{row.EndDate}</span>
           </div>

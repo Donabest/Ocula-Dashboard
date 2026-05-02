@@ -4,10 +4,12 @@ import { BiTask } from "react-icons/bi";
 import { AiOutlineExpandAlt } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import DashboardTaskListCardItems from "./DashboardTaskListCardItems";
+import { useNavigate } from "react-router-dom";
 type Prop = {
   handleAddTask: () => void;
 };
 function DashboardTaskListCard({ handleAddTask }: Prop) {
+  const navigate = useNavigate();
   return (
     <div className="border border-dashed border-gray-200/45 bg-gray-200/80 rounded-lg dark:border-slate-700/30 dark:bg-slate-700">
       <motion.div
@@ -18,6 +20,7 @@ function DashboardTaskListCard({ handleAddTask }: Prop) {
           scale: 1,
         }}
         transition={{ type: "spring", stiffness: 300, duration: 0.5 }}
+        onClick={() => navigate("/MyTasks")}
       >
         <div className="flex justify-between ">
           <div className="flex items-center gap-2 font-poppin font-medium">
@@ -30,7 +33,10 @@ function DashboardTaskListCard({ handleAddTask }: Prop) {
             <span className="cursor-pointer" onClick={handleAddTask}>
               +
             </span>
-            <AiOutlineExpandAlt className="cursor-pointer" />
+            <AiOutlineExpandAlt
+              className="cursor-pointer"
+              onClick={() => navigate("/MyTasks")}
+            />
             <BsThreeDots className="cursor-pointer" />
           </div>
         </div>

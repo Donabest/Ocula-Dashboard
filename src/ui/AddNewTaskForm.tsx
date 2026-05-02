@@ -60,14 +60,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className="flex flex-col pt-3 gap-1.5">
               <label
                 htmlFor="TaskName"
-                className="text-sm font-medium text-gray-500 dark:text-slate-400"
+                className="text-sm font-medium text-gray-500 dark:text-slate-500"
               >
                 Task Name
               </label>
               <input
                 type="text"
                 placeholder="John Doe"
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm dark:border-slate-400"
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm dark:border-slate-600"
                 {...register("TaskName", {
                   required: "This field is required",
                 })}
@@ -80,14 +80,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className="space-y-1.5">
               <label
                 htmlFor="Project"
-                className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
+                className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-500"
               >
                 Project Name <LuAsterisk color="red" size={10} />
               </label>
               <input
                 type="text"
                 placeholder="Project Name"
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
                 {...register("ProjectName", {
                   required: "This field is required",
                 })}
@@ -97,7 +97,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className=" space-y-1.5">
               <label
                 htmlFor="Assign"
-                className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
+                className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-500"
               >
                 Assign To <LuAsterisk color="red" size={10} />
               </label>
@@ -105,7 +105,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 type="text"
                 placeholder="Me"
                 disabled={true}
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400 "
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600 "
               />
             </div>
 
@@ -113,14 +113,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <div className="space-y-1.5">
                 <label
                   htmlFor="StartDate"
-                  className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
+                  className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-500"
                 >
                   Start Date <LuAsterisk color="red" size={10} />
                 </label>
                 <input
                   type="date"
                   placeholder="04/01/2026"
-                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
+                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
                   {...register("StartDate", {
                     required: "This Field is required",
                   })}
@@ -129,14 +129,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <div className="space-y-1.5">
                 <label
                   htmlFor="EndDate"
-                  className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
+                  className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-500"
                 >
                   End Date <LuAsterisk color="red" size={10} />
                 </label>
                 <input
                   type="date"
                   placeholder="04/01/2026"
-                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
+                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
                   {...register("EndDate", {
                     required: "This field is reuired",
                   })}
@@ -193,13 +193,13 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className="flex flex-col  space-y-1.5">
               <label
                 htmlFor="description"
-                className="text-sm font-medium text-gray-500 dark:text-slate-400"
+                className="text-sm font-medium text-gray-500 dark:text-slate-500"
               >
                 Description
               </label>
               <textarea
                 placeholder="Task Description"
-                className="px-4 py-2 h-20 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
+                className="px-4 py-2 h-20 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
                 {...register("Description")}
               ></textarea>
             </div>
