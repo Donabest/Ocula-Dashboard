@@ -3,11 +3,11 @@ import { CiBoxList } from "react-icons/ci";
 import { BiTask } from "react-icons/bi";
 import { AiOutlineExpandAlt } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-import DashboardCardOneItems from "./DashboardCardOneItems";
+import DashboardTaskListCardItems from "./DashboardTaskListCardItems";
 type Prop = {
   handleAddTask: () => void;
 };
-function DashboardCardOne({ handleAddTask }: Prop) {
+function DashboardTaskListCard({ handleAddTask }: Prop) {
   return (
     <div className="border border-dashed border-gray-200/45 bg-gray-200/80 rounded-lg dark:border-slate-700/30 dark:bg-slate-700">
       <motion.div
@@ -34,10 +34,10 @@ function DashboardCardOne({ handleAddTask }: Prop) {
             <BsThreeDots className="cursor-pointer" />
           </div>
         </div>
-        <DashboardCardOneItems />
+        <DashboardTaskListCardItems />
       </motion.div>
     </div>
   );
 }
 
-export default DashboardCardOne;
+export default DashboardTaskListCard;

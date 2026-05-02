@@ -8,7 +8,7 @@ import { format, isPast } from "date-fns";
 import TimeDiff from "../utilities/TimeDiff";
 import NoScheduleTask from "./NoScheduleTask";
 
-function DashboardCardFour() {
+function DashboardCalendarCard() {
   const {
     currentDate,
     days,
@@ -45,7 +45,7 @@ function DashboardCardFour() {
         <div className="flex items-center gap-8">
           {daysArray.map((day, index) => (
             <div
-              className={`flex flex-col justify-center items-center text-gray-500 ${hasTask?.includes(format(day, "MMM dd yyyy")) ? "bg-blue-700 text-white px-2 py-1 rounded-lg " : ""} cursor-pointer dark:text-white/60`}
+              className={`flex flex-col justify-center items-center text-gray-500 ${hasTask?.includes(format(day, "MMM dd yyyy")) ? "bg-blue-700 text-white px-2 py-1 rounded-lg " : ""} cursor-pointer dark:text-white/80`}
               key={index}
               onClick={() => setSelectDay(format(day, "MMM dd yyyy"))}
             >
@@ -71,12 +71,12 @@ function DashboardCardFour() {
           className="bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700"
           key={index}
         >
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-start">
             <div className="space-y-2">
               <h1 className="font-poppin font-medium">{task.EventTitle}</h1>
               <div className="flex  items-center justify-start gap-2 font-raleway text-gray-400 text-[15px]  ">
                 <span
-                  className={`${TimeDiff(task.Date)?.includes("days ago") && "bg-red-100 text-red-400"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl`}
+                  className={`${TimeDiff(task.Date)?.includes("days ago") && "bg-red-100 text-red-400 dark:bg-red-800 dark:text-slate-200"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl dark:bg-emerald-600 dark:text-slate-200`}
                 >
                   {TimeDiff(task.Date)}
                 </span>
@@ -98,7 +98,7 @@ function DashboardCardFour() {
       ))}
 
       {!selectDayScheduleTask.length && (
-        <div className="bg-blue-100/80 p-4 rounded-lg">
+        <div className="bg-blue-100/80 p-4 rounded-lg dark:bg-slate-700">
           <NoScheduleTask />
         </div>
       )}
@@ -106,4 +106,4 @@ function DashboardCardFour() {
   );
 }
 
-export default DashboardCardFour;
+export default DashboardCalendarCard;

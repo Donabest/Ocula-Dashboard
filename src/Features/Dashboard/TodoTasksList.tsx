@@ -19,7 +19,7 @@ function TodoTasksList({ active, handler }: Props) {
         <p className="bg-gray-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase dark:bg-slate-700">
           To Do
         </p>
-        <span className="font-medium text-gray-500 dark:text-slate-400">
+        <span className="font-medium text-gray-500 dark:text-slate-500">
           . {TodoTasks.length} tasks
         </span>
       </div>

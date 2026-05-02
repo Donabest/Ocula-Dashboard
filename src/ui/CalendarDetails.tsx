@@ -46,7 +46,7 @@ function CalendarDetails({ scheduleDetails }: props) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
             >
-              <div className=" bg-cyan-700 text-white/80 p-5 rounded-t-lg">
+              <div className=" bg-cyan-700 text-white/80 p-5 rounded-t-lg dark:bg-cyan-900">
                 <div className="flex justify-between items-center border-b border-b-gray-400 pb-2">
                   <div className="flex items-center justify-center gap-1.5 ">
                     <span className={`${colorCond} px-4 py-0.5 rounded-lg`}>
@@ -83,18 +83,18 @@ function CalendarDetails({ scheduleDetails }: props) {
                 </div>
               </div>
 
-              <div className="bg-gray-100 p-5 rounded-b-lg ">
-                <h1 className="flex items-center gap-1 text-gray-800 text-[10px] tracking-wide bg-black/5 w-fit px-3 py-1 border border-gray-300 font-montserrat rounded-lg uppercase shadow-lg">
+              <div className="bg-gray-100 p-5 rounded-b-lg dark:bg-slate-200">
+                <h1 className="flex items-center gap-1 text-gray-800 text-[10px] tracking-wide bg-black/5 w-fit px-3 py-1 border border-gray-300 font-montserrat rounded-lg uppercase shadow-lg dark:bg-black/10">
                   <LiaAudioDescriptionSolid />
                   Descriptions
                 </h1>
 
-                <p className="text-start text-gray-600/90 py-2 border-b border-b-gray-300  text-sm leading-relaxed">
+                <p className="text-start text-gray-600/90 py-2 border-b border-b-gray-300  text-sm leading-relaxed dark:text-slate-800">
                   {scheduleDetails.Description}
                 </p>
 
                 <div className="flex flex-col justify-center items-start gap-1.5 pt-3 ">
-                  <span className="flex justify-center items-center gap-1.5 bg-gray-200 px-3 rounded-lg shadow-lg">
+                  <span className="flex justify-center items-center gap-1.5 bg-gray-200 px-3 rounded-lg shadow-lg dark:bg-gray-900 dark:text-sm dark:py-1">
                     <RxNotionLogo /> Notion
                   </span>
                 </div>

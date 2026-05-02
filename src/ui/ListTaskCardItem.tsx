@@ -6,7 +6,7 @@ import StatusToggleMenu from "./StatusToggleMenu";
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
   Low: "bg-gray-200 dark:bg-slate-700",
-  Med: "bg-green-200 dark:bg-emerald-400",
+  Med: "bg-green-200 dark:bg-emerald-600",
 };
 
 const StatusBg: Record<status, string> = {

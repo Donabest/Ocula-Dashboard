@@ -8,10 +8,10 @@ export const Tasks: Task[] = [
     title: "Design System Updates",
     description:
       "Update component libary with new color tosken and typography scales.",
-    date: "Apr 20 2026",
+    date: "May 20 2026",
     Assignee,
-    StartDate: "Apr 4 2026",
-    EndDate: "Apr 10 2026",
+    StartDate: "May 30 2026",
+    EndDate: "May 31 2026",
     status: "Inprogress",
   },
   {
@@ -21,10 +21,10 @@ export const Tasks: Task[] = [
     title: "Design System Updates",
     description:
       "Update component libary with new color tosken and typography scales.",
-    date: "Apr 20 2026",
+    date: "May 7 2026",
     Assignee,
-    StartDate: "Apr 4 2026",
-    EndDate: "Apr 20 2026",
+    StartDate: "May 7 2026",
+    EndDate: "May 20 2026",
     status: "Inprogress",
   },
   {

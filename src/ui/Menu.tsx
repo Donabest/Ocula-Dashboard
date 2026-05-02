@@ -23,7 +23,7 @@ function Menu({ handler }: { handler: () => void }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg"
+        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg dark:bg-black/30 dark:text-slate-300"
         ref={ref}
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 1 }}

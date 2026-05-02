@@ -22,7 +22,7 @@ const Goals: Goals[] = [
   },
 ];
 
-function DashboardCardTwo() {
+function DashboardGoalsCard() {
   return (
     <div className="bg-white mt-12 mb-4 px-6 py-5 rounded-2xl dark:bg-slate-800 dark:text-white">
       <h1 className="flex items-center gap-2 font-poppin font-medium mb-2">
@@ -54,4 +54,4 @@ function DashboardCardTwo() {
   );
 }
 
-export default DashboardCardTwo;
+export default DashboardGoalsCard;

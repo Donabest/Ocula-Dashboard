@@ -24,7 +24,7 @@ const Projects = [
     group: "4 tasks",
   },
 ];
-function DashboardCardThree() {
+function DashboardProjectCard() {
   const [isCreate, setIsCreate] = useState<boolean>(false);
 
   function close() {
@@ -74,4 +74,4 @@ function DashboardCardThree() {
   );
 }
 
-export default DashboardCardThree;
+export default DashboardProjectCard;

@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import ReminderList from "./ReminderList";
 import { useState } from "react";
 
-function DashboardCardFive() {
+function DashboardReminderCard() {
   const { schedules } = useCalendar();
   const TodayReminders = schedules.filter(
     (sch) =>
@@ -52,4 +52,4 @@ function DashboardCardFive() {
   );
 }
 
-export default DashboardCardFive;
+export default DashboardReminderCard;

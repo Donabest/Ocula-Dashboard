@@ -32,7 +32,7 @@ function Navbar() {
             onMouseLeave={() => setIsHover(false)}
             onClick={() => setIsDropDown(true)}
           >
-            <div className=" px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer">
+            <div className=" px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer dark:hover:bg-slate-800">
               <RiNotificationLine size={18} />
               {count > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 z-99 flex text-center justify-center items-center bg-red-500 text-white text-xs w-4 h-4  rounded-full">
@@ -43,7 +43,7 @@ function Navbar() {
             {isHover && (
               <AnimatePresence>
                 <motion.span
-                  className="absolute top-0 -left-43 w-40 text-xs bg-gray-200 text-center text-gray-600 p-1 rounded-lg"
+                  className="absolute top-0 -left-43 w-40 text-xs bg-gray-200 text-center text-gray-600 p-1 rounded-lg dark:bg-slate-800 dark:text-white"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
@@ -61,12 +61,12 @@ function Navbar() {
           </li>
 
           <li
-            className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer"
+            className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer dark:hover:bg-slate-800"
             onClick={ToogleDarkMode}
           >
             {isDarkMode ? <LuSunMoon /> : <IoMoonOutline />}
           </li>
-          <li className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer">
+          <li className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer dark:hover:bg-slate-800">
             <HiOutlineLogout />
           </li>
         </ul>

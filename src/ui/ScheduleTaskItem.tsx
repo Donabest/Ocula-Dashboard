@@ -25,7 +25,7 @@ function ScheduleTaskItem({ task, detail, setSelect }: scheduleTaskItemProps) {
           <div className="flex items-center gap-2">
             <h1 className=" text-sm font-medium">{task.EventTitle}</h1>
             <span
-              className={`text-sm ${TimeDiff(task.Date) === "Today" ? "text-yellow-600 bg-yellow-100 " : TimeDiff(task.Date)?.includes("days ago") ? "bg-red-100 text-red-500" : "text-green-600 bg-green-100 dark:text-green-700"} px-2 py-1 rounded-lg`}
+              className={`text-sm ${TimeDiff(task.Date) === "Today" ? "text-yellow-600 bg-yellow-100 dark:bg-yellow-800 dark:text-yellow-50 " : TimeDiff(task.Date)?.includes("days ago") ? "bg-red-100 text-red-500 dark:bg-red-700 dark:text-red-100" : "text-green-600 bg-green-100 dark:bg-emerald-800 dark:text-emerald-300"} px-2 py-1 rounded-lg`}
             >
               {TimeDiff(task.Date) === "Today"
                 ? "Starting Soon"

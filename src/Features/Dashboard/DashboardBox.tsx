@@ -2,11 +2,11 @@ import { motion } from "motion/react";
 
 import AddNewTaskForm from "../../ui/AddNewTaskForm";
 import { useState } from "react";
-import DashboardCardOne from "../../ui/DashboardCardOne";
-import DashboardCardTwo from "../../ui/DashboardCardTwo";
-import DashboardCardThree from "../../ui/DashboardCardThree";
-import DashboardCardFour from "../../ui/DashboardCardFour";
-import DashboardCardFive from "../../ui/DashboardCardFive";
+import DashboardTaskListCard from "../../ui/DashboardTaskListCard";
+import DashboardGoalsCard from "../../ui/DashboardGoalsCard";
+import DashboardProjectCard from "../../ui/DashboardProjectCard";
+import DashboardCalendarCard from "../../ui/DashboardCalendarCard";
+import DashboardReminderCard from "../../ui/DashboardReminderCard";
 
 function DashboardBox() {
   const [isAddNewTask, setIsAddNewTask] = useState<boolean>();
@@ -25,8 +25,8 @@ function DashboardBox() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut", delay: 0.4 }}
       >
-        <DashboardCardOne handleAddTask={handleAddTask} />
-        <DashboardCardTwo />
+        <DashboardTaskListCard handleAddTask={handleAddTask} />
+        <DashboardGoalsCard />
       </motion.main>
 
       <motion.main
@@ -35,9 +35,9 @@ function DashboardBox() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut", delay: 0.6 }}
       >
-        <DashboardCardThree />
-        <DashboardCardFour />
-        <DashboardCardFive />
+        <DashboardProjectCard />
+        <DashboardCalendarCard />
+        <DashboardReminderCard />
       </motion.main>
 
       {isAddNewTask && <AddNewTaskForm handleCancel={handleCancel} />}

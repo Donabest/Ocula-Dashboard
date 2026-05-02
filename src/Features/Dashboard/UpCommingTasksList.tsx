@@ -15,10 +15,10 @@ function UpCommingTasksList({ active, handler }: Props) {
         <span onClick={() => handler("Upcomming")}>
           {active === "Upcomming" ? <FaChevronUp /> : <FaChevronDown />}
         </span>{" "}
-        <p className="bg-yellow-200 text-sm text-center font-poppin px-3 py-1 rounded-lg uppercase dark:bg-yellow-900 dark:text-white">
+        <p className="bg-yellow-200 text-sm text-center font-poppin px-3 py-1 rounded-lg uppercase dark:bg-yellow-800 dark:text-white">
           Up Comming
         </p>
-        <span className="font-medium text-gray-500 dark:text-slate-400">
+        <span className="font-medium text-gray-500 dark:text-slate-500">
           . {isUpComming.length} tasks
         </span>
       </div>

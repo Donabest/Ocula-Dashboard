@@ -17,7 +17,7 @@ function InprogressTasksList({ active, handler }: Props) {
           {active === "Inprogress" ? <FaChevronUp /> : <FaChevronDown />}
         </span>
         <p
-          className={`bg-green-300 text-black text-sm px-3 py-1 rounded-lg uppercase`}
+          className={`bg-green-300 text-black text-sm px-3 py-1 rounded-lg uppercase dark:bg-green-700 dark:text-white`}
         >
           Inprogress
         </p>

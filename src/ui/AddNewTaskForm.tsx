@@ -38,13 +38,13 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
     <AnimatePresence>
       <div className="fixed inset-0 z-99 bg-black/10 backdrop-blur-xs ">
         <motion.div
-          className="max-w-xl mx-auto mt-20 bg-white px-6 py-4 rounded-2xl"
+          className="max-w-xl mx-auto mt-20 bg-white px-6 py-4 rounded-2xl dark:bg-slate-900 dark:text-slate-400 dark:border dark:border-slate-800"
           ref={ref}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
         >
-          <div className="flex justify-between items-center border-b border-gray-200 p-2">
+          <div className="flex justify-between items-center border-b border-gray-200 p-2 dark:border-slate-400">
             <h1 className="font-medium">Create New Task</h1>
             <p
               className="cursor-pointer active:scale-105"
@@ -60,14 +60,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className="flex flex-col pt-3 gap-1.5">
               <label
                 htmlFor="TaskName"
-                className="text-sm font-medium text-gray-500"
+                className="text-sm font-medium text-gray-500 dark:text-slate-400"
               >
                 Task Name
               </label>
               <input
                 type="text"
                 placeholder="John Doe"
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm"
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm dark:border-slate-400"
                 {...register("TaskName", {
                   required: "This field is required",
                 })}
@@ -80,14 +80,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className="space-y-1.5">
               <label
                 htmlFor="Project"
-                className="flex items-start text-sm font-medium text-gray-500"
+                className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
               >
                 Project Name <LuAsterisk color="red" size={10} />
               </label>
               <input
                 type="text"
                 placeholder="Project Name"
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full"
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
                 {...register("ProjectName", {
                   required: "This field is required",
                 })}
@@ -97,7 +97,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className=" space-y-1.5">
               <label
                 htmlFor="Assign"
-                className="flex items-start text-sm font-medium text-gray-500"
+                className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
               >
                 Assign To <LuAsterisk color="red" size={10} />
               </label>
@@ -105,7 +105,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 type="text"
                 placeholder="Me"
                 disabled={true}
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full "
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400 "
               />
             </div>
 
@@ -113,14 +113,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <div className="space-y-1.5">
                 <label
                   htmlFor="StartDate"
-                  className="flex items-start text-sm font-medium text-gray-500"
+                  className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
                 >
                   Start Date <LuAsterisk color="red" size={10} />
                 </label>
                 <input
                   type="date"
                   placeholder="04/01/2026"
-                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full "
+                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
                   {...register("StartDate", {
                     required: "This Field is required",
                   })}
@@ -129,14 +129,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <div className="space-y-1.5">
                 <label
                   htmlFor="EndDate"
-                  className="flex items-start text-sm font-medium text-gray-500"
+                  className="flex items-start text-sm font-medium text-gray-500 dark:text-slate-400"
                 >
                   End Date <LuAsterisk color="red" size={10} />
                 </label>
                 <input
                   type="date"
                   placeholder="04/01/2026"
-                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full"
+                  className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
                   {...register("EndDate", {
                     required: "This field is reuired",
                   })}
@@ -151,7 +151,10 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 </p>
                 <div className="flex items-center gap-2 text-gray-500 font-medium pt-1.5">
                   {["High", "Med", "Low"].map((level) => (
-                    <label key={level} className="flex items-center gap-2">
+                    <label
+                      key={level}
+                      className="flex items-center gap-2 dark:text-slate-500"
+                    >
                       <input
                         type="radio"
                         value={level}
@@ -166,10 +169,13 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </div>
 
               <div>
-                <p className="text-sm font-medium text-gray-500">Status</p>
+                <p className="text-sm font-medium text-gray-500 ">Status</p>
                 <div className="flex items-center gap-2 text-gray-500 font-medium pt-1.5">
                   {["Todo", "InProgress", "Completed"].map((s) => (
-                    <label key={s} className="flex items-center gap-2">
+                    <label
+                      key={s}
+                      className="flex items-center gap-2 dark:text-slate-500"
+                    >
                       <input
                         type="radio"
                         value={s}
@@ -187,13 +193,13 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             <div className="flex flex-col  space-y-1.5">
               <label
                 htmlFor="description"
-                className="text-sm font-medium text-gray-500"
+                className="text-sm font-medium text-gray-500 dark:text-slate-400"
               >
                 Description
               </label>
               <textarea
                 placeholder="Task Description"
-                className="px-4 py-2 h-20 border border-gray-300 outline-0 rounded-sm w-full"
+                className="px-4 py-2 h-20 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-400"
                 {...register("Description")}
               ></textarea>
             </div>

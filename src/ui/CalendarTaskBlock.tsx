@@ -33,14 +33,14 @@ function CalendarTaskBlock({ task, WeekDate, onClick }: taskProp) {
   const left = `${index * 20}%`;
 
   const isMedium = height > 70;
-  const isSmall = height >= 45;
+  const isSmall = height >= 50;
   return (
     <div
-      className="absolute bg-blue-200 rounded-lg text-xs p-2 cursor-pointer text-start"
+      className="absolute bg-gray-200 rounded-lg text-xs cursor-pointer p-2 text-start dark:bg-slate-800 dark:text-slate-300"
       style={{ top: `${top}px`, height: `${height}px`, left, width: "20%" }}
       onClick={() => handleClick(task)}
     >
-      <h1 className="font-medium pb-1.5">{task.EventTitle}</h1>
+      <h1 className="font-medium pb-1.5 ">{task.EventTitle}</h1>
       {isSmall && (
         <div className=" flex flex-col space-y-1.5 items-start justify-center ">
           {isMedium && (
@@ -48,7 +48,7 @@ function CalendarTaskBlock({ task, WeekDate, onClick }: taskProp) {
               <TiGroupOutline className="text-red-600" /> {task.Meet}
             </h4>
           )}
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-slate-400 text-center ">
             {task.StartTime}-{task.EndTime}
           </p>
         </div>

@@ -36,7 +36,7 @@ function CalendarLayout() {
       />
 
       <div className="flex justify-end items-center gap-5">
-        <div className="flex items-center gap-4 bg-gray-200 px-4 py-2 rounded-lg">
+        <div className="flex items-center gap-4 bg-gray-200 px-4 py-2 rounded-lg dark:bg-slate-800">
           <span className="cursor-pointer " onClick={() => handlePrevDay(1)}>
             <MdKeyboardArrowLeft />
           </span>
