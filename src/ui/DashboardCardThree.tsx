@@ -1,6 +1,8 @@
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { FaChevronDown } from "react-icons/fa6";
 import { FaRProject } from "react-icons/fa6";
+import CreateProjectForm from "./CreateProjectForm";
+import { useState } from "react";
 
 type Projects = {
   projectContent: string;
@@ -23,6 +25,11 @@ const Projects = [
   },
 ];
 function DashboardCardThree() {
+  const [isCreate, setIsCreate] = useState<boolean>(false);
+
+  function close() {
+    setIsCreate(false);
+  }
   return (
     <div className="bg-white p-7 rounded-2xl dark:bg-slate-800 dark:text-white/90 dark:shadow-2xl dark:shadow-black/20">
       <div className="flex items-center gap-4">
@@ -35,8 +42,14 @@ function DashboardCardThree() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 font-poppin mt-6 ">
-        <div className="flex items-center gap-2  cursor-pointer">
+      <div className="relative grid grid-cols-2 gap-6 font-poppin mt-6 ">
+        <div
+          className="flex items-center gap-2  cursor-pointer"
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            setIsCreate((show) => !show);
+          }}
+        >
           <span className="border-2 border-gray-300 border-dashed text-center text-xl px-4 py-2 rounded-lg ">
             +
           </span>
@@ -55,6 +68,7 @@ function DashboardCardThree() {
             </h1>
           </div>
         ))}
+        {isCreate && <CreateProjectForm handler={close} />}
       </div>
     </div>
   );
