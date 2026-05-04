@@ -22,7 +22,7 @@ function StatusToggleMenu({
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute top-7 mt-2 left-8 z-1 bg-white/2 backdrop-blur-lg w-70 space-y-6 p-4 border border-black/8 shadow-2xl rounded-xl"
+        className="absolute top-7 mt-2 left-8 z-1 bg-white/2 backdrop-blur-lg w-70 space-y-6 p-4 border border-black/8 shadow-2xl rounded-xl dark:-top-38"
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 1 }}
         exit={{ opacity: 0, y: 0 }}

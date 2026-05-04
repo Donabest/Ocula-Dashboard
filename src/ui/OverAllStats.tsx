@@ -6,27 +6,28 @@ import {
 } from "react-icons/md";
 
 import type { cardTab } from "../utilities/type";
-import { CompletedTasks, InprogressTasks, Tasks } from "../data/data-task";
-
-const Tab: cardTab[] = [
-  {
-    icon: <BiTask className="text-purple-400 " />,
-    status: "Total Tasks",
-    total: Tasks.length,
-  },
-  {
-    icon: <MdOutlineAccessTime className="text-yellow-400 " />,
-    status: "In progress",
-    total: InprogressTasks.length,
-  },
-  {
-    icon: <FaRegCircleCheck className="text-emerald-500 " />,
-    status: "Completed",
-    total: CompletedTasks.length,
-  },
-];
+import { useTasks } from "../services/useTasks";
 
 function OverAllStats() {
+  const { isLoading, tasks, completedTasks, inProgressTasks } = useTasks();
+
+  const Tab: cardTab[] = [
+    {
+      icon: <BiTask className="text-purple-400 " />,
+      status: "Total Tasks",
+      total: tasks?.length,
+    },
+    {
+      icon: <MdOutlineAccessTime className="text-yellow-400 " />,
+      status: "In progress",
+      total: inProgressTasks?.length,
+    },
+    {
+      icon: <FaRegCircleCheck className="text-emerald-500 " />,
+      status: "Completed",
+      total: completedTasks?.length,
+    },
+  ];
   return (
     <div className="flex items-center gap-2">
       {Tab.map((card, index) => (
@@ -44,7 +45,7 @@ function OverAllStats() {
           <div className="flex items-center justify-between">
             <p className="text-gray-500 dark:text-slate-300">{card.status}</p>
             <span className="text-2xl font-raleway font-medium ">
-              {card.total}
+              {isLoading ? ".." : card.total}
             </span>
           </div>
         </div>

@@ -1,8 +1,11 @@
+import { useTasks } from "../../services/useTasks";
+import Spinner from "../../ui/Spinner";
 import TableHeader from "../../ui/TableHeader";
 import TableRows from "../../ui/TableRows";
 import { motion } from "motion/react";
 
 function TaskLists() {
+  const { isLoading } = useTasks();
   return (
     <motion.section
       className="bg-white mt-8  p-6 rounded-lg dark:bg-slate-800 dark:text-slate-100"
@@ -11,8 +14,9 @@ function TaskLists() {
       transition={{ duration: 1.4, ease: "easeInOut" }}
       viewport={{ once: true }}
     >
-      <TableHeader />
-      <TableRows />
+      {isLoading && <Spinner />}
+      {!isLoading && <TableHeader />}
+      {!isLoading && <TableRows />}
     </motion.section>
   );
 }

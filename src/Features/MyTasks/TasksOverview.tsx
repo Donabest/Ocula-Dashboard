@@ -19,7 +19,6 @@ function TasksOverview({ active }: ActiveProp) {
               transition={{ duration: 0.8, ease: "easeInOut" }}
               viewport={{ once: true }}
             >
-              <input type="email" name="" id="" />
               <OverAllStats />
               <RecentTask />
             </motion.div>

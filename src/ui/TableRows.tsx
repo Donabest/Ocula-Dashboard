@@ -2,14 +2,13 @@ import { CiFlag1 } from "react-icons/ci";
 import { motion } from "motion/react";
 import User from "../assets/person-1.jpg";
 import type { priorityBg, status } from "../utilities/type";
-import { Tasks } from "../data/data-task";
 import { useTasks } from "../services/useTasks";
-import Spinner from "./Spinner";
+import { useState } from "react";
+import StatusToggleMenu from "./StatusToggleMenu";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
   Todo: "bg-gray-200",
-  Upcomming: "bg-yellow-400",
   Completed: "bg-blue-300",
 };
 
@@ -20,41 +19,55 @@ const priorityBg: Record<priorityBg, string> = {
 };
 
 function TableRows() {
-  const { tasks, isLoading } = useTasks();
+  const { tasks } = useTasks();
+  const [openId, setOpenId] = useState<number | null>();
+
+  function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
+    e.stopPropagation();
+    setOpenId((prevId) => (prevId === id ? null : id));
+  }
+
+  function close() {
+    setOpenId(null);
+  }
 
   return (
     <>
-      {!isLoading &&
-        tasks.map((row, index) => (
-          <motion.div
-            className="grid grid-cols-[4fr_2fr_2fr] gap-5 font-medium text-gray-600 pt-4 mt-5 w-full border-t-2 border-gray-200 dark:text-slate-200 dark:border-slate-700"
-            initial={{ y: 5, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            viewport={{ once: true }}
-            key={index}
-          >
-            <div className="relative flex items-center gap-3 ">
-              <span
-                className={`${StatusBg[row.status]} p-1.5 rounded-sm cursor-pointer`}
-              ></span>
-              <span className="truncate">{row.title}</span>
-            </div>
-            <div className="flex items-center text-center text-sm gap-8 w-fit mx-auto ">
-              <span>{row.StartDate}</span>
-              <span>{row.EndDate}</span>
-            </div>
-            <div className="flex text-right items-center  gap-12 col-end-6">
-              <img src={User} alt={User} className="w-8 h-8 rounded-full " />
-              <span
-                className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-sm ${priorityBg[row.priority]} `}
-              >
-                <CiFlag1 />
-                <p>{row.priority}</p>
-              </span>
-            </div>
-          </motion.div>
-        ))}
+      {tasks?.map((task, index) => (
+        <motion.div
+          className="relative grid grid-cols-[4fr_2fr_2fr] gap-5 font-medium text-gray-600 pt-4 mt-5 w-full  border-t-2 border-gray-200 dark:text-slate-200 dark:border-slate-700"
+          initial={{ y: 5, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          viewport={{ once: true }}
+          key={index}
+        >
+          <div className=" flex items-center gap-3 ">
+            <span
+              className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
+              onMouseDown={(e) => handleOpenMenu(task.id, e)}
+            ></span>
+            <span className="truncate">{task.title}</span>
+          </div>
+          <div className="flex items-center text-center text-sm gap-8 w-fit mx-auto ">
+            <span>{task.StartDate}</span>
+            <span>{task.EndDate}</span>
+          </div>
+          <div className="flex text-right items-center  gap-12 col-end-6">
+            <img src={User} alt={User} className="w-8 h-8 rounded-full " />
+            <span
+              className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-sm ${priorityBg[task.priority]} `}
+            >
+              <CiFlag1 />
+              <p>{task.priority}</p>
+            </span>
+          </div>
+
+          {openId === task.id && (
+            <StatusToggleMenu handler={close} value={task.status} />
+          )}
+        </motion.div>
+      ))}
     </>
   );
 }

@@ -12,7 +12,7 @@ export type ListType = {
 export interface cardTab {
   icon: JSX.Element;
   status: string;
-  total: number;
+  total?: number;
 }
 
 export interface Tasks {
@@ -51,4 +51,18 @@ export interface Task {
   StartDate: string;
   EndDate: string;
   status: status;
+}
+
+export interface tasktype {
+  Assignee: string;
+  EndDate: string;
+  StartDate: string;
+  created_at: string;
+  date: string;
+  description: string;
+  id: number;
+  priority: string;
+  project_id: number;
+  status: status;
+  title: string;
 }

@@ -1,24 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTasks } from "./apiTasks";
-import type { status } from "../utilities/type";
-
-interface Tasktype {
-  Assignee: string;
-  EndDate: string;
-  StartDate: string;
-  created_at: string;
-  date: string;
-  description: string;
-  id: number;
-  priority: string;
-  project_id: number;
-  status: status;
-  title: string;
-}
+import toast from "react-hot-toast";
+import type { tasktype } from "../utilities/type";
 
 type task = {
-  tasks: Tasktype[];
+  tasks: tasktype[] | undefined;
   isLoading: boolean;
+  completedTasks: tasktype[] | undefined;
+  todoTasks: tasktype[] | undefined;
+  inProgressTasks: tasktype[] | undefined;
 };
 export function useTasks(): task {
   const {
@@ -30,7 +20,13 @@ export function useTasks(): task {
     queryKey: ["Tasks"],
   });
 
-  if (error) throw new Error("Tasks could not be loaded");
+  if (error) {
+    toast.error(error.message);
+  }
 
-  return { tasks, isLoading };
+  const completedTasks = tasks?.filter((task) => task.status === "Completed");
+  const inProgressTasks = tasks?.filter((task) => task.status === "Inprogress");
+  const todoTasks = tasks?.filter((task) => task.status === "Todo");
+
+  return { tasks, isLoading, completedTasks, inProgressTasks, todoTasks };
 }
