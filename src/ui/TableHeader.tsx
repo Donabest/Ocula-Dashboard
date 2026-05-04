@@ -1,13 +1,14 @@
-import { Tasks } from "../data/data-task";
+import { useTasks } from "../services/useTasks";
 
 function TableHeader() {
+  const { tasks, isLoading } = useTasks();
   return (
     <div>
       <div className="flex justify-between">
         <h1 className="font-medium text-xl">
           Task list
           <span className="text-slate-500 font-poppin font-normal text-[16px] dark:text-slate-400">
-            . {Tasks.length}
+            . {isLoading ? "..." : tasks.length}
           </span>
         </h1>
 
