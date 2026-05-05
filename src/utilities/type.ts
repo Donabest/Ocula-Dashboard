@@ -54,15 +54,15 @@ export interface Task {
 }
 
 export interface tasktype {
-  Assignee: string;
+  Assignee?: string;
   EndDate: string;
   StartDate: string;
-  created_at: string;
-  date: string;
+  created_at?: string;
+  date?: string | Date;
   description: string;
-  id: number;
+  id?: number;
   priority: string;
-  project_id: number;
+  project_id?: number;
   status: status;
   title: string;
 }

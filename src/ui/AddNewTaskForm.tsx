@@ -3,29 +3,32 @@ import { LuAsterisk } from "react-icons/lu";
 import { MdOutlineCancel } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import type { status } from "../utilities/type";
+import type { status, tasktype } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
+import { useCreateTask } from "../Features/MyTasks/useCreateTask";
 
 type NewTasksProps = {
   handleCancel: () => void;
 };
 
 type dataType = {
-  TaskName: string;
-  Priority: string;
-  ProjectName: string;
-  StartDate: Date;
-  EndDate: Date;
-  Description: string;
-  Status: status;
+  Assignee: string;
+  EndDate: string;
+  StartDate: string;
+  description: string;
+  priority: string;
+  status: status;
+  title: string;
 };
 
 function AddNewTaskForm({ handleCancel }: NewTasksProps) {
-  const { register, handleSubmit, formState } = useForm<dataType>();
+  const { register, handleSubmit, formState } = useForm<tasktype>();
+  const { createTask, isPending } = useCreateTask();
   const { ref } = useClickOutSide(handleCancel);
-  function onSubmit(data: dataType) {
-    toast.success("Task Created Successfully");
-    // handleCancel();
+
+  function onSubmit(data: tasktype) {
+    const newTask = { ...data };
+    createTask({ ...newTask });
   }
 
   function onError() {
@@ -59,7 +62,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
           >
             <div className="flex flex-col pt-3 gap-1.5">
               <label
-                htmlFor="TaskName"
+                htmlFor="title"
                 className="text-sm font-medium text-gray-500 dark:text-slate-500"
               >
                 Task Name
@@ -68,13 +71,11 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 type="text"
                 placeholder="John Doe"
                 className="px-4 py-2 border border-gray-300 outline-0 rounded-sm dark:border-slate-600"
-                {...register("TaskName", {
+                {...register("title", {
                   required: "This field is required",
                 })}
               />
-              <p className=" text-red-300 text-sm">
-                {errors?.TaskName?.message}
-              </p>
+              <p className=" text-red-300 text-sm">{errors?.title?.message}</p>
             </div>
 
             <div className="space-y-1.5">
@@ -88,9 +89,6 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 type="text"
                 placeholder="Project Name"
                 className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
-                {...register("ProjectName", {
-                  required: "This field is required",
-                })}
               />
             </div>
 
@@ -158,7 +156,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                       <input
                         type="radio"
                         value={level}
-                        {...register("Priority", {
+                        {...register("priority", {
                           required: "This field is required",
                         })}
                       />
@@ -179,7 +177,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                       <input
                         type="radio"
                         value={s}
-                        {...register("Status", {
+                        {...register("status", {
                           required: "This field is required",
                         })}
                       />
@@ -200,7 +198,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <textarea
                 placeholder="Task Description"
                 className="px-4 py-2 h-20 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
-                {...register("Description")}
+                {...register("description")}
               ></textarea>
             </div>
             <div className="flex justify-between items-center pt-5 ">
@@ -214,6 +212,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <button
                 type="submit"
                 className="bg-blue-700 text-white px-4 py-1.5 rounded-lg cursor-pointer active:scale-105"
+                disabled={isPending && true}
               >
                 Create Task
               </button>
