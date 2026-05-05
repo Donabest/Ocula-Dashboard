@@ -1,14 +1,15 @@
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { InprogressTasks } from "../../data/data-task";
 import ListTaskCard from "../../ui/ListTaskCard";
+import { useTasks } from "../../services/useTasks";
 
 type Props = {
   active: string | null;
   handler: (tab: string) => void;
 };
 
-function InprogressTasksList({ active, handler }: Props) {
-  const Inprogress = [...InprogressTasks].slice(0, 3);
+function DashboardInprogressTasksList({ active, handler }: Props) {
+  const { inProgressTasks } = useTasks();
+  const Inprogress = [...inProgressTasks].slice(0, 3);
 
   return (
     <div>
@@ -22,7 +23,7 @@ function InprogressTasksList({ active, handler }: Props) {
           Inprogress
         </p>
         <span className="font-poppin text-gray-500">
-          . {InprogressTasks.length} tasks
+          . {Inprogress.length} tasks
         </span>
       </div>
       {active === "Inprogress" && (
@@ -32,4 +33,4 @@ function InprogressTasksList({ active, handler }: Props) {
   );
 }
 
-export default InprogressTasksList;
+export default DashboardInprogressTasksList;

@@ -1,14 +1,15 @@
 import { FaChevronUp } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
-import { isUpComming } from "../../data/data-task";
 import ListTaskCard from "../../ui/ListTaskCard";
+import { useTasks } from "../../services/useTasks";
 
 type Props = {
   active: string | null;
   handler: (tab: string) => void;
 };
-function UpCommingTasksList({ active, handler }: Props) {
-  const upComming = [...isUpComming].slice(-3);
+function DashboardUpCommingTasksList({ active, handler }: Props) {
+  const { upCommingTasks } = useTasks();
+  const upComming = [...upCommingTasks].slice(-3);
   return (
     <div>
       <div className="flex items-center gap-3 pl-3">
@@ -19,7 +20,7 @@ function UpCommingTasksList({ active, handler }: Props) {
           Up Comming
         </p>
         <span className="font-medium text-gray-500 dark:text-slate-500">
-          . {isUpComming.length} tasks
+          . {upCommingTasks.length} tasks
         </span>
       </div>
 
@@ -30,4 +31,4 @@ function UpCommingTasksList({ active, handler }: Props) {
   );
 }
 
-export default UpCommingTasksList;
+export default DashboardUpCommingTasksList;

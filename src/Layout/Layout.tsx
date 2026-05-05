@@ -10,7 +10,7 @@ function Layout() {
       </div>
       <section className=" flex-1 bg-gray-100  overflow-auto">
         <Navbar />
-        <main className=" dark:bg-[#111827] min-h-screen">
+        <main className=" dark:bg-[#111827] min-h-screen overflow-x-hidden">
           <Outlet />
         </main>
       </section>

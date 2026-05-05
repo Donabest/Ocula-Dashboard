@@ -33,7 +33,7 @@ function TableRows() {
 
   return (
     <>
-      {tasks?.map((task, index) => (
+      {tasks.map((task, index) => (
         <motion.div
           className="relative grid grid-cols-[4fr_2fr_2fr] gap-5 font-medium text-gray-600 pt-4 mt-5 w-full  border-t-2 border-gray-200 dark:text-slate-200 dark:border-slate-700"
           initial={{ y: 5, opacity: 0 }}

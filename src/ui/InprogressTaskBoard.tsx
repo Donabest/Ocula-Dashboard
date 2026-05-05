@@ -1,8 +1,9 @@
-import { InprogressTasks } from "../data/data-task";
+import { useTasks } from "../services/useTasks";
 import BoardTaskCard from "./BoardTaskCard";
 
 function InprogressTaskBoard() {
-  return <BoardTaskCard Tasks={InprogressTasks} />;
+  const { inProgressTasks } = useTasks();
+  return <BoardTaskCard Tasks={inProgressTasks} />;
 }
 
 export default InprogressTaskBoard;

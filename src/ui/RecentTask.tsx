@@ -5,7 +5,7 @@ import Spinner from "./Spinner";
 function RecentTask() {
   const { tasks, isLoading } = useTasks();
 
-  const RecentTasks = tasks?.slice(-2);
+  const RecentTasks = [...tasks].slice(-2);
 
   return (
     <div className=" bg-white p-4 rounded-lg  dark:bg-slate-800 dark:text-slate-100">
@@ -17,7 +17,7 @@ function RecentTask() {
         {isLoading ? (
           <Spinner />
         ) : (
-          RecentTasks?.map((recent, index) => (
+          RecentTasks.map((recent, index) => (
             <RecentTasksList task={recent} key={index} />
           ))
         )}

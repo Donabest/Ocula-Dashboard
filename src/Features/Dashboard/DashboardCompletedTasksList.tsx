@@ -1,13 +1,14 @@
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { CompletedTasks } from "../../data/data-task";
 import ListTaskCard from "../../ui/ListTaskCard";
+import { useTasks } from "../../services/useTasks";
 
 type Props = {
   active: string | null;
   handler: (tab: string) => void;
 };
-function CompletedTasksList({ active, handler }: Props) {
-  const Completed = [...CompletedTasks].slice(0, 3);
+function DashboardCompletedTasksList({ active, handler }: Props) {
+  const { completedTasks } = useTasks();
+  const Completed = [...completedTasks].slice(0, 3);
 
   return (
     <div>
@@ -19,7 +20,7 @@ function CompletedTasksList({ active, handler }: Props) {
           Completed
         </p>
         <span className="font-medium text-gray-500 dark:text-slate-500">
-          . {CompletedTasks.length} tasks
+          . {completedTasks.length} tasks
         </span>
       </div>
       {active === "Completed" && (
@@ -29,4 +30,4 @@ function CompletedTasksList({ active, handler }: Props) {
   );
 }
 
-export default CompletedTasksList;
+export default DashboardCompletedTasksList;

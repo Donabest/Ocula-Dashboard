@@ -1,14 +1,15 @@
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { TodoTasks } from "../../data/data-task";
 import ListTaskCard from "../../ui/ListTaskCard";
+import { useTasks } from "../../services/useTasks";
 
 type Props = {
   active: string | null;
   handler: (tab: string) => void;
 };
 
-function TodoTasksList({ active, handler }: Props) {
-  const Todo = [...TodoTasks].slice(0, 3);
+function DashboardTodoTasksList({ active, handler }: Props) {
+  const { todoTasks } = useTasks();
+  const Todo = [...todoTasks].slice(0, 3);
 
   return (
     <div>
@@ -20,7 +21,7 @@ function TodoTasksList({ active, handler }: Props) {
           To Do
         </p>
         <span className="font-medium text-gray-500 dark:text-slate-500">
-          . {TodoTasks.length} tasks
+          . {todoTasks.length} tasks
         </span>
       </div>
 
@@ -29,4 +30,4 @@ function TodoTasksList({ active, handler }: Props) {
   );
 }
 
-export default TodoTasksList;
+export default DashboardTodoTasksList;

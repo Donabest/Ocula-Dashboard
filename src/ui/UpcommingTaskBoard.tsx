@@ -1,8 +1,12 @@
-import { isUpComming } from "../data/data-task";
+import { useTasks } from "../services/useTasks";
 import BoardTaskCard from "./BoardTaskCard";
+import Spinner from "./Spinner";
 
 function UpcommingTaskBoard() {
-  return <BoardTaskCard Tasks={isUpComming} />;
+  const { upCommingTasks, isLoading } = useTasks();
+  if (isLoading) return <Spinner />;
+
+  return <BoardTaskCard Tasks={upCommingTasks} />;
 }
 
 export default UpcommingTaskBoard;

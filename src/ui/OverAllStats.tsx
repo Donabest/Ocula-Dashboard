@@ -15,17 +15,17 @@ function OverAllStats() {
     {
       icon: <BiTask className="text-purple-400 " />,
       status: "Total Tasks",
-      total: tasks?.length,
+      total: tasks.length,
     },
     {
       icon: <MdOutlineAccessTime className="text-yellow-400 " />,
       status: "In progress",
-      total: inProgressTasks?.length,
+      total: inProgressTasks.length,
     },
     {
       icon: <FaRegCircleCheck className="text-emerald-500 " />,
       status: "Completed",
-      total: completedTasks?.length,
+      total: completedTasks.length,
     },
   ];
   return (

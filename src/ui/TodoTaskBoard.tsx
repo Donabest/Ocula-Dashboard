@@ -1,8 +1,9 @@
-import { TodoTasks } from "../data/data-task";
+import { useTasks } from "../services/useTasks";
 import BoardTaskCard from "./BoardTaskCard";
 
 function TodoTaskBoard() {
-  return <BoardTaskCard Tasks={TodoTasks} />;
+  const { todoTasks } = useTasks();
+  return <BoardTaskCard Tasks={todoTasks} />;
 }
 
 export default TodoTaskBoard;

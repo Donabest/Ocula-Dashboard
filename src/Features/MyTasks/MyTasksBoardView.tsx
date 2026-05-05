@@ -1,37 +1,34 @@
 import { motion } from "motion/react";
 import { IoIosArrowUp } from "react-icons/io";
-import type { ActiveProp, priorityBg } from "../../utilities/type";
+import type { ActiveProp } from "../../utilities/type";
 import CompletedTaskBoard from "../../ui/CompletedTaskBoard";
 import InprogressTaskBoard from "../../ui/InprogressTaskBoard";
 import TodoTaskBoard from "../../ui/TodoTaskBoard";
 import UpcommingTaskBoard from "../../ui/UpcommingTaskBoard";
-import {
-  CompletedTasks,
-  InprogressTasks,
-  TodoTasks,
-  isUpComming,
-} from "../../data/data-task";
-
-const BoardHeader = [
-  {
-    Title: "Inprogress",
-    Tasklength: InprogressTasks.length,
-  },
-  {
-    Title: "Todo",
-    Tasklength: TodoTasks.length,
-  },
-  {
-    Title: "UpComming",
-    Tasklength: isUpComming.length,
-  },
-  {
-    Title: "Completed",
-    Tasklength: CompletedTasks.length,
-  },
-];
+import { useTasks } from "../../services/useTasks";
 
 function MyTasksBoardView({ active }: ActiveProp) {
+  const { todoTasks, completedTasks, upCommingTasks, inProgressTasks } =
+    useTasks();
+  const BoardHeader = [
+    {
+      Title: "Inprogress",
+      Tasklength: inProgressTasks.length,
+    },
+    {
+      Title: "Todo",
+      Tasklength: todoTasks.length,
+    },
+    {
+      Title: "UpComming",
+      Tasklength: upCommingTasks.length,
+    },
+    {
+      Title: "Completed",
+      Tasklength: completedTasks.length,
+    },
+  ];
+
   return (
     <>
       {active === "Board" && (

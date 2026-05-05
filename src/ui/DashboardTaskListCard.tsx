@@ -20,7 +20,6 @@ function DashboardTaskListCard({ handleAddTask }: Prop) {
           scale: 1,
         }}
         transition={{ type: "spring", stiffness: 300, duration: 0.5 }}
-        onClick={() => navigate("/MyTasks")}
       >
         <div className="flex justify-between ">
           <div className="flex items-center gap-2 font-poppin font-medium">

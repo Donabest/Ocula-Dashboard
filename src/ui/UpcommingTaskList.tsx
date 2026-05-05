@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { isUpComming } from "../data/data-task";
 import ListTaskCard from "./ListTaskCard";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useTasks } from "../services/useTasks";
 
 function UpcommingTaskList() {
   const [isUpCommig, setIsUpComming] = useState<boolean>(true);
+  const { upCommingTasks } = useTasks();
+
   return (
     <div className="space-y-4 bg-white p-6 mt-6 rounded-lg  cursor-pointer dark:bg-slate-800 dark:text-white">
       <div className="flex items-center gap-2">
@@ -17,9 +19,9 @@ function UpcommingTaskList() {
         <p className="bg-yellow-200 text-yellow-700 px-4 py-1 rounded-lg">
           Upcomming
         </p>
-        <span> . {isUpComming.length} Tasks</span>
+        <span> . {upCommingTasks.length} Tasks</span>
       </div>
-      {isUpCommig && <ListTaskCard tasks={isUpComming} Assignee={true} />}
+      {isUpCommig && <ListTaskCard tasks={upCommingTasks} Assignee={true} />}
     </div>
   );
 }

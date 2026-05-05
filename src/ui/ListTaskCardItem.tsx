@@ -3,6 +3,8 @@ import TimeDiff from "../utilities/TimeDiff";
 import type { priorityBg, status, Task } from "../utilities/type";
 import StatusToggleMenu from "./StatusToggleMenu";
 
+import Assignee from "../assets/person-1.jpg";
+
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
   Low: "bg-gray-200 dark:bg-slate-700",
@@ -47,7 +49,7 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
           {AssignTo && (
             <span>
               <img
-                src={task.Assignee}
+                src={Assignee}
                 alt="Assignee"
                 className="w-8 h-8 rounded-full"
               />

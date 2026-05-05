@@ -1,8 +1,9 @@
 import BoardTaskCard from "./BoardTaskCard";
-import { CompletedTasks } from "../data/data-task";
+import { useTasks } from "../services/useTasks";
 
 function CompletedTaskBoard() {
-  return <BoardTaskCard Tasks={CompletedTasks} />;
+  const { completedTasks } = useTasks();
+  return <BoardTaskCard Tasks={completedTasks} />;
 }
 
 export default CompletedTaskBoard;
