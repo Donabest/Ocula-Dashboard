@@ -2,6 +2,7 @@ import { MdEditNote } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { AnimatePresence, motion } from "motion/react";
+import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 
 type menuType = {
   icon: any;
@@ -18,12 +19,13 @@ const menus: menuType[] = [
     text: "Delete Task",
   },
 ];
-function Menu({ handler }: { handler: () => void }) {
+function Menu({ handler, id }: { handler: () => void; id: number }) {
   const { ref } = useClickOutSide(handler);
+  const { deleteTask, isPending } = useDeleteTask();
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg dark:bg-black/30 dark:text-slate-300"
+        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg z-999 dark:bg-black/30 dark:text-slate-300"
         ref={ref}
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 1 }}
@@ -32,11 +34,20 @@ function Menu({ handler }: { handler: () => void }) {
       >
         {menus.map((menu, i) => (
           <div
-            className="flex items-center gap-2  px-4 py-1 cursor-pointer hover:bg-black/5 hover:transition-all duration-150"
+            className="flex items-center gap-2  px-4 py-1  hover:bg-black/5 hover:transition-all duration-150"
             key={i}
           >
             {menu.icon}
-            <span>{menu.text}</span>
+            <button
+              className="cursor-pointer"
+              onClick={() => {
+                if (menu.text === "Delete Task") {
+                  deleteTask(id);
+                }
+              }}
+            >
+              {isPending ? "loading..." : menu.text}
+            </button>
           </div>
         ))}
       </motion.div>

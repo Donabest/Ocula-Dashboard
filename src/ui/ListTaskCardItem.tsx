@@ -1,9 +1,12 @@
 import { FaChevronDown } from "react-icons/fa6";
 import TimeDiff from "../utilities/TimeDiff";
-import type { priorityBg, status, Task } from "../utilities/type";
+import type { priorityBg, status, tasktype } from "../utilities/type";
 import StatusToggleMenu from "./StatusToggleMenu";
 
 import Assignee from "../assets/person-1.jpg";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import Menu from "./Menu";
+import { useState } from "react";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
@@ -18,13 +21,14 @@ const StatusBg: Record<status, string> = {
 };
 
 interface props {
-  task: Task;
+  task: tasktype;
   AssignTo: boolean;
   openMenu: React.Dispatch<React.SetStateAction<number | null>>;
   Open: number | null;
 }
 
 function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
+  const [openId, setOpenId] = useState<number | null>();
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
     e.stopPropagation();
     openMenu((prevId) => (prevId === id ? null : id));
@@ -40,7 +44,7 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
         <div className="flex items-center gap-2 col-span-2 ">
           <FaChevronDown className="cursor-pointer" />
           <span
-            className={`${StatusBg[task.status]}  p-1.5 rounded-sm cursor-pointer`}
+            className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
             onMouseDown={(e) => handleOpenMenu(task.id, e)}
           ></span>
           <span>{task.title}</span>
@@ -60,12 +64,25 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
           >
             {task.priority}
           </span>
-          <span
-            className={`${TimeDiff(task.EndDate) === "Today" && "text-red-500 "}`}
+          <div
+            className={`relative text-sm gap-2 ${TimeDiff(task.EndDate) === "Today" && "text-red-500 "}`}
           >
-            {TimeDiff(task.EndDate)}
-          </span>
+            {TimeDiff(task.EndDate)}{" "}
+            {AssignTo && (
+              <span
+                className="absolute -right-4 "
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenId((prevId) => (prevId === task.id ? null : task.id));
+                }}
+              >
+                <BsThreeDotsVertical />
+              </span>
+            )}
+            {openId && <Menu handler={() => setOpenId(null)} id={task.id} />}
+          </div>
         </div>
+
         {Open === task.id && (
           <StatusToggleMenu value={task.status} handler={close} />
         )}

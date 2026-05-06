@@ -3,32 +3,25 @@ import { LuAsterisk } from "react-icons/lu";
 import { MdOutlineCancel } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import type { status, tasktype } from "../utilities/type";
+import type { tasktype } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateTask } from "../Features/MyTasks/useCreateTask";
+import FormError from "./FormError";
 
 type NewTasksProps = {
   handleCancel: () => void;
 };
 
-type dataType = {
-  Assignee: string;
-  EndDate: string;
-  StartDate: string;
-  description: string;
-  priority: string;
-  status: status;
-  title: string;
-};
-
 function AddNewTaskForm({ handleCancel }: NewTasksProps) {
-  const { register, handleSubmit, formState } = useForm<tasktype>();
+  const { register, handleSubmit, clearErrors, formState } =
+    useForm<tasktype>();
   const { createTask, isPending } = useCreateTask();
   const { ref } = useClickOutSide(handleCancel);
 
   function onSubmit(data: tasktype) {
     const newTask = { ...data };
     createTask({ ...newTask });
+    // handleCancel();
   }
 
   function onError() {
@@ -75,7 +68,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                   required: "This field is required",
                 })}
               />
-              <p className=" text-red-300 text-sm">{errors?.title?.message}</p>
+              <FormError error={errors.title?.message} clear={clearErrors} />
             </div>
 
             <div className="space-y-1.5">
@@ -89,6 +82,13 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 type="text"
                 placeholder="Project Name"
                 className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
+                {...register("projectName", {
+                  required: "This field is required",
+                })}
+              />
+              <FormError
+                error={errors?.projectName?.message}
+                clear={clearErrors}
               />
             </div>
 
@@ -123,6 +123,11 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                     required: "This Field is required",
                   })}
                 />
+
+                <FormError
+                  error={errors?.StartDate?.message}
+                  clear={clearErrors}
+                />
               </div>
               <div className="space-y-1.5">
                 <label
@@ -138,6 +143,11 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                   {...register("EndDate", {
                     required: "This field is reuired",
                   })}
+                />
+
+                <FormError
+                  error={errors?.EndDate?.message}
+                  clear={clearErrors}
                 />
               </div>
             </div>
@@ -164,6 +174,11 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                     </label>
                   ))}
                 </div>
+
+                <FormError
+                  error={errors?.priority?.message}
+                  clear={clearErrors}
+                />
               </div>
 
               <div>
@@ -185,6 +200,11 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                     </label>
                   ))}
                 </div>
+
+                <FormError
+                  error={errors?.status?.message}
+                  clear={clearErrors}
+                />
               </div>
             </div>
 

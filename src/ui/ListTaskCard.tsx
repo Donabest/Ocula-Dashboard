@@ -1,9 +1,9 @@
-import type { Task } from "../utilities/type";
+import type { tasktype } from "../utilities/type";
 import { useState } from "react";
 import ListTaskCardItem from "./ListTaskCardItem";
 
 interface CardProps {
-  tasks: Task[];
+  tasks: tasktype[];
   Assignee: boolean;
 }
 

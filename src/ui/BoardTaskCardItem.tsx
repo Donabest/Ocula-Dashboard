@@ -45,7 +45,7 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
         </p>
       </div>
       <img src={Assignee} alt="Assignee" className="w-8 -8 rounded-full" />
-      {openId === task.id && <Menu handler={close} />}
+      {openId === task.id && <Menu handler={close} id={task.id} />}
     </div>
   );
 }
