@@ -234,7 +234,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 className="bg-blue-700 text-white px-4 py-1.5 rounded-lg cursor-pointer active:scale-105"
                 disabled={isPending && true}
               >
-                Create Task
+                {isPending ? "Creating..." : "Create Task"}
               </button>
             </div>
           </form>

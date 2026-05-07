@@ -2,7 +2,6 @@ import { MdEditNote } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { AnimatePresence, motion } from "motion/react";
-import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 
 type menuType = {
   icon: any;
@@ -19,13 +18,18 @@ const menus: menuType[] = [
     text: "Delete Task",
   },
 ];
-function Menu({ handler, id }: { handler: () => void; id: number }) {
+function Menu({
+  handler,
+  onDelete,
+}: {
+  handler: () => void;
+  onDelete: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+}) {
   const { ref } = useClickOutSide(handler);
-  const { deleteTask, isPending } = useDeleteTask();
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg z-999 dark:bg-black/30 dark:text-slate-300"
+        className="absolute top-9 right-5 bg-white/4 space-y-2 py-2 w-50 border border-black/5 shadow-xl backdrop-blur-md rounded-lg z-99 dark:bg-black/30 dark:text-slate-300"
         ref={ref}
         initial={{ opacity: 0, y: 0 }}
         animate={{ opacity: 1, y: 1 }}
@@ -42,11 +46,11 @@ function Menu({ handler, id }: { handler: () => void; id: number }) {
               className="cursor-pointer"
               onClick={() => {
                 if (menu.text === "Delete Task") {
-                  deleteTask(id);
+                  onDelete(true);
                 }
               }}
             >
-              {isPending ? "loading..." : menu.text}
+              {menu.text}
             </button>
           </div>
         ))}

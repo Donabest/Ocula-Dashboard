@@ -7,6 +7,7 @@ import Assignee from "../assets/person-1.jpg";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Menu from "./Menu";
 import { useState } from "react";
+import ConfirmDelete from "./ConfirmDelete";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
@@ -29,6 +30,7 @@ interface props {
 
 function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
   const [openId, setOpenId] = useState<number | null>();
+  const [isDelete, setIsDelete] = useState<boolean>();
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
     e.stopPropagation();
     openMenu((prevId) => (prevId === id ? null : id));
@@ -39,55 +41,58 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
   }
 
   return (
-    <>
-      <div className="relative grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500">
-        <div className="flex items-center gap-2 col-span-2 ">
-          <FaChevronDown className="cursor-pointer" />
-          <span
-            className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
-            onMouseDown={(e) => handleOpenMenu(task.id, e)}
-          ></span>
-          <span>{task.title}</span>
-        </div>
-        <div className="flex justify-between text-center items-center">
+    <div className="relative grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500">
+      <div className="flex items-center gap-2 col-span-2 ">
+        <FaChevronDown className="cursor-pointer" />
+        <span
+          className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
+          onMouseDown={(e) => handleOpenMenu(task.id, e)}
+        ></span>
+        <span>{task.title}</span>
+      </div>
+      <div className="flex justify-between text-center items-center">
+        {AssignTo && (
+          <span>
+            <img
+              src={Assignee}
+              alt="Assignee"
+              className="w-8 h-8 rounded-full"
+            />
+          </span>
+        )}
+        <span
+          className={`${AssignTo && "ml-8"} font-poppin text-sm ${priorityBg[task.priority]} px-3 py-1 rounded-lg uppercase`}
+        >
+          {task.priority}
+        </span>
+        <div
+          className={`relative text-sm gap-2 ${TimeDiff(task.EndDate) === "Today" && "text-red-500 "}`}
+        >
+          {TimeDiff(task.EndDate)}{" "}
           {AssignTo && (
-            <span>
-              <img
-                src={Assignee}
-                alt="Assignee"
-                className="w-8 h-8 rounded-full"
-              />
+            <span
+              className="absolute -right-4 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenId((prevId) => (prevId === task.id ? null : task.id));
+              }}
+            >
+              <BsThreeDotsVertical color="white" />
             </span>
           )}
-          <span
-            className={`${AssignTo && "ml-8"} font-poppin text-sm ${priorityBg[task.priority]} px-3 py-1 rounded-lg uppercase`}
-          >
-            {task.priority}
-          </span>
-          <div
-            className={`relative text-sm gap-2 ${TimeDiff(task.EndDate) === "Today" && "text-red-500 "}`}
-          >
-            {TimeDiff(task.EndDate)}{" "}
-            {AssignTo && (
-              <span
-                className="absolute -right-4 "
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpenId((prevId) => (prevId === task.id ? null : task.id));
-                }}
-              >
-                <BsThreeDotsVertical />
-              </span>
-            )}
-            {openId && <Menu handler={() => setOpenId(null)} id={task.id} />}
-          </div>
+          {openId && (
+            <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
+          )}
         </div>
-
-        {Open === task.id && (
-          <StatusToggleMenu value={task.status} handler={close} />
-        )}
       </div>
-    </>
+
+      {Open === task.id && (
+        <StatusToggleMenu value={task.status} handler={close} />
+      )}
+      {isDelete && (
+        <ConfirmDelete id={task.id} handleClick={() => setIsDelete(false)} />
+      )}
+    </div>
   );
 }
 

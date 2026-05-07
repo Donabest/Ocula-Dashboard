@@ -11,34 +11,32 @@ function ListTaskCard({ tasks, Assignee }: CardProps) {
   const [OpenId, setOpenId] = useState<number | null>(null);
 
   return (
-    <>
-      <section className="flex flex-col gap-5 pt-1.5 pl-3">
-        <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200  dark:text-gray-400 dark:border-b-slate-500">
-          <h1 className="col-span-2">Name</h1>
-          <div className="flex justify-between items-center">
-            {Assignee && <span>Assignee</span>} <span>Priority</span>
-            <span>Due Date</span>
-          </div>
+    <section className="flex flex-col gap-5 pt-1.5 pl-3">
+      <div className="grid grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200  dark:text-gray-400 dark:border-b-slate-500">
+        <h1 className="col-span-2">Name</h1>
+        <div className="flex justify-between items-center">
+          {Assignee && <span>Assignee</span>} <span>Priority</span>
+          <span>Due Date</span>
         </div>
+      </div>
 
-        {tasks.map((task) => (
-          <ListTaskCardItem
-            task={task}
-            key={task.id}
-            AssignTo={Assignee}
-            Open={OpenId}
-            openMenu={setOpenId}
-          />
-        ))}
+      {tasks.map((task) => (
+        <ListTaskCardItem
+          task={task}
+          key={task.id}
+          AssignTo={Assignee}
+          Open={OpenId}
+          openMenu={setOpenId}
+        />
+      ))}
 
-        {/* <button
+      {/* <button
           className="flex justify-start pl-3 font-medium cursor-pointer "
           onClick={handleAddTask}
         >
           + Add Task
         </button> */}
-      </section>
-    </>
+    </section>
   );
 }
 

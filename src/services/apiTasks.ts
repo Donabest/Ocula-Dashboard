@@ -28,3 +28,4 @@ export async function deleteTask(id: number) {
 
   return data;
 }
+export async function editTask() {}
