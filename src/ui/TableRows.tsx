@@ -64,7 +64,11 @@ function TableRows() {
           </div>
 
           {openId === task.id && (
-            <StatusToggleMenu handler={close} value={task.status} />
+            <StatusToggleMenu
+              handler={close}
+              value={task.status}
+              id={task.id}
+            />
           )}
         </motion.div>
       ))}

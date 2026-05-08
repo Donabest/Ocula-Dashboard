@@ -19,9 +19,11 @@ function TableHeader() {
             id="filter"
             className="bg-gray-100 px-4 py-1 border-0 outline-0 rounded-lg dark:bg-slate-700"
           >
-            <option value="By start Date">Start Date</option>
-            <option value="By End Date">End Date</option>
-            <option value="By Priority">Priority</option>
+            <option value="By Completed">Completed First</option>
+            <option value="By InProgress">InProgress First</option>
+            <option value="By Todo">Todo First</option>
+            <option value="By StartDate">By start Date</option>
+            <option value="By EndDate">By End Date</option>
           </select>
         </div>
       </div>

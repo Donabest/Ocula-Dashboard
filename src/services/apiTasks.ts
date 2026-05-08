@@ -1,4 +1,4 @@
-import type { tasktype } from "../utilities/type";
+import type { status, tasktype } from "../utilities/type";
 import { supabase } from "./supabase";
 
 export async function getTasks(): Promise<tasktype[]> {
@@ -28,4 +28,21 @@ export async function deleteTask(id: number) {
 
   return data;
 }
-export async function editTask() {}
+
+export async function updateStatus({
+  id,
+  newStatus,
+}: {
+  id: number;
+  newStatus: status;
+}) {
+  console.log(newStatus, id);
+  const { data, error } = await supabase
+    .from("Tasks")
+    .update({ status: newStatus })
+    .eq("id", id);
+
+  if (error) throw new Error("Task status could not be change");
+
+  return data;
+}

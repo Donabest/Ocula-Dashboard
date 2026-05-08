@@ -87,7 +87,7 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
       </div>
 
       {Open === task.id && (
-        <StatusToggleMenu value={task.status} handler={close} />
+        <StatusToggleMenu value={task.status} handler={close} id={task.id} />
       )}
       {isDelete && (
         <ConfirmDelete id={task.id} handleClick={() => setIsDelete(false)} />
