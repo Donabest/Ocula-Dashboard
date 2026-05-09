@@ -13,7 +13,7 @@ function ScheduleTask() {
   const [selectedSchedule, setSelectedSchedule] = useState<schedule | null>(
     null,
   );
-  const FirstTwoSchedules = schedules.slice(0, 2);
+  const LastTwoSchdule = schedules.slice(-2);
   return (
     <motion.section
       className="flex flex-col bg-white p-6 space-y-4 rounded-lg dark:bg-slate-800 dark:text-slate-100 "
@@ -30,7 +30,7 @@ function ScheduleTask() {
       {isLoading ? (
         <Spinner />
       ) : (
-        FirstTwoSchedules.map((schTask, index) => (
+        LastTwoSchdule.map((schTask, index) => (
           <ScheduleTaskItem
             task={schTask}
             detail={true}

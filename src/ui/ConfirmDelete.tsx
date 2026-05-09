@@ -1,15 +1,15 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 import useClickOutSide from "../hooks/useClickOutSide";
 
 function ConfirmDelete({
   handleClick,
-  id,
+  handleDelete,
+  pending,
 }: {
   handleClick: () => void;
-  id: number;
+  handleDelete: () => void;
+  pending: boolean;
 }) {
-  const { deleteTask, isPending } = useDeleteTask();
   const { ref } = useClickOutSide(handleClick);
 
   return (
@@ -24,30 +24,26 @@ function ConfirmDelete({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
         >
-          <h1 className=" font-normal text-2xl">Are You Sure ?</h1>
-          <p className="  text-gray-700 my-6 dark:text-gray-300">
+          <h1 className="text-start font-normal text-2xl">Are You Sure ?</h1>
+          <p className=" text-start text-gray-700 my-6 dark:text-gray-300">
             This task will be deleted permanently.
           </p>
 
           <div className="flex justify-end text-center items-center space-x-6">
             <button
+              type="button"
               className="border border-gray-500 px-5 py-2 rounded-lg cursor-pointer active:scale-101"
               onClick={handleClick}
             >
               Cancel
             </button>
             <button
+              type="button"
               className="px-5 py-2 rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-500 active:scale-101"
-              onClick={() =>
-                deleteTask(id, {
-                  onSuccess: () => {
-                    handleClick();
-                  },
-                })
-              }
-              disabled={isPending && true}
+              onClick={handleDelete}
+              disabled={pending}
             >
-              {isPending ? "deleting..." : "Confirm"}
+              {pending ? "deleting..." : "Confirm"}
             </button>
           </div>
         </motion.div>

@@ -14,7 +14,7 @@ function ReminderList({ remind }: prop) {
           ? "text-emerald-500"
           : "text-yellow-500 dark:text-yellow-600";
   return (
-    <div className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300  dark:border-b-slate-500 ">
+    <div className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300  dark:border-b-slate-500">
       <h2 className="font-medium text-black/80 dark:text-slate-300 ">
         {remind.eventTitle}
       </h2>

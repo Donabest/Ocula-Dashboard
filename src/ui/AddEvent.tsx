@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { RiArrowRightLongLine } from "react-icons/ri";
 import type { schedule } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
+import { useCreateSchedule } from "../Features/Calender/useCreateSchedule";
 
 type handlerType = {
   handler: () => void;
@@ -11,13 +12,24 @@ type handlerType = {
 function AddEvent({ handler }: handlerType) {
   const { register, handleSubmit } = useForm<schedule>();
   const { ref } = useClickOutSide(handler);
+  const { createScheduleTask, isScheduling } = useCreateSchedule();
+
   function onSubmit(data: schedule) {
+    createScheduleTask(
+      { ...data },
+      {
+        onSuccess: () => {
+          handler();
+        },
+      },
+    );
+
     console.log(data);
   }
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 mx-auto mt-60 mr-70 bg-white/15 backdrop-blur-lg px-4 py-5 w-90 h-fit rounded-lg border border-gray-300 dark:bg-black/20 dark:border-slate-800"
+        className="fixed inset-0 mx-auto mt-60 mr-70 bg-white/15 backdrop-blur-lg px-4 py-5 w-110 h-fit rounded-lg border border-gray-300 dark:bg-black/20 dark:border-slate-800"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
@@ -35,36 +47,34 @@ function AddEvent({ handler }: handlerType) {
             type="text"
             placeholder="Event title"
             className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
-            {...register("EventTitle", { required: "This field is required" })}
+            {...register("eventTitle", { required: "This field is required" })}
           />
           <div>
             <input
               type="date"
               className="w-full px-2 py-1  rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
-              {...register("Date", { required: "This field is required" })}
+              {...register("date", { required: "This field is required" })}
             />
           </div>
           <div className="flex justify-between items-center">
             <input
               type="time"
-              value="12:00"
               className=" px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
-              {...register("StartTime", { required: "This field is required" })}
+              {...register("startTime", { required: "This field is required" })}
             />
             <span className="text-xl">
               <RiArrowRightLongLine />
             </span>
             <input
               type="time"
-              value="01:00"
               className="px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
-              {...register("EndTime", { required: "This field is required" })}
+              {...register("endTime", { required: "This field is required" })}
             />
           </div>
           <div className="flex flex-col">
             <select
               className="border border-gray-400 px-2 py-1 outline-0 rounded-lg text-gray-800 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-400"
-              {...register("Reminder")}
+              {...register("reminder")}
             >
               <option value="none">Reminder None</option>
               <option value="5 min before">5 mins before</option>
@@ -75,12 +85,21 @@ function AddEvent({ handler }: handlerType) {
               <option value="2 days before">2 days before</option>
             </select>
           </div>
+
+          <div>
+            <input
+              type="text"
+              placeholder="meeting"
+              className="px-2 py-1 rounded-xl border border-gray-400 outline-0 w-full dark:border-slate-500"
+              {...register("meet", { required: "This field is required" })}
+            />
+          </div>
           <div>
             <textarea
               id="description"
               className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
               placeholder="Description"
-              {...register("Description", {
+              {...register("description", {
                 required: "This field is required",
               })}
             ></textarea>
@@ -89,11 +108,15 @@ function AddEvent({ handler }: handlerType) {
             <button
               className="bg-transparent border border-gray-300 rounded-lg px-4 py-2 cursor-pointer active:scale-101 dark:border-slate-500"
               onClick={handler}
+              disabled={isScheduling}
             >
               Cancel
             </button>
-            <button className="bg-blue-700 text-white rounded-lg px-6 py-2 cursor-pointer active:scale-101">
-              Save
+            <button
+              className="bg-blue-700 text-white rounded-lg px-6 py-2 cursor-pointer active:scale-101"
+              disabled={isScheduling}
+            >
+              {isScheduling ? "scheduling.." : "Save"}
             </button>
           </div>
         </form>

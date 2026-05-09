@@ -8,6 +8,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Menu from "./Menu";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
+import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
@@ -29,6 +30,8 @@ interface props {
 }
 
 function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
+  const { deleteTask, isDeleting } = useDeleteTask();
+
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
@@ -40,6 +43,13 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
     openMenu(null);
   }
 
+  function handleDeleteTask(id: number) {
+    deleteTask(id, {
+      onSuccess: () => {
+        setOpenId(null);
+      },
+    });
+  }
   return (
     <div className="relative grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500">
       <div className="flex items-center gap-2 col-span-2 ">
@@ -80,7 +90,7 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
               <BsThreeDotsVertical color="white" />
             </span>
           )}
-          {openId && (
+          {openId === task.id && (
             <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
           )}
         </div>
@@ -90,7 +100,11 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
         <StatusToggleMenu value={task.status} handler={close} id={task.id} />
       )}
       {isDelete && (
-        <ConfirmDelete id={task.id} handleClick={() => setIsDelete(false)} />
+        <ConfirmDelete
+          handleDelete={() => handleDeleteTask(task.id)}
+          handleClick={() => setIsDelete(false)}
+          pending={isDeleting}
+        />
       )}
     </div>
   );

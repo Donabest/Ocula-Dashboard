@@ -20,8 +20,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
 
   function onSubmit(data: tasktype) {
     const newTask = { ...data };
-    createTask({ ...newTask });
-    // handleCancel();
+    createTask(
+      { ...newTask },
+      {
+        onSuccess: () => {
+          handleCancel();
+        },
+      },
+    );
   }
 
   function onError() {
@@ -34,7 +40,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
     <AnimatePresence>
       <div className="fixed inset-0 z-99 bg-black/10 backdrop-blur-xs ">
         <motion.div
-          className="max-w-xl mx-auto mt-20 bg-white px-6 py-4 rounded-2xl dark:bg-slate-900 dark:text-slate-400 dark:border dark:border-slate-800"
+          className="max-w-2xl mx-auto mt-20 bg-white px-6 py-4 rounded-2xl dark:bg-slate-900 dark:text-slate-400 dark:border dark:border-slate-800"
           ref={ref}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -232,7 +238,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               <button
                 type="submit"
                 className="bg-blue-700 text-white px-4 py-1.5 rounded-lg cursor-pointer active:scale-105"
-                disabled={isPending && true}
+                disabled={isPending}
               >
                 {isPending ? "Creating..." : "Create Task"}
               </button>

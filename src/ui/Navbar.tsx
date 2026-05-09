@@ -20,7 +20,7 @@ function Navbar() {
   }
   const { ref } = useClickOutSide(close);
 
-  const count = schedules.filter((sch) => sch.Reminder !== "none").length;
+  const count = schedules.filter((sch) => sch.reminder !== "none").length;
 
   return (
     <>

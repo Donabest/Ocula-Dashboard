@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export function useDeleteTask() {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteTask, isPending } = useMutation({
+  const { mutate: deleteTask, isPending: isDeleting } = useMutation({
     mutationFn: deleteTaskApi,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["Tasks"] });
@@ -16,5 +16,5 @@ export function useDeleteTask() {
     },
   });
 
-  return { deleteTask, isPending };
+  return { deleteTask, isDeleting };
 }

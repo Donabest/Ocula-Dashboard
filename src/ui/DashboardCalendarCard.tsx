@@ -8,8 +8,15 @@ import { format, isPast } from "date-fns";
 import TimeDiff from "../utilities/TimeDiff";
 import NoScheduleTask from "./NoScheduleTask";
 import { parseTimeToLocal } from "../utilities/TimeParse";
+import Menu from "./Menu";
+import { useState } from "react";
+import ConfirmDelete from "./ConfirmDelete";
+import { useDeleteScheduleTask } from "../Features/Calender/useDeleteScheduleTask";
 
 function DashboardCalendarCard() {
+  const [openId, setOpenId] = useState<number | null>();
+  const [isDelete, setIsDelete] = useState<boolean>();
+
   const {
     currentDate,
     days,
@@ -20,6 +27,7 @@ function DashboardCalendarCard() {
     selectDayScheduleTask,
     index,
   } = useCalendar();
+  const { deleteScheduleTask, isDeleting } = useDeleteScheduleTask();
 
   const First7DaysArray = [...days];
   const daysArray = First7DaysArray.slice(index, index + 7).map((day) =>
@@ -27,6 +35,14 @@ function DashboardCalendarCard() {
   );
 
   const scheduleTask = [...selectDayScheduleTask].slice(-1);
+
+  function handleDeleteSchedule(id: number) {
+    deleteScheduleTask(id, {
+      onSuccess: () => {
+        setIsDelete(false);
+      },
+    });
+  }
 
   return (
     <div className="bg-white mt-8 px-8 py-6 space-y-4 rounded-2xl dark:bg-slate-800 dark:text-white">
@@ -69,7 +85,7 @@ function DashboardCalendarCard() {
 
       {scheduleTask.map((task, index) => (
         <div
-          className="bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700"
+          className="relative bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700"
           key={index}
         >
           <div className="flex justify-between items-start">
@@ -82,12 +98,15 @@ function DashboardCalendarCard() {
                   {TimeDiff(task.date)}
                 </span>
                 <p>
-                  {parseTimeToLocal(task.startTime)} -{" "}
+                  {parseTimeToLocal(task.startTime)} -&nbsp;
                   {parseTimeToLocal(task.endTime)}
                 </p>
               </div>
             </div>
-            <BsThreeDots className="cursor-pointer" />
+            <BsThreeDots
+              className="cursor-pointer"
+              onClick={() => setOpenId(task.id)}
+            />
           </div>
 
           <div className="inline-block font-raleway font-medium bg-white px-4 py-1.5 mt-6 rounded-3xl dark:bg-slate-800">
@@ -96,6 +115,17 @@ function DashboardCalendarCard() {
               {task.meet}
             </p>
           </div>
+
+          {openId === task.id && (
+            <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
+          )}
+          {isDelete && (
+            <ConfirmDelete
+              handleClick={() => setIsDelete(false)}
+              handleDelete={() => handleDeleteSchedule(task.id)}
+              pending={isDeleting}
+            />
+          )}
         </div>
       ))}
 

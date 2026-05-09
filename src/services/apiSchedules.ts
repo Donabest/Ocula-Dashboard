@@ -7,3 +7,24 @@ export async function getScheduleTasks(): Promise<schedule[]> {
 
   return data ?? [];
 }
+
+export async function createScheduleTask(newScheduleTask: schedule) {
+  const { data, error } = await supabase
+    .from("SchedulesTask")
+    .insert({ ...newScheduleTask });
+
+  if (error) throw new Error("SchedulesTask could not be created");
+
+  return data;
+}
+
+export async function deleteScheduleTask(id: number) {
+  const { data, error } = await supabase
+    .from("SchedulesTask")
+    .delete()
+    .eq("id", id);
+
+  if (error) throw new Error("Schedule Task Could not be Created");
+
+  return data;
+}

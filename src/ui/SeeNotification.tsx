@@ -4,10 +4,13 @@ import ReminderList from "./ReminderList";
 
 function SeeNotification() {
   const { schedules } = useCalendar();
+  const reminderSchedules = schedules.filter(
+    (reminder) => reminder.reminder !== "none",
+  );
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute right-8 w-160 top-15 h-60 z-99 px-8 py-2 bg-white/20 overflow-scroll backdrop-blur-lg border border-white/20 shadow-lg rounded-lg dark:bg-black/35 dark:border-white/9 hide-scrollbar"
+        className="absolute right-8 w-160 top-15 h-60 z-99 px-8 py-3 bg-white/20 overflow-scroll backdrop-blur-lg border border-white/20 shadow-lg rounded-lg dark:bg-black/35 dark:border-white/9 hide-scrollbar"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 1 }}
@@ -18,7 +21,7 @@ function SeeNotification() {
           damping: 30,
         }}
       >
-        {schedules.map((task, i) => (
+        {reminderSchedules.map((task, i) => (
           <ReminderList remind={task} key={i} />
         ))}
       </motion.div>

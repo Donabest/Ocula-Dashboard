@@ -36,7 +36,6 @@ export async function updateStatus({
   id: number;
   newStatus: status;
 }) {
-  console.log(newStatus, id);
   const { data, error } = await supabase
     .from("Tasks")
     .update({ status: newStatus })

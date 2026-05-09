@@ -4,6 +4,7 @@ import type { priorityBg, tasktype } from "../utilities/type";
 import { CiFlag1 } from "react-icons/ci";
 import Menu from "./Menu";
 import ConfirmDelete from "./ConfirmDelete";
+import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
@@ -13,6 +14,7 @@ const priorityBg: Record<priorityBg, string> = {
 function RecentTasksList({ task }: { task: tasktype }) {
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
+  const { deleteTask, isPending } = useDeleteTask();
 
   function handleOpenMenu(id: number, e: React.MouseEvent<SVGElement>) {
     e.stopPropagation();
@@ -21,6 +23,14 @@ function RecentTasksList({ task }: { task: tasktype }) {
 
   function handler() {
     setOpenId(null);
+  }
+
+  function handleDeleteTask(id: number) {
+    deleteTask(id, {
+      onSuccess: () => {
+        setIsDelete(false);
+      },
+    });
   }
   return (
     <div className="relative bg-gray-100 py-3 px-4 rounded-lg space-y-3 w-full dark:bg-slate-700 dark:text-slate-100">
@@ -46,7 +56,11 @@ function RecentTasksList({ task }: { task: tasktype }) {
 
       {openId === task.id && <Menu handler={handler} onDelete={setIsDelete} />}
       {isDelete && (
-        <ConfirmDelete id={task.id} handleClick={() => setIsDelete(false)} />
+        <ConfirmDelete
+          handleDelete={() => handleDeleteTask(task.id)}
+          handleClick={() => setIsDelete(false)}
+          pending={isPending}
+        />
       )}
     </div>
   );

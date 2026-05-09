@@ -8,7 +8,7 @@ export function useScheduleTask() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["Schedules"],
+    queryKey: ["SchedulesTask"],
     queryFn: getScheduleTasks,
   });
   if (error) {

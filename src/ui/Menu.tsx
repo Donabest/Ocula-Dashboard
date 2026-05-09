@@ -11,11 +11,11 @@ type menuType = {
 const menus: menuType[] = [
   {
     icon: <MdEditNote color="gray" size={20} />,
-    text: "Edit Task",
+    text: "Edit",
   },
   {
     icon: <RiDeleteBinLine color="gray" size={20} />,
-    text: "Delete Task",
+    text: "Delete",
   },
 ];
 function Menu({
@@ -45,7 +45,7 @@ function Menu({
             <button
               className="cursor-pointer"
               onClick={() => {
-                if (menu.text === "Delete Task") {
+                if (menu.text === "Delete") {
                   onDelete(true);
                 }
               }}

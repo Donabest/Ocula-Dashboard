@@ -5,6 +5,7 @@ import type { priorityBg, tasktype } from "../utilities/type";
 
 import Assignee from "../assets/person-1.jpg";
 import ConfirmDelete from "./ConfirmDelete";
+import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
@@ -15,6 +16,7 @@ const priorityBg: Record<priorityBg, string> = {
 function BoardTaskCardItem({ task }: { task: tasktype }) {
   const [openId, setOpenId] = useState<number | null>(null);
   const [isDelete, setIsDelete] = useState<boolean>();
+  const { deleteTask, isDeleting } = useDeleteTask();
 
   function handleShowMenu(id: number, e: React.MouseEvent<SVGElement>) {
     e.stopPropagation();
@@ -23,6 +25,14 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
 
   function close() {
     setOpenId(null);
+  }
+
+  function handleDeleteTask(id: number) {
+    deleteTask(id, {
+      onSuccess: () => {
+        setIsDelete(false);
+      },
+    });
   }
 
   return (
@@ -51,7 +61,11 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
         {openId === task.id && <Menu handler={close} onDelete={setIsDelete} />}
       </div>
       {isDelete && (
-        <ConfirmDelete id={task.id} handleClick={() => setIsDelete(false)} />
+        <ConfirmDelete
+          handleDelete={() => handleDeleteTask(task.id)}
+          handleClick={() => setIsDelete(false)}
+          pending={isDeleting}
+        />
       )}
     </>
   );
