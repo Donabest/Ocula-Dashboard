@@ -6,9 +6,10 @@ import { useCalendar } from "../Context/useCalender";
 import { useState } from "react";
 import type { schedule } from "../utilities/type";
 import CalendarDetails from "./CalendarDetails";
+import Spinner from "./Spinner";
 
 function ScheduleTask() {
-  const { schedules } = useCalendar();
+  const { schedules, isLoading } = useCalendar();
   const [selectedSchedule, setSelectedSchedule] = useState<schedule | null>(
     null,
   );
@@ -26,14 +27,18 @@ function ScheduleTask() {
         <BsThreeDots className="cursor-pointer" />
       </div>
 
-      {FirstTwoSchedules.map((schTask, index) => (
-        <ScheduleTaskItem
-          task={schTask}
-          detail={true}
-          key={index}
-          setSelect={setSelectedSchedule}
-        />
-      ))}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        FirstTwoSchedules.map((schTask, index) => (
+          <ScheduleTaskItem
+            task={schTask}
+            detail={true}
+            key={index}
+            setSelect={setSelectedSchedule}
+          />
+        ))
+      )}
       {selectedSchedule && (
         <CalendarDetails scheduleDetails={selectedSchedule} />
       )}

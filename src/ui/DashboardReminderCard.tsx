@@ -9,8 +9,8 @@ function DashboardReminderCard() {
   const { schedules } = useCalendar();
   const TodayReminders = schedules.filter(
     (sch) =>
-      sch.Reminder !== "none" &&
-      format(new Date(sch.Date), "MMM dd yyyy") ===
+      sch.reminder !== "none" &&
+      format(new Date(sch.date), "MMM dd yyyy") ===
         format(new Date(), "MMM dd yyyy"),
   );
   const [showRemind, setShowRemind] = useState<boolean>(true);

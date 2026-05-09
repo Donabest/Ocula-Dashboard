@@ -1,6 +1,6 @@
 import { differenceInDays } from "date-fns";
-import type { schedule, Task } from "./type";
-import { parseReminder } from "./TimeParse";
+import type { schedule } from "./type";
+import { parseReminder, parseTimeToLocal } from "./TimeParse";
 import { useEffect, useState } from "react";
 
 function TimeDiff(date: string) {
@@ -33,9 +33,9 @@ function converTime(time: string) {
 }
 
 function getStartDateTime(task: schedule) {
-  const { hour, minutes } = converTime(task.StartTime);
+  const { hour, minutes } = converTime(parseTimeToLocal(task.startTime));
 
-  const date = new Date(task.Date);
+  const date = new Date(task.date);
   date.setHours(hour);
   date.setMinutes(minutes);
   date.setSeconds(0);
@@ -44,9 +44,9 @@ function getStartDateTime(task: schedule) {
 }
 
 function getEndDateTime(task: schedule) {
-  const { hour, minutes } = converTime(task.EndTime);
+  const { hour, minutes } = converTime(parseTimeToLocal(task.endTime));
 
-  const date = new Date(task.Date);
+  const date = new Date(task.date);
   date.setHours(hour);
   date.setMinutes(minutes);
   date.setSeconds(0);
@@ -58,7 +58,7 @@ export function ReminderCountDown(task: schedule) {
   const now = new Date();
   const startTime = getStartDateTime(task);
   const endTime = getEndDateTime(task);
-  const reminderMinutes = parseReminder(task.Reminder);
+  const reminderMinutes = parseReminder(task.reminder);
 
   const reminderStart = new Date(startTime);
   reminderStart.setMinutes(startTime.getMinutes() - reminderMinutes);

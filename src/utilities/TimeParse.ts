@@ -11,6 +11,16 @@ export function parseTime(timeStr: string) {
   return hours * 60 + minutes;
 }
 
+export function parseTimeToLocal(time: string) {
+  const date = new Date(`1970-01-01T${time}`);
+
+  return date.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
 export function parseReminder(reminder: string): number {
   if (!reminder) return 0;
 

@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { ReminderCountDown } from "../utilities/TimeDiff";
 import { useCalendar } from "../Context/useCalender";
+import { parseTimeToLocal } from "../utilities/TimeParse";
 
 type props = {
   scheduleDetails: schedule | null;
@@ -61,20 +62,21 @@ function CalendarDetails({ scheduleDetails }: props) {
 
                 <div className="flex flex-col justify-center items-start pt-6 gap-1">
                   <h2 className="text-xl tracking-wide text-white/90">
-                    {scheduleDetails.Meet} - {scheduleDetails.EventTitle}
+                    {scheduleDetails.meet} - {scheduleDetails.eventTitle}
                   </h2>
                   <time className="flex justify-center items-center gap-1.5 text-sm text-white/60 ">
                     <CiClock2 />
                     <span>
-                      {format(scheduleDetails.Date, "dd MMM")} ,{" "}
-                      {scheduleDetails.StartTime} - {scheduleDetails.EndTime}
+                      {format(scheduleDetails.date, "dd MMM")} &nbsp;
+                      {parseTimeToLocal(scheduleDetails.startTime)} -{" "}
+                      {parseTimeToLocal(scheduleDetails.endTime)}
                     </span>
                   </time>
                 </div>
                 <div className="flex justify-between items-center pt-3">
                   <span className="flex items-center gap-1.5 text-sm bg-white/10 px-3 py-1 border border-white/10 rounded-lg">
                     <SiGooglemeet color="red" />
-                    Join on {scheduleDetails.Meet}
+                    Join on {scheduleDetails.meet}
                   </span>
                   <span className="flex justify-center items-center gap-1.5 text-sm bg-white/10 px-3 py-1 border border-white/10 rounded-lg">
                     <IoCheckmarkDoneCircle className="text-emerald-400" />
@@ -90,7 +92,7 @@ function CalendarDetails({ scheduleDetails }: props) {
                 </h1>
 
                 <p className="text-start text-gray-600/90 py-2 border-b border-b-gray-300  text-sm leading-relaxed dark:text-slate-800">
-                  {scheduleDetails.Description}
+                  {scheduleDetails.description}
                 </p>
 
                 <div className="flex flex-col justify-center items-start gap-1.5 pt-3 ">

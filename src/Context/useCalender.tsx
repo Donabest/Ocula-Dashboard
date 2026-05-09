@@ -14,49 +14,7 @@ import React, {
   type ReactNode,
 } from "react";
 import type { schedule } from "../utilities/type";
-
-const schedules: schedule[] = [
-  {
-    id: 1,
-    Date: "May 07 2026",
-    EventTitle: "Sprinting Planning",
-    Meet: "Zoom meeting",
-    StartTime: "8:30 AM",
-    EndTime: "1:00 PM",
-    Reminder: "40 min before",
-    Description: "What",
-  },
-  {
-    id: 2,
-    Date: "May 10 2026",
-    EventTitle: "build my project",
-    Meet: "One on One meeting",
-    StartTime: "2:00 PM",
-    EndTime: "4:00 PM",
-    Reminder: "30 min before",
-    Description: "Agree",
-  },
-  {
-    id: 3,
-    Date: "May 02 2026",
-    EventTitle: "Design Review",
-    Meet: "Google meeting",
-    StartTime: "8:30 PM",
-    EndTime: "09:00 PM",
-    Reminder: "40 min before",
-    Description: "HMMMM",
-  },
-  {
-    id: 4,
-    Date: "Apr 29 2026",
-    EventTitle: "Design Review",
-    Meet: "Google meeting",
-    StartTime: "02:00 AM",
-    EndTime: "12:00 PM",
-    Reminder: "10 min before",
-    Description: "Welll Welll",
-  },
-];
+import { useScheduleTask } from "../Features/Calender/useScheduleTask";
 
 type CalenderContextType = {
   setCurrentDate: (date: Date) => void;
@@ -74,11 +32,13 @@ type CalenderContextType = {
   selectDay: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
 };
 
 const CalenderContext = createContext<CalenderContextType | null>(null);
 
 function CalenderProvider({ children }: { children: ReactNode }) {
+  const { schedules, isLoading } = useScheduleTask();
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -95,7 +55,7 @@ function CalenderProvider({ children }: { children: ReactNode }) {
   });
 
   const hasTask = schedules.map((taskDate) =>
-    format(new Date(taskDate.Date), "MMM dd yyyy"),
+    format(new Date(taskDate.date), "MMM dd yyyy"),
   );
 
   function handleNextDay(nextNum: number) {
@@ -109,7 +69,7 @@ function CalenderProvider({ children }: { children: ReactNode }) {
   const [selectDay, setSelectDay] = useState<string>(Today);
 
   const selectDayScheduleTask = schedules.filter(
-    (task) => task.Date === selectDay,
+    (task) => format(task.date, "MMM dd yyyy") === selectDay,
   );
 
   const index = days.findIndex(
@@ -134,6 +94,7 @@ function CalenderProvider({ children }: { children: ReactNode }) {
         setSelectDay,
         isOpen,
         setIsOpen,
+        isLoading,
       }}
     >
       {children}

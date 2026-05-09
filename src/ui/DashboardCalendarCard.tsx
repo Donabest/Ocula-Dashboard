@@ -7,6 +7,7 @@ import { useCalendar } from "../Context/useCalender";
 import { format, isPast } from "date-fns";
 import TimeDiff from "../utilities/TimeDiff";
 import NoScheduleTask from "./NoScheduleTask";
+import { parseTimeToLocal } from "../utilities/TimeParse";
 
 function DashboardCalendarCard() {
   const {
@@ -73,15 +74,16 @@ function DashboardCalendarCard() {
         >
           <div className="flex justify-between items-start">
             <div className="space-y-2">
-              <h1 className="font-poppin font-medium">{task.EventTitle}</h1>
+              <h1 className="font-poppin font-medium">{task.eventTitle}</h1>
               <div className="flex  items-center justify-start gap-2 font-raleway text-gray-400 text-[15px]  ">
                 <span
-                  className={`${TimeDiff(task.Date)?.includes("days ago") && "bg-red-100 text-red-400 dark:bg-red-800 dark:text-slate-200"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl dark:bg-emerald-600 dark:text-slate-200`}
+                  className={`${TimeDiff(task.date)?.includes("days ago") && "bg-red-100 text-red-400 dark:bg-red-800 dark:text-slate-200"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl dark:bg-emerald-600 dark:text-slate-200`}
                 >
-                  {TimeDiff(task.Date)}
+                  {TimeDiff(task.date)}
                 </span>
                 <p>
-                  {task.StartTime} - {task.EndTime}
+                  {parseTimeToLocal(task.startTime)} -{" "}
+                  {parseTimeToLocal(task.endTime)}
                 </p>
               </div>
             </div>
@@ -91,7 +93,7 @@ function DashboardCalendarCard() {
           <div className="inline-block font-raleway font-medium bg-white px-4 py-1.5 mt-6 rounded-3xl dark:bg-slate-800">
             <p className="flex items-center gap-2">
               <SiGooglemeet className="text-red-500" />
-              {task.Meet}
+              {task.meet}
             </p>
           </div>
         </div>

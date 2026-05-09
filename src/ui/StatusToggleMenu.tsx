@@ -27,6 +27,7 @@ function StatusToggleMenu({
 
   function handleStatusChange(id: number, newStatus: status) {
     updateStatus({ id, newStatus });
+    handler();
   }
   return (
     <AnimatePresence>
@@ -53,7 +54,9 @@ function StatusToggleMenu({
                 {status}
               </p>
             </div>
-            <span>{isChecked === status && <IoMdCheckmark />}</span>
+            <span>
+              {isPending ? "..." : isChecked === status && <IoMdCheckmark />}
+            </span>
           </div>
         ))}
       </motion.div>

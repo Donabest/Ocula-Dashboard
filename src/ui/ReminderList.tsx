@@ -16,7 +16,7 @@ function ReminderList({ remind }: prop) {
   return (
     <div className="flex justify-between items-center gap-3 py-3 border-b-2 border-b-gray-300  dark:border-b-slate-500 ">
       <h2 className="font-medium text-black/80 dark:text-slate-300 ">
-        {remind.EventTitle}
+        {remind.eventTitle}
       </h2>
       <div className="flex justify-center items-center gap-2 ">
         <span className={`${colorCond} `}>{LiveCountDown(remind)}</span>
