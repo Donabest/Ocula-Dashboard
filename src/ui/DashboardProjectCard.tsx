@@ -3,6 +3,7 @@ import { FaChevronDown } from "react-icons/fa6";
 import { FaRProject } from "react-icons/fa6";
 import CreateProjectForm from "./CreateProjectForm";
 import { useState } from "react";
+import { useProjects } from "../Project/useProject";
 
 type Projects = {
   projectContent: string;
@@ -26,7 +27,8 @@ const Projects = [
 ];
 function DashboardProjectCard() {
   const [isCreate, setIsCreate] = useState<boolean>(false);
-
+  const { projects, isLoading } = useProjects();
+  const RecentsProjects = [...projects].slice(-3);
   function close() {
     setIsCreate(false);
   }
@@ -55,16 +57,14 @@ function DashboardProjectCard() {
           </span>
           <h1>Create new project</h1>
         </div>
-        {Projects.map((project, index) => (
+        {RecentsProjects.map((project, index) => (
           <div className="flex items-center gap-2" key={index}>
             <span className=" bg-green-200 text-black px-4 py-3 rounded-lg dark:bg-emerald-400">
               <FaRProject />
             </span>
             <h1 className="flex flex-col text-gray-800 dark:text-white/90">
-              {project.projectContent}
-              <span className=" font-montserrat text-xs text-gray-500 dark:text-slate-400">
-                {project.group}
-              </span>
+              {project.projectName}
+              <span className=" font-montserrat text-xs text-gray-500 dark:text-slate-400"></span>
             </h1>
           </div>
         ))}

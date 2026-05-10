@@ -7,6 +7,7 @@ import type { tasktype } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateTask } from "../Features/MyTasks/useCreateTask";
 import FormError from "./FormError";
+import { useProjects } from "../Project/useProject";
 
 type NewTasksProps = {
   handleCancel: () => void;
@@ -15,7 +16,9 @@ type NewTasksProps = {
 function AddNewTaskForm({ handleCancel }: NewTasksProps) {
   const { register, handleSubmit, clearErrors, formState } =
     useForm<tasktype>();
+
   const { createTask, isPending } = useCreateTask();
+  const { projects } = useProjects();
   const { ref } = useClickOutSide(handleCancel);
 
   function onSubmit(data: tasktype) {
@@ -84,18 +87,18 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               >
                 Project Name <LuAsterisk color="red" size={10} />
               </label>
-              <input
-                type="text"
-                placeholder="Project Name"
-                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600"
-                {...register("projectName", {
-                  required: "This field is required",
-                })}
-              />
-              <FormError
-                error={errors?.projectName?.message}
-                clear={clearErrors}
-              />
+              <select
+                id="project_id"
+                className="px-4 py-2 border border-gray-300 outline-0 rounded-sm w-full dark:border-slate-600 dark:bg-slate-900"
+                {...register("project_id")}
+              >
+                <option> No Project</option>
+                {projects.map((project) => (
+                  <option value={project.id} key={project.id}>
+                    {project.projectName}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className=" space-y-1.5">

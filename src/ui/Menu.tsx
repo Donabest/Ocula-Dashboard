@@ -38,7 +38,8 @@ function Menu({
       >
         {menus.map((menu, i) => (
           <div
-            className="flex items-center gap-2  px-4 py-1  hover:bg-black/5 hover:transition-all duration-150"
+            className="flex items-center gap-2  px-4 py-1  hover:bg-black/5 hover:transition-all 
+            duration-150 cursor-pointer"
             key={i}
           >
             {menu.icon}

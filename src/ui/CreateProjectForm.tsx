@@ -1,6 +1,22 @@
+import { useState } from "react";
 import useClickOutSide from "../hooks/useClickOutSide";
+import { useCreateProject } from "../Project/useCreateProject";
+import type { projectType } from "../utilities/type";
 
 function CreateProjectForm({ handler }: { handler: () => void }) {
+  const { createProject, isCreating } = useCreateProject();
+
+  const [projectName, setProjectName] = useState<string>("");
+
+  function handleClick() {
+    if (!projectName.trim()) return;
+    createProject(projectName, {
+      onSuccess: () => {
+        handler();
+      },
+    });
+  }
+
   const { ref } = useClickOutSide(handler);
   return (
     <div className="absolute top-13 z-999" ref={ref}>
@@ -12,11 +28,16 @@ function CreateProjectForm({ handler }: { handler: () => void }) {
           type="text"
           placeholder="Project Name"
           className="border border-gray-300 px-2 py-0.5 mt-0.5 rounded-lg outline-0 "
+          onChange={(e) => setProjectName(e.target.value)}
         />
 
         <div className="flex justify-end items-center gap-1.5 mt-2">
-          <button className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-lg cursor-pointer">
-            Save
+          <button
+            className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-lg cursor-pointer"
+            onClick={handleClick}
+            disabled={isCreating}
+          >
+            {isCreating ? "..." : "save"}
           </button>
           <button
             className="bg-transparent text-sm px-2 py-0.5 border border-gray-300 rounded-lg cursor-pointer"

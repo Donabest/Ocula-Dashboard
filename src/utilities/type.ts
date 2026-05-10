@@ -47,9 +47,13 @@ export interface tasktype {
   StartDate: string;
   description: string;
   priority: string;
-  project_id?: number;
+  project_id: number | null;
   id: number;
   status: status;
   title: string;
+}
+
+export interface projectType {
+  id: number;
   projectName: string;
 }
