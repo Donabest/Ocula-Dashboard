@@ -28,3 +28,14 @@ export async function deleteScheduleTask(id: number) {
 
   return data;
 }
+
+export async function dismissedNotification(id: number) {
+  const { data, error } = await supabase
+    .from("SchedulesTask")
+    .update({ notificationDismissed: true })
+    .eq("id", id);
+
+  if (error) throw new Error("Notification Can't be dismissed");
+
+  return data;
+}

@@ -39,6 +39,7 @@ export type schedule = {
   reminder: string;
   description: string;
   meet: string;
+  notificationDismissed: boolean;
 };
 
 export interface tasktype {

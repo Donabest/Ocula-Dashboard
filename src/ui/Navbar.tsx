@@ -20,7 +20,9 @@ function Navbar() {
   }
   const { ref } = useClickOutSide(close);
 
-  const count = schedules.filter((sch) => sch.reminder !== "none").length;
+  const count = schedules.filter(
+    (sch) => sch.reminder !== "none" && sch.notificationDismissed === false,
+  ).length;
 
   return (
     <>
@@ -54,7 +56,7 @@ function Navbar() {
                     damping: 20,
                   }}
                 >
-                  See All Notifications
+                  {!count ? ` Nothing to see here ` : "See All Notifications"}
                 </motion.span>
               </AnimatePresence>
             )}

@@ -1,12 +1,21 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useCalendar } from "../Context/useCalender";
 import ReminderList from "./ReminderList";
+import { useNotificationDismissed } from "../Features/Calender/useNotificationDismissed";
+import { FaRegFaceSmile } from "react-icons/fa6";
 
 function SeeNotification() {
   const { schedules } = useCalendar();
+  const { notificationDismissed, isDismissing } = useNotificationDismissed();
   const reminderSchedules = schedules.filter(
-    (reminder) => reminder.reminder !== "none",
+    (remind) =>
+      remind.reminder !== "none" && remind.notificationDismissed === false,
   );
+
+  function handleDismiss(id: number) {
+    notificationDismissed(id);
+  }
+  if (!reminderSchedules.length) return;
   return (
     <AnimatePresence>
       <motion.div
@@ -22,7 +31,12 @@ function SeeNotification() {
         }}
       >
         {reminderSchedules.map((task, i) => (
-          <ReminderList remind={task} key={i} />
+          <ReminderList
+            remind={task}
+            key={i}
+            onDismiss={handleDismiss}
+            dismissing={isDismissing}
+          />
         ))}
       </motion.div>
     </AnimatePresence>
