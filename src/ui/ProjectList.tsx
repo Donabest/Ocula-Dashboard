@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
-import { useProjects } from "../Project/useProject";
 import Spinner from "./Spinner";
 import { NavLink } from "react-router-dom";
+import { useProjects } from "../Features/Project/useProject";
 
 function ProjectList() {
   const { projects, isLoading } = useProjects();

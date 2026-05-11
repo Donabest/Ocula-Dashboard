@@ -1,4 +1,4 @@
-import ProjectLayout from "../Project/ProjectLayout";
+import ProjectLayout from "../Features/Project/ProjectLayout";
 
 function Projects() {
   return <ProjectLayout />;

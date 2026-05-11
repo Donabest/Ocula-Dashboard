@@ -7,7 +7,7 @@ import type { tasktype } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateTask } from "../Features/MyTasks/useCreateTask";
 import FormError from "./FormError";
-import { useProjects } from "../Project/useProject";
+import { useProjects } from "../Features/Project/useProject";
 
 type NewTasksProps = {
   handleCancel: () => void;

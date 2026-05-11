@@ -3,7 +3,7 @@ import { FaChevronDown } from "react-icons/fa6";
 import { FaRProject } from "react-icons/fa6";
 import CreateProjectForm from "./CreateProjectForm";
 import { useState } from "react";
-import { useProjects } from "../Project/useProject";
+import { useProjects } from "../Features/Project/useProject";
 
 type Projects = {
   projectContent: string;
