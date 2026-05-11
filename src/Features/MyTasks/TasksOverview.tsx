@@ -4,9 +4,19 @@ import OverAllStats from "../../ui/OverAllStats";
 import RecentTask from "../../ui/RecentTask";
 import ScheduleTask from "../../ui/ScheduleTask";
 import TaskLists from "./TaskLists";
-import type { ActiveProp } from "../../utilities/type";
+import type { ActiveProp, tasktype } from "../../utilities/type";
 
-function TasksOverview({ active }: ActiveProp) {
+type Props = ActiveProp & {
+  tasks?: tasktype[];
+  completedTasks?: tasktype[];
+  inProgressTasks?: tasktype[];
+};
+function TasksOverview({
+  active,
+  tasks,
+  completedTasks,
+  inProgressTasks,
+}: Props) {
   return (
     <>
       {active === "Overview" && (
@@ -19,12 +29,16 @@ function TasksOverview({ active }: ActiveProp) {
               transition={{ duration: 0.8, ease: "easeInOut" }}
               viewport={{ once: true }}
             >
-              <OverAllStats />
-              <RecentTask />
+              <OverAllStats
+                tasks={tasks}
+                completedTasks={completedTasks}
+                inProgressTasks={inProgressTasks}
+              />
+              <RecentTask tasks={tasks} />
             </motion.div>
             <ScheduleTask />
           </div>
-          <TaskLists />
+          <TaskLists tasks={tasks} />
         </section>
       )}
     </>

@@ -5,11 +5,30 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 
-import type { cardTab } from "../utilities/type";
+import type { cardTab, tasktype } from "../utilities/type";
 import { useTasks } from "../services/useTasks";
 
-function OverAllStats() {
-  const { isLoading, tasks, completedTasks, inProgressTasks } = useTasks();
+type props = {
+  tasks?: tasktype[];
+  completedTasks?: tasktype[];
+  inProgressTasks?: tasktype[];
+};
+
+function OverAllStats({
+  tasks: propTasks,
+  completedTasks: propCompleted,
+  inProgressTasks: propInProgress,
+}: props) {
+  const {
+    isLoading,
+    tasks: allTasks,
+    completedTasks: allCompletedTasks,
+    inProgressTasks: allInProgressTasks,
+  } = useTasks();
+
+  const tasks = propTasks ?? allTasks;
+  const completedTasks = propCompleted ?? allCompletedTasks;
+  const inProgressTasks = propInProgress ?? allInProgressTasks;
 
   const Tab: cardTab[] = [
     {
@@ -28,6 +47,7 @@ function OverAllStats() {
       total: completedTasks.length,
     },
   ];
+
   return (
     <div className="flex items-center gap-2">
       {Tab.map((card, index) => (

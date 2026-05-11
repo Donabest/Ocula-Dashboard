@@ -1,5 +1,3 @@
-import { GoPlus } from "react-icons/go";
-import { motion } from "motion/react";
 import { useState } from "react";
 
 import TaskTabs from "./TaskTabs";
@@ -9,6 +7,7 @@ import MyTasksBoardView from "./MyTasksBoardView";
 import MyTasksCalendar from "./MyTasksCalendar";
 import PageHeader from "../../ui/PageHeader";
 import AddNewTaskForm from "../../ui/AddNewTaskForm";
+import Button from "../../ui/Button";
 
 function MyTasksLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
@@ -26,14 +25,7 @@ function MyTasksLayout() {
           description="Monitor all your projects and tasks here"
         />
 
-        <motion.button
-          className="flex items-center gap-0.5 px-4 py-2 bg-blue-700 text-white rounded-lg cursor-pointer"
-          whileHover={{ y: -1.6, background: "blue" }}
-          onClick={() => setIsAddNewTask(true)}
-        >
-          <GoPlus />
-          New Task
-        </motion.button>
+        <Button open={() => setIsAddNewTask(true)}>New Task</Button>
       </div>
 
       <TaskTabs active={activeTab} handleActive={setactiveTab} />

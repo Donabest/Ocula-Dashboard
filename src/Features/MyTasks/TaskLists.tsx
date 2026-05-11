@@ -3,8 +3,9 @@ import Spinner from "../../ui/Spinner";
 import TableHeader from "../../ui/TableHeader";
 import TableRows from "../../ui/TableRows";
 import { motion } from "motion/react";
+import type { tasktype } from "../../utilities/type";
 
-function TaskLists() {
+function TaskLists({ tasks }: { tasks?: tasktype[] }) {
   const { isLoading } = useTasks();
   return (
     <motion.section
@@ -15,8 +16,8 @@ function TaskLists() {
       viewport={{ once: true }}
     >
       {isLoading && <Spinner />}
-      {!isLoading && <TableHeader />}
-      {!isLoading && <TableRows />}
+      {!isLoading && <TableHeader tasks={tasks} />}
+      {!isLoading && <TableRows tasks={tasks} />}
     </motion.section>
   );
 }

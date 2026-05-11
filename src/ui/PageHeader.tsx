@@ -1,13 +1,13 @@
 interface headerProp {
-  title: string;
+  title: string | undefined;
   description: string;
 }
 
 function PageHeader({ title, description }: headerProp) {
   return (
-    <div>
-      <h1 className="text-xl font-poppin font-medium dark:text-slate-100">
-        {title}
+    <div className="space-y-2">
+      <h1 className="text-3xl font-roboto dark:text-slate-100">
+        {title === undefined ? "..." : title}
       </h1>
       <p className="text-gray-500 text-sm pt-1.5 dark:text-slate-400">
         {description}

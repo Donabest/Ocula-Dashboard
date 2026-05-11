@@ -1,11 +1,12 @@
 import { useTasks } from "../services/useTasks";
+import type { tasktype } from "../utilities/type";
 import RecentTasksList from "./RecentTasksList";
 import Spinner from "./Spinner";
 
-function RecentTask() {
+function RecentTask({ tasks: propTasks }: { tasks?: tasktype[] }) {
   const { tasks, isLoading } = useTasks();
 
-  const RecentTasks = [...tasks].slice(-2);
+  const RecentTasks = [...(propTasks ?? tasks)].slice(-2);
 
   return (
     <div className=" bg-white p-4 rounded-lg  dark:bg-slate-800 dark:text-slate-100">

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateProject } from "../Project/useCreateProject";
-import type { projectType } from "../utilities/type";
 
 function CreateProjectForm({ handler }: { handler: () => void }) {
   const { createProject, isCreating } = useCreateProject();
