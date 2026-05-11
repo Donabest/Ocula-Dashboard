@@ -1,20 +1,18 @@
-import { useParams } from "react-router-dom";
-import PageHeader from "../ui/PageHeader";
-import { useProjects } from "./useProject";
-import Spinner from "../ui/Spinner";
-import Button from "../ui/Button";
-import TaskTabs from "../Features/MyTasks/TaskTabs";
 import { useState } from "react";
-import TasksOverview from "../Features/MyTasks/TasksOverview";
-import { useTasks } from "../services/useTasks";
-import ListsTasksSection from "../Features/MyTasks/ListsTasksSection";
+import { useParams } from "react-router-dom";
+import { useTasks } from "../../services/useTasks";
+import PageHeader from "../../ui/PageHeader";
+import Button from "../../ui/Button";
+import { useProjects } from "./useProject";
+import TaskTabs from "../MyTasks/TaskTabs";
+import TasksOverview from "../MyTasks/TasksOverview";
+import ListsTasksSection from "../MyTasks/ListsTasksSection";
 
 function ProjectLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
   const { tasks, completedTasks, upCommingTasks, todoTasks, inProgressTasks } =
     useTasks();
   const { projects, isLoading } = useProjects();
-
   const { projectId } = useParams();
   const projectTasks = tasks.filter((t) => t.project_id === Number(projectId));
   const ProjectCompleted = completedTasks.filter(
