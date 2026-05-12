@@ -1,12 +1,11 @@
-import { useTasks } from "../../services/useTasks";
+import { useActiveTasks } from "../../hooks/useActiveTasks";
 import Spinner from "../../ui/Spinner";
 import TableHeader from "../../ui/TableHeader";
 import TableRows from "../../ui/TableRows";
 import { motion } from "motion/react";
-import type { tasktype } from "../../utilities/type";
 
-function TaskLists({ tasks }: { tasks?: tasktype[] }) {
-  const { isLoading } = useTasks();
+function TaskLists() {
+  const { isLoading } = useActiveTasks();
   return (
     <motion.section
       className="bg-white mt-8  p-6 rounded-lg dark:bg-slate-800 dark:text-slate-100"
@@ -16,8 +15,8 @@ function TaskLists({ tasks }: { tasks?: tasktype[] }) {
       viewport={{ once: true }}
     >
       {isLoading && <Spinner />}
-      {!isLoading && <TableHeader tasks={tasks} />}
-      {!isLoading && <TableRows tasks={tasks} />}
+      {!isLoading && <TableHeader />}
+      {!isLoading && <TableRows />}
     </motion.section>
   );
 }

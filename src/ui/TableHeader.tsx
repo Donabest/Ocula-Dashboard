@@ -1,16 +1,14 @@
-import { useTasks } from "../services/useTasks";
-import type { tasktype } from "../utilities/type";
+import { useActiveTasks } from "../hooks/useActiveTasks";
 
-function TableHeader({ tasks: propTasks }: { tasks?: tasktype[] }) {
-  const { tasks, isLoading } = useTasks();
-  const allTasks = propTasks ?? tasks;
+function TableHeader() {
+  const { tasks, isLoading } = useActiveTasks();
   return (
     <div>
       <div className="flex justify-between">
         <h1 className="font-medium text-xl">
           Task list
           <span className="text-slate-500 font-poppin font-normal text-[16px] dark:text-slate-400">
-            . {isLoading ? "..." : allTasks.length}
+            . {isLoading ? "..." : tasks.length}
           </span>
         </h1>
 

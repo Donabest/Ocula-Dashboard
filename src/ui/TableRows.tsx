@@ -1,10 +1,10 @@
 import { CiFlag1 } from "react-icons/ci";
 import { motion } from "motion/react";
 import User from "../assets/person-1.jpg";
-import type { priorityBg, status, tasktype } from "../utilities/type";
-import { useTasks } from "../services/useTasks";
+import type { priorityBg, status } from "../utilities/type";
 import { useState } from "react";
 import StatusToggleMenu from "./StatusToggleMenu";
+import { useActiveTasks } from "../hooks/useActiveTasks";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
@@ -18,11 +18,10 @@ const priorityBg: Record<priorityBg, string> = {
   Med: "bg-green-200 text-emerald-700 dark:bg-emerald-400 dark:text-emerald-50",
 };
 
-function TableRows({ tasks: propTasks }: { tasks?: tasktype[] }) {
-  const { tasks } = useTasks();
+function TableRows() {
+  const { tasks } = useActiveTasks();
   const [openId, setOpenId] = useState<number | null>();
 
-  const allTasks = propTasks ?? tasks;
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
     e.stopPropagation();
     setOpenId((prevId) => (prevId === id ? null : id));
@@ -34,7 +33,7 @@ function TableRows({ tasks: propTasks }: { tasks?: tasktype[] }) {
 
   return (
     <>
-      {allTasks.map((task, index) => (
+      {tasks.map((task, index) => (
         <motion.div
           className="relative grid grid-cols-[4fr_2fr_2fr] gap-5 font-medium text-gray-600 pt-4 mt-5 w-full  border-t-2 border-gray-200 dark:text-slate-200 dark:border-slate-700"
           initial={{ y: 5, opacity: 0 }}

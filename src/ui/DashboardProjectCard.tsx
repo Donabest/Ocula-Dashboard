@@ -5,30 +5,11 @@ import CreateProjectForm from "./CreateProjectForm";
 import { useState } from "react";
 import { useProjects } from "../Features/Project/useProject";
 
-type Projects = {
-  projectContent: string;
-  group: string;
-};
-
-const Projects = [
-  {
-    projectContent: "Project Lunch",
-    group: "6 tasks",
-  },
-  {
-    projectContent: "Team BrainStorm",
-
-    group: "3 tasks",
-  },
-  {
-    projectContent: "Branding Lunch",
-    group: "4 tasks",
-  },
-];
 function DashboardProjectCard() {
   const [isCreate, setIsCreate] = useState<boolean>(false);
-  const { projects, isLoading } = useProjects();
+  const { projects } = useProjects();
   const RecentsProjects = [...projects].slice(-3);
+
   function close() {
     setIsCreate(false);
   }

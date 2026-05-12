@@ -5,30 +5,12 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 
-import type { cardTab, tasktype } from "../utilities/type";
-import { useTasks } from "../services/useTasks";
+import type { cardTab } from "../utilities/type";
+import { useActiveTasks } from "../hooks/useActiveTasks";
 
-type props = {
-  tasks?: tasktype[];
-  completedTasks?: tasktype[];
-  inProgressTasks?: tasktype[];
-};
-
-function OverAllStats({
-  tasks: propTasks,
-  completedTasks: propCompleted,
-  inProgressTasks: propInProgress,
-}: props) {
-  const {
-    isLoading,
-    tasks: allTasks,
-    completedTasks: allCompletedTasks,
-    inProgressTasks: allInProgressTasks,
-  } = useTasks();
-
-  const tasks = propTasks ?? allTasks;
-  const completedTasks = propCompleted ?? allCompletedTasks;
-  const inProgressTasks = propInProgress ?? allInProgressTasks;
+function OverAllStats() {
+  const { isLoading, tasks, inProgressTasks, completedTasks } =
+    useActiveTasks();
 
   const Tab: cardTab[] = [
     {
