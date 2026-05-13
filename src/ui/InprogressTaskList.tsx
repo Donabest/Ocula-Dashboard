@@ -1,15 +1,15 @@
 import { useState } from "react";
 import ListTaskCard from "./ListTaskCard";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useTasks } from "../services/useTasks";
+import { useActiveTasks } from "../hooks/useActiveTasks";
 
 function InprogressTaskList() {
   const [isProgress, setIsProgress] = useState<boolean>(true);
-  const { inProgressTasks } = useTasks();
+  const { inProgressTasks } = useActiveTasks();
 
   return (
-    <div className="relative space-y-4 bg-white p-6 mt-6 rounded-lg   dark:bg-slate-800 dark:text-white">
-      <div className="flex items-center gap-2">
+    <div className="relative space-y-4 bg-white p-4 mt-6 rounded-lg dark:bg-slate-800 dark:text-white sm:p-6">
+      <div className="flex flex-wrap items-center gap-2">
         <span
           className="cursor-pointer"
           onClick={() => setIsProgress((show) => !show)}

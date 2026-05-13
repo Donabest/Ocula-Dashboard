@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCalendar } from "../Context/useCalender";
 import ReminderList from "./ReminderList";
 import { useNotificationDismissed } from "../Features/Calender/useNotificationDismissed";
-import { FaRegFaceSmile } from "react-icons/fa6";
 
 function SeeNotification() {
   const { schedules } = useCalendar();
@@ -19,7 +18,7 @@ function SeeNotification() {
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute right-8 w-160 top-15 h-60 z-99 px-8 py-3 bg-white/20 overflow-scroll backdrop-blur-lg border border-white/20 shadow-lg rounded-lg dark:bg-black/35 dark:border-white/9 hide-scrollbar"
+        className="fixed right-4 left-4 top-18 z-99 max-h-[70vh] overflow-y-auto hide-scrollbar rounded-lg border border-white/20 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-lg dark:bg-black/80 dark:border-white/9 sm:left-auto sm:right-8 sm:w-[min(40rem,calc(100vw-4rem))] sm:px-6 lg:top-16"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 1 }}
@@ -30,14 +29,16 @@ function SeeNotification() {
           damping: 30,
         }}
       >
-        {reminderSchedules.map((task, i) => (
-          <ReminderList
-            remind={task}
-            key={i}
-            onDismiss={handleDismiss}
-            dismissing={isDismissing}
-          />
-        ))}
+        <div className="max-h-[calc(70vh-1.5rem)] overflow-y-auto hide-scrollbar">
+          {reminderSchedules.map((task, i) => (
+            <ReminderList
+              remind={task}
+              key={i}
+              onDismiss={handleDismiss}
+              dismissing={isDismissing}
+            />
+          ))}
+        </div>
       </motion.div>
     </AnimatePresence>
   );

@@ -16,7 +16,7 @@ function DashboardReminderCard() {
   const [showRemind, setShowRemind] = useState<boolean>(true);
 
   return (
-    <div className="bg-white my-6 px-8 py-6 rounded-2xl dark:bg-slate-800 dark:text-white/90">
+    <div className="bg-white my-6 px-4 sm:px-8 py-6 rounded-2xl dark:bg-slate-800 dark:text-white/90">
       <h1 className="flex items-center gap-2  font-medium text-black dark:text-white/90">
         <CiClock1 className="text-red-800 dark:text-red-600" />
         Reminders
@@ -42,7 +42,7 @@ function DashboardReminderCard() {
               <ReminderList remind={remind} key={index} />
             ))
           ) : (
-            <span className="text-gray-400 ml-7 pt-3 flex text-start">
+            <span className="text-gray-400 sm:ml-7 pt-3 flex text-start">
               You don't have any reminder Today,check notification for all
               Remind Schedule
             </span>

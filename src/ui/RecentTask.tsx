@@ -13,7 +13,7 @@ function RecentTask() {
         Recents Tasks
       </div>
 
-      <div className="flex flex-col items-center gap-4 mt-3 mx-2">
+      <div className="flex flex-col items-stretch gap-4 mt-3 sm:mx-2">
         {isLoading ? (
           <Spinner />
         ) : (

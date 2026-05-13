@@ -14,8 +14,8 @@ function DashboardProjectCard() {
     setIsCreate(false);
   }
   return (
-    <div className="bg-white p-7 rounded-2xl dark:bg-slate-800 dark:text-white/90 dark:shadow-2xl dark:shadow-black/20">
-      <div className="flex items-center gap-4">
+    <div className="bg-white p-4 sm:p-7 rounded-2xl dark:bg-slate-800 dark:text-white/90 dark:shadow-2xl dark:shadow-black/20">
+      <div className="flex flex-wrap items-center gap-4">
         <h1 className="flex items-center font-medium gap-1.5">
           <BiSolidShoppingBags className="text-blue-400" />
           Projects
@@ -25,7 +25,7 @@ function DashboardProjectCard() {
         </p>
       </div>
 
-      <div className="relative grid grid-cols-2 gap-6 font-poppin mt-6 ">
+      <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 font-poppin mt-6 ">
         <div
           className="flex items-center gap-2  cursor-pointer"
           onMouseDown={(e) => {

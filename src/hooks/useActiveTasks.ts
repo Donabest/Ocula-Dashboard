@@ -8,6 +8,8 @@ export function useActiveTasks() {
     tasks,
     completedTasks,
     inProgressTasks,
+    upCommingTasks,
+    todoTasks,
     isLoading: isTasking,
   } = useTasks();
   const { projects, isLoading: isProjecting } = useProjects();
@@ -25,6 +27,13 @@ export function useActiveTasks() {
     ? inProgressTasks.filter((t) => t.project_id === Number(projectId))
     : inProgressTasks;
 
+  const filteredUpComming = projectId
+    ? upCommingTasks.filter((t) => t.project_id === Number(projectId))
+    : upCommingTasks;
+
+  const filteredTodo = projectId
+    ? todoTasks.filter((t) => t.project_id === Number(projectId))
+    : todoTasks;
   const currentPage = projects.find(
     (project) => project.id === Number(projectId),
   );
@@ -33,6 +42,8 @@ export function useActiveTasks() {
     tasks: filteredTasks,
     completedTasks: filteredCompleted,
     inProgressTasks: filteredInProgress,
+    upCommingTasks: filteredUpComming,
+    todoTasks: filteredTodo,
     isLoading,
     currentPage,
   };

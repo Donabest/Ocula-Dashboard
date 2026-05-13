@@ -6,10 +6,10 @@ function OculaResponse() {
       <img
         src={OculaAiImg}
         alt={OculaAiImg}
-        className="h-8 w-8 rounded-full bg-slate-300"
+        className="h-8 w-8 shrink-0 rounded-full bg-slate-300"
       />
-      <div>
-        <p className="text-wrap text-[15px] text-slate-600 pt-1.5 pb-30 tracking-normal font-medium dark:text-slate-300">
+      <div className="min-w-0">
+        <p className="text-wrap break-words text-[15px] text-slate-600 pt-1.5 tracking-normal font-medium dark:text-slate-300">
           Got it! This agenda ensures that all key aspects of the project are
           covered while allowing time for questions and clarifications.Here are
           notes and reminder: Got it! This agenda ensures that all key aspects

@@ -31,10 +31,10 @@ function OverAllStats() {
   ];
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
       {Tab.map((card, index) => (
         <div
-          className="bg-white p-4 space-y-6 rounded-lg flex-1 shadow-md dark:bg-slate-800 dark:text-white"
+          className="bg-white p-4 space-y-6 rounded-lg shadow-md dark:bg-slate-800 dark:text-white"
           key={index}
         >
           <div className="flex justify-between items-center ">

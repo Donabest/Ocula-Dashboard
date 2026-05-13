@@ -1,15 +1,15 @@
 import { useState } from "react";
 import ListTaskCard from "./ListTaskCard";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useTasks } from "../services/useTasks";
+import { useActiveTasks } from "../hooks/useActiveTasks";
 
 function UpcommingTaskList() {
   const [isUpCommig, setIsUpComming] = useState<boolean>(true);
-  const { upCommingTasks } = useTasks();
+  const { upCommingTasks } = useActiveTasks();
 
   return (
-    <div className="space-y-4 bg-white p-6 mt-6 rounded-lg  cursor-pointer dark:bg-slate-800 dark:text-white">
-      <div className="flex items-center gap-2">
+    <div className="space-y-4 bg-white p-4 mt-6 rounded-lg cursor-pointer dark:bg-slate-800 dark:text-white sm:p-6">
+      <div className="flex flex-wrap items-center gap-2">
         <span
           className="cursor-pointer"
           onClick={() => setIsUpComming((show) => !show)}

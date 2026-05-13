@@ -16,7 +16,7 @@ function ScheduleTask() {
   const LastTwoSchdule = schedules.slice(-2);
   return (
     <motion.section
-      className="flex flex-col bg-white p-6 space-y-4 rounded-lg dark:bg-slate-800 dark:text-slate-100 "
+      className="flex min-w-0 flex-col bg-white p-4 space-y-4 rounded-lg dark:bg-slate-800 dark:text-slate-100 sm:p-6"
       initial={{ x: 40, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeInOut" }}

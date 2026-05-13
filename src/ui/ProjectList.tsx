@@ -3,17 +3,21 @@ import Spinner from "./Spinner";
 import { NavLink } from "react-router-dom";
 import { useProjects } from "../Features/Project/useProject";
 
-function ProjectList() {
+type ProjectListProps = {
+  onNavigate?: () => void;
+};
+
+function ProjectList({ onNavigate }: ProjectListProps) {
   const { projects, isLoading } = useProjects();
 
   if (isLoading) return <Spinner />;
   return (
     <ul className="mt-5 space-y-3 cursor-pointer h-25 overflow-auto hide-scrollbar">
       {projects.map((project, index) => (
-        <li>
+        <li key={index}>
           <NavLink
             to={`Project/${project.id}`}
-            key={index}
+            onClick={onNavigate}
             className={({ isActive }) =>
               `flex items-center justify-start  ${
                 isActive &&

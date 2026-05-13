@@ -11,9 +11,9 @@ function TasksOverview({ active }: ActiveProp) {
     <>
       {active === "Overview" && (
         <section>
-          <div className="grid grid-cols-2 gap-3 pt-8  ">
+          <div className="grid grid-cols-1 gap-4 pt-8 xl:grid-cols-2">
             <motion.div
-              className="flex flex-col gap-4"
+              className="flex min-w-0 flex-col gap-4"
               initial={{ y: 40, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}

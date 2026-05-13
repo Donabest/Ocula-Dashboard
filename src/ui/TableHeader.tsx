@@ -4,7 +4,7 @@ function TableHeader() {
   const { tasks, isLoading } = useActiveTasks();
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-medium text-xl">
           Task list
           <span className="text-slate-500 font-poppin font-normal text-[16px] dark:text-slate-400">
@@ -12,7 +12,7 @@ function TableHeader() {
           </span>
         </h1>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <label htmlFor="filter">Filter :</label>
           <select
             name="filter"
@@ -28,7 +28,7 @@ function TableHeader() {
         </div>
       </div>
 
-      <div className="grid grid-cols-[4fr_2fr_2fr] text-gray-400 font-medium mt-8 w-full">
+      <div className="hidden min-w-[680px] grid-cols-[4fr_2fr_2fr] text-gray-400 font-medium mt-8 w-full lg:grid">
         <p>Name</p>
         <div className="flex items-center text-center gap-8 ">
           <span>Start Date</span>

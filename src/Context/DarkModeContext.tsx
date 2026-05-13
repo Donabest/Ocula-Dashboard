@@ -36,7 +36,7 @@ function DarkModeProvider({ children }: { children: ReactNode }) {
 
 function useDark() {
   const context = useContext(DarkModeContext);
-  if (context === undefined)
+  if (context === null)
     throw new Error("DarkModeContext was used outside DarkModeProvider");
 
   return context;

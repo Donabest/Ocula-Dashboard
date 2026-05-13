@@ -18,9 +18,9 @@ function DashboardBox() {
   }
 
   return (
-    <section className="grid grid-cols-2 gap-8 px-8">
+    <section className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-8 px-4 sm:px-7 lg:px-8 pb-8">
       <motion.main
-        className="flex flex-col "
+        className="flex min-w-0 flex-col"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut", delay: 0.4 }}
@@ -30,7 +30,7 @@ function DashboardBox() {
       </motion.main>
 
       <motion.main
-        className="flex flex-col"
+        className="flex min-w-0 flex-col"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut", delay: 0.6 }}

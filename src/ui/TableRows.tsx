@@ -5,6 +5,7 @@ import type { priorityBg, status } from "../utilities/type";
 import { useState } from "react";
 import StatusToggleMenu from "./StatusToggleMenu";
 import { useActiveTasks } from "../hooks/useActiveTasks";
+import TimeDiff from "../utilities/TimeDiff";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
@@ -35,25 +36,31 @@ function TableRows() {
     <>
       {tasks.map((task, index) => (
         <motion.div
-          className="relative grid grid-cols-[4fr_2fr_2fr] gap-5 font-medium text-gray-600 pt-4 mt-5 w-full  border-t-2 border-gray-200 dark:text-slate-200 dark:border-slate-700"
+          className="relative mt-4 rounded-lg border border-gray-200 bg-gray-50 p-3 font-medium text-gray-600 dark:border-slate-700 dark:bg-slate-700/40 dark:text-slate-200 lg:grid lg:min-w-[680px] lg:grid-cols-[4fr_2fr_2fr] lg:gap-5 lg:border-0 lg:border-t-2 lg:bg-transparent lg:p-0 lg:pt-4 lg:mt-5 lg:w-full lg:dark:bg-transparent"
           initial={{ y: 5, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           viewport={{ once: true }}
           key={index}
         >
-          <div className=" flex items-center gap-3 ">
+          <div className="flex min-w-0 items-center gap-3">
             <span
               className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
               onMouseDown={(e) => handleOpenMenu(task.id, e)}
             ></span>
-            <span className="truncate">{task.title}</span>
+            <span className="break-words lg:truncate">{task.title}</span>
           </div>
-          <div className="flex items-center text-center text-sm gap-8 w-fit mx-auto ">
+          <div className="mt-3 flex flex-wrap items-center text-sm gap-3 lg:mt-0 lg:w-fit lg:mx-auto lg:gap-8">
+            <span className="text-gray-400 lg:hidden">Start:</span>
             <span>{task.StartDate}</span>
-            <span>{task.EndDate}</span>
+            <span className="text-gray-400 lg:hidden">Due:</span>
+            <span
+              className={TimeDiff(task.EndDate) === "Today" ? "text-red-500" : ""}
+            >
+              {task.EndDate}
+            </span>
           </div>
-          <div className="flex text-right items-center  gap-12 col-end-6">
+          <div className="mt-3 flex items-center gap-4 lg:col-end-6 lg:mt-0 lg:gap-12 lg:text-right">
             <img src={User} alt={User} className="w-8 h-8 rounded-full " />
             <span
               className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-sm ${priorityBg[task.priority]} `}

@@ -29,13 +29,13 @@ function CalendarLayout() {
     setOpenSchedule(false);
   }
   return (
-    <section className="pt-25 pb-10 px-10 max-w-8xl dark:text-slate-400">
+    <section className="w-full max-w-8xl px-4 pb-10 pt-24 dark:text-slate-400 sm:px-6 lg:px-10 lg:pt-25">
       <PageHeader
         title="Tasks Calender"
         description="Plan,veiw,track,and organize your schedule."
       />
 
-      <div className="flex justify-end items-center gap-5">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end sm:gap-5">
         <div className="flex items-center gap-4 bg-gray-200 px-4 py-2 rounded-lg dark:bg-slate-800">
           <span className="cursor-pointer " onClick={() => handlePrevDay(1)}>
             <MdKeyboardArrowLeft />
@@ -53,9 +53,9 @@ function CalendarLayout() {
         </button>
       </div>
 
-      <div className="flex gap-5 mt-7 p-5 border border-gray-200 rounded-3xl dark:border-slate-700">
+      <div className="flex flex-col gap-5 mt-7 p-3 border border-gray-200 rounded-3xl dark:border-slate-700 sm:p-5 xl:flex-row">
         <CalendarBox />
-        <section className="w-80 p-3 border border-gray-200 rounded-lg dark:border-slate-700">
+        <section className="w-full p-3 border border-gray-200 rounded-lg dark:border-slate-700 xl:w-80 xl:shrink-0">
           <CalenderItem set={setSelectDay} />
         </section>
       </div>

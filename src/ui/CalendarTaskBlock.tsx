@@ -32,7 +32,8 @@ function CalendarTaskBlock({ task, WeekDate, onClick }: taskProp) {
 
   if (index === -1) return;
 
-  const left = `${index * 20}%`;
+  const columnWidth = 100 / WeekDate.length;
+  const left = `${index * columnWidth}%`;
 
   const isMedium = height > 70;
   const isSmall = height >= 50;
@@ -40,7 +41,12 @@ function CalendarTaskBlock({ task, WeekDate, onClick }: taskProp) {
   return (
     <div
       className="absolute bg-gray-200 rounded-lg text-xs cursor-pointer p-2 text-start dark:bg-slate-800 dark:text-slate-300"
-      style={{ top: `${top}px`, height: `${height}px`, left, width: "20%" }}
+      style={{
+        top: `${top}px`,
+        height: `${height}px`,
+        left,
+        width: `${columnWidth}%`,
+      }}
       onClick={() => handleClick(task)}
     >
       <h1 className="font-medium pb-1.5 ">{task.eventTitle}</h1>

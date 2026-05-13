@@ -7,16 +7,23 @@ import Invite from "./Invite";
 import CreateProjectForm from "./CreateProjectForm";
 import { useState } from "react";
 
-function Sidebar() {
+type SidebarProps = {
+  isDrawer?: boolean;
+  onNavigate?: () => void;
+};
+
+function Sidebar({ isDrawer = false, onNavigate }: SidebarProps) {
   const [isCreate, setIsCreate] = useState<boolean>();
   function close() {
     setIsCreate(false);
   }
   return (
-    <div className="fixed w-66 pb-4 px-7 pt-10">
+    <div
+      className={`${isDrawer ? "relative w-full" : "fixed w-66"} pb-4 px-7 pt-10`}
+    >
       <div className="flex flex-col items-center justify-center">
         <User />
-        <SidebarList />
+        <SidebarList onNavigate={onNavigate} />
 
         {/* divide line */}
         <div className="w-full mt-5 border-b border-gray-200 dark:border-slate-500"></div>
@@ -36,7 +43,7 @@ function Sidebar() {
             </motion.button>
           </div>
 
-          <ProjectList />
+          <ProjectList onNavigate={onNavigate} />
 
           {isCreate && <CreateProjectForm handler={close} />}
         </div>

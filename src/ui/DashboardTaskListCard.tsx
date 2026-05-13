@@ -13,9 +13,9 @@ function DashboardTaskListCard({ handleAddTask }: Prop) {
   return (
     <div className="border border-dashed border-gray-200/45 bg-gray-200/80 rounded-lg dark:border-slate-700/30 dark:bg-slate-700">
       <motion.div
-        className="flex space-y-4 flex-col bg-white p-6 rounded-lg shadow-xl cursor-pointer dark:bg-slate-800 dark:text-white"
+        className="flex space-y-4 flex-col bg-white p-4 sm:p-6 rounded-lg shadow-xl cursor-pointer dark:bg-slate-800 dark:text-white"
         whileHover={{
-          translateX: 20,
+          translateX: 8,
           rotate: -1.7,
           scale: 1,
         }}

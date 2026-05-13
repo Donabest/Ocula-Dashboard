@@ -6,8 +6,8 @@ import { FcCancel } from "react-icons/fc";
 
 type prop = {
   remind: schedule;
-  onDismiss: (id: number) => void;
-  dismissing: boolean;
+  onDismiss?: (id: number) => void;
+  dismissing?: boolean;
 };
 function ReminderList({ remind, onDismiss, dismissing }: prop) {
   const x = useMotionValue(0);
@@ -33,32 +33,34 @@ function ReminderList({ remind, onDismiss, dismissing }: prop) {
   return (
     <div className="relative overflow-hidden">
       {/* Trash icon behind */}
-      <motion.div
-        className="absolute right-0 top-0 h-full flex items-center justify-center w-16"
-        style={{ opacity: trashOpacity, scale: trashScale }}
-      >
-        <button
-          className="flex items-center justify-center w-10 h-10 rounded-full text-red-600 cursor-pointer"
-          onClick={() => onDismiss(remind.id)}
-          disabled={dismissing}
+      {onDismiss && (
+        <motion.div
+          className="absolute right-0 top-0 h-full flex items-center justify-center w-16"
+          style={{ opacity: trashOpacity, scale: trashScale }}
         >
-          {dismissing ? <FcCancel size={20} /> : <PiTrashLight size={20} />}
-        </button>
-      </motion.div>
+          <button
+            className="flex items-center justify-center w-10 h-10 rounded-full text-red-600 cursor-pointer"
+            onClick={() => onDismiss(remind.id)}
+            disabled={dismissing}
+          >
+            {dismissing ? <FcCancel size={20} /> : <PiTrashLight size={20} />}
+          </button>
+        </motion.div>
+      )}
 
       {/* Draggable row */}
       <motion.div
-        className="flex justify-between items-center gap-3 py-3  border-b-2 border-b-gray-300 dark:border-b-slate-500  relative z-10"
-        drag="x"
-        dragConstraints={{ left: -80, right: 0 }}
+        className="flex tems-center justify-between gap-2 py-3 border-b-2 border-b-gray-300 bg-white/80 dark:border-b-slate-500 dark:bg-transparent relative z-10  "
+        drag={onDismiss ? "x" : false}
+        dragConstraints={{ left: onDismiss ? -80 : 0, right: 0 }}
         dragElastic={{ left: 0.5, right: 0 }}
         onDragEnd={handleDragEnd}
         style={{ x }}
       >
-        <h2 className="font-medium text-black/80 dark:text-slate-300">
+        <h2 className="min-w-0 wrap-break-word font-medium text-black/80 dark:text-slate-300">
           {remind.eventTitle}
         </h2>
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 sm:justify-center">
           <span className={colorCond}>{LiveCountDown(remind)}</span>
         </div>
       </motion.div>

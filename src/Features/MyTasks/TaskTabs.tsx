@@ -30,10 +30,10 @@ interface tabsProps {
 
 function TaskTabs({ active, handleActive }: tabsProps) {
   return (
-    <div className="flex items-center gap-6 pt-8 ">
+    <div className="flex items-center gap-5 overflow-x-auto hide-scrollbar pt-8 sm:gap-6">
       {TasksTabs.map((tab, index) => (
         <div
-          className={`flex items-center gap-1 pb-2 text-gray-700 ${active === tab.list && "border-b-2 border-b-purple-700"} cursor-pointer dark:text-slate-300`}
+          className={`flex shrink-0 items-center gap-1 pb-2 text-gray-700 ${active === tab.list && "border-b-2 border-b-purple-700"} cursor-pointer dark:text-slate-300`}
           onClick={() => handleActive(tab.list)}
           key={index}
         >

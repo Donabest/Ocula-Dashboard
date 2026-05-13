@@ -11,7 +11,7 @@ function CalenderItem({ set }: MyCalenderProp) {
     useCalendar();
 
   return (
-    <div className=" text-center ">
+    <div className="text-center overflow-x-auto hide-scrollbar">
       <div className="flex justify-between items-center text-center  mb-6">
         <h3 className="font-raleway font-medium text-gray-700 dark:text-slate-300">
           {format(currentDate, "MMM yyyy")}
@@ -31,12 +31,12 @@ function CalenderItem({ set }: MyCalenderProp) {
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-7 items-center dark:text-slate-400">
+      <div className="grid min-w-[320px] grid-cols-7 items-center dark:text-slate-400">
         {WEEKDAYS.map((day) => (
           <div key={day}>{day}</div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-4 items-center mt-4 ">
+      <div className="grid min-w-[320px] grid-cols-7 gap-2 items-center mt-4 sm:gap-4">
         {emptyDays.map((_, i) => (
           <div key={i} />
         ))}

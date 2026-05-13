@@ -37,7 +37,7 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
 
   return (
     <>
-      <div className="relative space-y-3 bg-gray-100 px-5 py-4 rounded-lg border border-slate-300 cursor-pointer hover:scale-101 transition dark:bg-slate-700 dark:border-slate-800">
+      <div className="relative space-y-3 bg-slate-100 px-5 py-4 rounded-lg border border-slate-300 cursor-pointer hover:scale-101 transition dark:bg-slate-700 dark:border-slate-800">
         <div className="flex justify-between">
           <span className={`${priorityBg[task.priority]} px-4 py-1 rounded-lg`}>
             {task.priority}

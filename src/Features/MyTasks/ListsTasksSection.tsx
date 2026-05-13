@@ -11,6 +11,7 @@ function ListsTasksSection({ active }: ActiveProp) {
     <>
       {active === "List" && (
         <motion.section
+          className="min-w-0"
           initial={{ x: -10, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}

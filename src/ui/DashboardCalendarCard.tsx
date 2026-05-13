@@ -45,7 +45,7 @@ function DashboardCalendarCard() {
   }
 
   return (
-    <div className="bg-white mt-8 px-8 py-6 space-y-4 rounded-2xl dark:bg-slate-800 dark:text-white">
+    <div className="bg-white mt-6 xl:mt-8 px-4 sm:px-8 py-6 space-y-4 rounded-2xl dark:bg-slate-800 dark:text-white">
       <div className="flex justify-between items-center gap-5 font-poppin font-medium text-gray-600 dark:text-slate-300">
         <h1 className="flex items-center gap-2 ">
           <SlCalender className="text-blue-800 dark:text-blue-400" />
@@ -54,12 +54,12 @@ function DashboardCalendarCard() {
         <p className="flex items-center gap-2 ">{format(currentDate, "MMM")}</p>
       </div>
 
-      <div className="flex justify-center items-center gap-10">
+      <div className="flex justify-center items-center gap-3 sm:gap-10">
         <MdOutlineKeyboardArrowLeft
           className="cursor-pointer"
           onClick={() => handlePrevDay(4)}
         />
-        <div className="flex items-center gap-8">
+        <div className="flex flex-1 sm:flex-none items-center justify-between sm:justify-center gap-2 sm:gap-8 overflow-x-auto hide-scrollbar">
           {daysArray.map((day, index) => (
             <div
               className={`flex flex-col justify-center items-center text-gray-500 ${hasTask?.includes(format(day, "MMM dd yyyy")) ? "bg-blue-700 text-white px-2 py-1 rounded-lg " : ""} cursor-pointer dark:text-white/80`}
@@ -85,13 +85,13 @@ function DashboardCalendarCard() {
 
       {scheduleTask.map((task, index) => (
         <div
-          className="relative bg-blue-100/80 p-6 rounded-xl dark:bg-slate-700"
+          className="relative bg-blue-100/80 p-4 sm:p-6 rounded-xl dark:bg-slate-700"
           key={index}
         >
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-start gap-4">
             <div className="space-y-2">
               <h1 className="font-poppin font-medium">{task.eventTitle}</h1>
-              <div className="flex  items-center justify-start gap-2 font-raleway text-gray-400 text-[15px]  ">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-start gap-2 font-raleway text-gray-400 text-[15px]">
                 <span
                   className={`${TimeDiff(task.date)?.includes("days ago") && "bg-red-100 text-red-400 dark:bg-red-800 dark:text-slate-200"} px-2 py-0.5 bg-emerald-200 text-emerald-600 rounded-xl dark:bg-emerald-600 dark:text-slate-200`}
                 >
@@ -109,10 +109,10 @@ function DashboardCalendarCard() {
             />
           </div>
 
-          <div className="inline-block font-raleway font-medium bg-white px-4 py-1.5 mt-6 rounded-3xl dark:bg-slate-800">
+          <div className="inline-block max-w-full font-raleway font-medium bg-white px-4 py-1.5 mt-6 rounded-3xl dark:bg-slate-800">
             <p className="flex items-center gap-2">
               <SiGooglemeet className="text-red-500" />
-              {task.meet}
+              <span className="truncate">{task.meet}</span>
             </p>
           </div>
 

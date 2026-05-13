@@ -18,8 +18,8 @@ function MyTasksLayout() {
   }
 
   return (
-    <div className="pt-20 pb-10 px-8 max-w-7xl">
-      <div className="flex justify-between items-center">
+    <section className="w-full max-w-7xl px-4 pb-10 pt-20 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <PageHeader
           title={`${activeTab}`}
           description="Monitor all your projects and tasks here"
@@ -35,7 +35,7 @@ function MyTasksLayout() {
       <MyTasksCalendar active={activeTab} />
 
       {isAddNewTask && <AddNewTaskForm handleCancel={handleCancel} />}
-    </div>
+    </section>
   );
 }
 

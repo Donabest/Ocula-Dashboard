@@ -51,49 +51,52 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
     });
   }
   return (
-    <div className="relative grid grid-cols-3  gap-3  text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-300 dark:border-b-gray-500">
-      <div className="flex items-center gap-2 col-span-2 ">
-        <FaChevronDown className="cursor-pointer" />
+    <div className="relative rounded-lg border border-gray-200 bg-gray-50 p-3 text-gray-500 dark:border-gray-600 dark:bg-slate-700/40 dark:text-gray-300 lg:grid lg:grid-cols-3 lg:gap-3 lg:border-0 lg:border-b-2 lg:border-b-gray-200 lg:bg-transparent lg:p-0 lg:pb-2 lg:dark:border-b-gray-500 lg:dark:bg-transparent">
+      <div className="flex min-w-0 items-start gap-2 lg:col-span-2 lg:items-center">
+        <FaChevronDown className="mt-1 shrink-0 cursor-pointer lg:mt-0" />
         <span
-          className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
+          className={`${StatusBg[task.status]} mt-1 p-1.5 rounded-sm cursor-pointer lg:mt-0`}
           onMouseDown={(e) => handleOpenMenu(task.id, e)}
         ></span>
-        <span>{task.title}</span>
+        <span className="min-w-0 flex-1 break-words font-medium lg:truncate lg:font-normal">
+          {task.title}
+        </span>
       </div>
-      <div className="flex justify-between text-center items-center">
+
+      <div className="mt-3 flex items-center justify-between gap-3 text-center lg:mt-0">
+        <div className="flex items-center gap-3 lg:gap-6">
+          <span
+            className={`font-poppin text-sm ${priorityBg[task.priority]} px-3 py-1 rounded-lg uppercase`}
+          >
+            {task.priority}
+          </span>
+          <span
+            className={`text-sm ${TimeDiff(task.EndDate) === "Today" && "text-red-500"}`}
+          >
+            {TimeDiff(task.EndDate)}
+          </span>
+        </div>
         {AssignTo && (
-          <span>
+          <div className="relative flex shrink-0 items-center gap-3">
             <img
               src={Assignee}
               alt="Assignee"
               className="w-8 h-8 rounded-full"
             />
-          </span>
-        )}
-        <span
-          className={`${AssignTo && "ml-8"} font-poppin text-sm ${priorityBg[task.priority]} px-3 py-1 rounded-lg uppercase`}
-        >
-          {task.priority}
-        </span>
-        <div
-          className={`relative text-sm gap-2 ${TimeDiff(task.EndDate) === "Today" && "text-red-500 "}`}
-        >
-          {TimeDiff(task.EndDate)}{" "}
-          {AssignTo && (
             <span
-              className="absolute -right-4 cursor-pointer"
+              className="cursor-pointer text-gray-500 dark:text-white"
               onClick={(e) => {
                 e.stopPropagation();
                 setOpenId((prevId) => (prevId === task.id ? null : task.id));
               }}
             >
-              <BsThreeDotsVertical color="white" />
+              <BsThreeDotsVertical />
             </span>
-          )}
           {openId === task.id && (
             <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
           )}
-        </div>
+          </div>
+        )}
       </div>
 
       {Open === task.id && (

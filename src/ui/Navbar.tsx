@@ -3,13 +3,18 @@ import { LuSunMoon } from "react-icons/lu";
 import { IoMoonOutline } from "react-icons/io5";
 import { HiOutlineLogout } from "react-icons/hi";
 import { RiNotificationLine } from "react-icons/ri";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { useCalendar } from "../Context/useCalender";
 import { useState } from "react";
 import SeeNotification from "./SeeNotification";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useDark } from "../Context/DarkModeContext";
 
-function Navbar() {
+type NavbarProps = {
+  onMenuClick?: () => void;
+};
+
+function Navbar({ onMenuClick }: NavbarProps) {
   const { schedules } = useCalendar();
   const { ToogleDarkMode, isDarkMode } = useDark();
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -26,7 +31,15 @@ function Navbar() {
 
   return (
     <>
-      <div className="fixed right-0 left-60 top-0 flex justify-end items-center bg-white/80 py-4.5 px-8 z-20 backdrop-blur-md dark:bg-[#18212f]/90 dark:text-white ">
+      <div className="fixed right-0 left-0 lg:left-60 top-0 flex justify-between lg:justify-end items-center bg-white/80 py-4.5 px-4 sm:px-8 z-20 backdrop-blur-md dark:bg-[#18212f]/90 dark:text-white ">
+        <button
+          type="button"
+          className="rounded-lg p-2 hover:bg-gray-200 hover:text-blue-800 cursor-pointer dark:hover:bg-slate-800 lg:hidden"
+          aria-label="Open navigation"
+          onClick={onMenuClick}
+        >
+          <HiOutlineMenuAlt2 size={20} />
+        </button>
         <ul className="relative flex justify-center items-center gap-2 ">
           <li
             className="relative"

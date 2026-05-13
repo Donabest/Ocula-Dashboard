@@ -29,7 +29,7 @@ function AddEvent({ handler }: handlerType) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 mx-auto mt-60 mr-70 bg-white/15 backdrop-blur-lg px-4 py-5 w-110 h-fit rounded-lg border border-gray-300 dark:bg-black/20 dark:border-slate-800"
+        className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto hide-scrollbar bg-white/90 backdrop-blur-lg px-4 py-5 rounded-lg border border-gray-300 dark:bg-black/80 dark:border-slate-800"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
@@ -56,18 +56,18 @@ function AddEvent({ handler }: handlerType) {
               {...register("date", { required: "This field is required" })}
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <input
               type="time"
-              className=" px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
+              className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
               {...register("startTime", { required: "This field is required" })}
             />
-            <span className="text-xl">
+            <span className="hidden text-xl sm:block">
               <RiArrowRightLongLine />
             </span>
             <input
               type="time"
-              className="px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
+              className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
               {...register("endTime", { required: "This field is required" })}
             />
           </div>
