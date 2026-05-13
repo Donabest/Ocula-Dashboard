@@ -184,7 +184,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
 
               <div className="min-w-0">
                 <p className="text-sm font-medium text-gray-500 ">Status</p>
-                <div className="flex flex-wrap items-center gap-3 text-gray-500 font-medium pt-1.5">
+                <div className="flex  items-center gap-3 text-gray-500 font-medium pt-1.5">
                   {["Todo", "InProgress", "Completed"].map((s) => (
                     <label
                       key={s}
