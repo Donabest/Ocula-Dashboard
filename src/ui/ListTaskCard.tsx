@@ -13,7 +13,7 @@ function ListTaskCard({ tasks, Assignee }: CardProps) {
   const [isAddNewTask, setIsAddNewTask] = useState<boolean>();
 
   return (
-    <section className="flex flex-col gap-4 pt-1.5 sm:gap-5 sm:pl-3">
+    <section className="flex flex-col gap-4 pt-3 sm:gap-5 sm:pl-3">
       <div className="hidden lg:grid lg:grid-cols-3 text-gray-500 pb-2 border-b-2 border-b-gray-200 dark:text-gray-400 dark:border-b-slate-500">
         <h1 className="col-span-2">Name</h1>
         <div className="flex justify-between items-center">

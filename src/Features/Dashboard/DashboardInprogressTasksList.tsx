@@ -13,7 +13,7 @@ function DashboardInprogressTasksList({ active, handler }: Props) {
 
   return (
     <div>
-      <div className="flex items-center gap-3 pl-3">
+      <div className="flex items-center gap-3 pl-3 ">
         <span onClick={() => handler("Inprogress")}>
           {active === "Inprogress" ? <FaChevronUp /> : <FaChevronDown />}
         </span>

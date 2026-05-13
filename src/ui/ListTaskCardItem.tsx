@@ -51,14 +51,14 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
     });
   }
   return (
-    <div className="relative rounded-lg border border-gray-200 bg-gray-50 p-3 text-gray-500 dark:border-gray-600 dark:bg-slate-700/40 dark:text-gray-300 lg:grid lg:grid-cols-3 lg:gap-3 lg:border-0 lg:border-b-2 lg:border-b-gray-200 lg:bg-transparent lg:p-0 lg:pb-2 lg:dark:border-b-gray-500 lg:dark:bg-transparent">
+    <div className="list-card">
       <div className="flex min-w-0 items-start gap-2 lg:col-span-2 lg:items-center">
         <FaChevronDown className="mt-1 shrink-0 cursor-pointer lg:mt-0" />
         <span
           className={`${StatusBg[task.status]} mt-1 p-1.5 rounded-sm cursor-pointer lg:mt-0`}
           onMouseDown={(e) => handleOpenMenu(task.id, e)}
         ></span>
-        <span className="min-w-0 flex-1 break-words font-medium lg:truncate lg:font-normal">
+        <span className="min-w-0 flex-1 wrap-break-word font-medium lg:truncate lg:font-normal">
           {task.title}
         </span>
       </div>
@@ -92,9 +92,9 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
             >
               <BsThreeDotsVertical />
             </span>
-          {openId === task.id && (
-            <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
-          )}
+            {openId === task.id && (
+              <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
+            )}
           </div>
         )}
       </div>
