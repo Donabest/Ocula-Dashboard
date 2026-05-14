@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CalenderProvider } from "./Context/useCalender.tsx";
 import Projects from "./pages/Projects.tsx";
+import Settings from "./pages/Settings.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="Calender" element={<Calender />} />
               <Route path="Analytics" element={<Analytics />} />
               <Route path="project/:projectId" element={<Projects />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
           </Routes>
 

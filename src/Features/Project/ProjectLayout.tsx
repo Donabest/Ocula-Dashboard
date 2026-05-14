@@ -8,6 +8,7 @@ import { useActiveTasks } from "../../hooks/useActiveTasks";
 import AddNewTaskForm from "../../ui/AddNewTaskForm";
 import MyTasksBoardView from "../MyTasks/MyTasksBoardView";
 import MyTasksCalendar from "../MyTasks/MyTasksCalendar";
+import { FaRProject } from "react-icons/fa";
 
 function ProjectLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
@@ -16,10 +17,13 @@ function ProjectLayout() {
   return (
     <section className="pt-20 pb-10 px-8 max-w-7xl">
       <div className="flex flex-col items-start md:justify-between md:items-center md:flex-row ">
-        <PageHeader
-          title={`${isLoading ? "..." : currentPage?.projectName}`}
-          description=""
-        />
+        <div className="flex justify-center items-center gap-3">
+          <FaRProject className="text-blue-400 text-5xl" />
+          <PageHeader
+            title={`${isLoading ? "..." : currentPage?.projectName}`}
+            description=""
+          />
+        </div>
         <Button open={() => setIsAddNewTask(true)}>New Task</Button>
       </div>
       <TaskTabs active={activeTab} handleActive={setactiveTab} />

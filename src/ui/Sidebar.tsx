@@ -1,11 +1,11 @@
 import { motion } from "motion/react";
-import { CiSettings } from "react-icons/ci";
 import User from "./User";
 import SidebarList from "./SidebarList";
 import ProjectList from "./ProjectList";
 import Invite from "./Invite";
 import CreateProjectForm from "./CreateProjectForm";
 import { useState } from "react";
+import Setting from "./Setting";
 
 type SidebarProps = {
   isDrawer?: boolean;
@@ -49,14 +49,7 @@ function Sidebar({ isDrawer = false, onNavigate }: SidebarProps) {
         </div>
 
         <div className="mt-10">
-          <motion.h1
-            className="flex justify-start items-center gap-3 px-3 py-2 cursor-pointer rounded-lg hover:bg-blue-100/30  hover:text-blue-800 dark:hover:text-white/70"
-            whileHover={{ y: -3 }}
-          >
-            <CiSettings />
-            <span className="text-black dark:text-white ">Settings</span>
-          </motion.h1>
-
+          <Setting />
           <Invite />
         </div>
       </div>
