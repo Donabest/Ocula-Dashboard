@@ -40,8 +40,10 @@ const settingList: ListType[] = [
 
 function SettingSidebar({
   setCurrentTab,
+  current,
 }: {
   setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
+  current: string;
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const Tab = searchParams.get("TabTo") || "";
@@ -49,11 +51,13 @@ function SettingSidebar({
     searchParams.set(Tab, currentTab);
     setSearchParams(searchParams);
   }
+
   return (
-    <ul className="pt-4  space-y-2 border-r border-r-gray-300 w-50 h-[80vh] dark:border-r-slate-800">
+    <ul className="text-center pt-4 pr-2 space-y-2 border-r border-r-gray-200 w-50 h-[80vh] dark:border-r-slate-800">
       {settingList.map((setting) => (
         <motion.li
-          className="flex justify-start items-center gap-2 px-4 py-1.5 rounded-lg cursor-pointer hover:bg-gray-200 dark:text-slate-100 hover:dark:bg-slate-800 dark:hover:text-slate-300"
+          className={`flex justify-start items-center gap-2 px-4 py-1.5 rounded-lg cursor-pointer hover:bg-gray-200 dark:text-slate-100 hover:dark:bg-slate-800 dark:hover:text-slate-300
+            ${current === setting.list && "bg-gray-200 dark:bg-slate-800"}`}
           whileHover={{ y: -2 }}
           transition={{ type: "spring", stiffness: 800, damping: 20 }}
           onClick={() => {

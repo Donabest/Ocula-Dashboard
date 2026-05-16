@@ -1,9 +1,17 @@
-import { createContext, useContext, useEffect, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 type DarkModeContextType = {
   isDarkMode: boolean;
   ToogleDarkMode: () => void;
+  setDarkMode: Dispatch<SetStateAction<boolean>>;
 };
 const DarkModeContext = createContext<DarkModeContextType | null>(null);
 
@@ -28,7 +36,9 @@ function DarkModeProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <DarkModeContext.Provider value={{ isDarkMode, ToogleDarkMode }}>
+    <DarkModeContext.Provider
+      value={{ isDarkMode, ToogleDarkMode, setDarkMode: setIsDarkMode }}
+    >
       {children}
     </DarkModeContext.Provider>
   );
