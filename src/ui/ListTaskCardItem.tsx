@@ -9,6 +9,7 @@ import Menu from "./Menu";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
+import AddNewTaskForm from "./AddNewTaskForm";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
@@ -31,6 +32,7 @@ interface props {
 
 function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
   const { deleteTask, isDeleting } = useDeleteTask();
+  const [isEditing, setIsEditing] = useState<number | null>();
 
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
@@ -93,7 +95,17 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
               <BsThreeDotsVertical />
             </span>
             {openId === task.id && (
-              <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
+              <Menu
+                handler={() => setOpenId(null)}
+                onDelete={setIsDelete}
+                setEdit={() => setIsEditing(task.id)}
+              />
+            )}
+            {isEditing === task.id && (
+              <AddNewTaskForm
+                handleCancel={() => setIsEditing(null)}
+                taskToEdit={task}
+              />
             )}
           </div>
         )}

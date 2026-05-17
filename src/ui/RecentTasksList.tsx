@@ -5,6 +5,7 @@ import { CiFlag1 } from "react-icons/ci";
 import Menu from "./Menu";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
+import AddNewTaskForm from "./AddNewTaskForm";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
@@ -12,6 +13,7 @@ const priorityBg: Record<priorityBg, string> = {
   Med: "bg-green-200 text-emerald-700 dark:text-emerald-200 dark:bg-emerald-900",
 };
 function RecentTasksList({ task }: { task: tasktype }) {
+  const [isEditing, setIsEditing] = useState<number | null>();
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
   const { deleteTask, isPending } = useDeleteTask();
@@ -54,12 +56,25 @@ function RecentTasksList({ task }: { task: tasktype }) {
         </p>
       </div>
 
-      {openId === task.id && <Menu handler={handler} onDelete={setIsDelete} />}
+      {openId === task.id && (
+        <Menu
+          handler={handler}
+          onDelete={setIsDelete}
+          setEdit={() => setIsEditing(task.id)}
+        />
+      )}
+
       {isDelete && (
         <ConfirmDelete
           handleDelete={() => handleDeleteTask(task.id)}
           handleClick={() => setIsDelete(false)}
           pending={isPending}
+        />
+      )}
+      {isEditing === task.id && (
+        <AddNewTaskForm
+          handleCancel={() => setIsEditing(null)}
+          taskToEdit={task}
         />
       )}
     </div>

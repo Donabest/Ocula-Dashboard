@@ -21,6 +21,22 @@ export async function createTask(createdTask: tasktype) {
   return data;
 }
 
+export async function editTask(
+  taskToEdit: tasktype,
+  id: number,
+): Promise<tasktype> {
+  const { data, error } = await supabase
+    .from("Tasks")
+    .update({ ...taskToEdit })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) throw new Error("Task could not be Edited");
+
+  return data;
+}
+
 export async function deleteTask(id: number) {
   const { data, error } = await supabase.from("Tasks").delete().eq("id", id);
 

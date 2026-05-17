@@ -21,9 +21,11 @@ const menus: menuType[] = [
 function Menu({
   handler,
   onDelete,
+  setEdit: onEdit,
 }: {
   handler: () => void;
   onDelete: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+  setEdit: () => void;
 }) {
   const { ref } = useClickOutSide(handler);
   return (
@@ -48,6 +50,9 @@ function Menu({
               onClick={() => {
                 if (menu.text === "Delete") {
                   onDelete(true);
+                }
+                if (menu.text === "Edit") {
+                  onEdit();
                 }
               }}
             >

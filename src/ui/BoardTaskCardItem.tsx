@@ -6,6 +6,7 @@ import type { priorityBg, tasktype } from "../utilities/type";
 import Assignee from "../assets/person-1.jpg";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
+import AddNewTaskForm from "./AddNewTaskForm";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
@@ -14,6 +15,7 @@ const priorityBg: Record<priorityBg, string> = {
 };
 
 function BoardTaskCardItem({ task }: { task: tasktype }) {
+  const [isEditing, setIsEditing] = useState<number | null>();
   const [openId, setOpenId] = useState<number | null>(null);
   const [isDelete, setIsDelete] = useState<boolean>();
   const { deleteTask, isDeleting } = useDeleteTask();
@@ -58,13 +60,26 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
           </p>
         </div>
         <img src={Assignee} alt="Assignee" className="w-8 -8 rounded-full" />
-        {openId === task.id && <Menu handler={close} onDelete={setIsDelete} />}
+        {openId === task.id && (
+          <Menu
+            handler={close}
+            onDelete={setIsDelete}
+            setEdit={() => setIsEditing(task.id)}
+          />
+        )}
       </div>
       {isDelete && (
         <ConfirmDelete
           handleDelete={() => handleDeleteTask(task.id)}
           handleClick={() => setIsDelete(false)}
           pending={isDeleting}
+        />
+      )}
+
+      {isEditing === task.id && (
+        <AddNewTaskForm
+          handleCancel={() => setIsEditing(null)}
+          taskToEdit={task}
         />
       )}
     </>

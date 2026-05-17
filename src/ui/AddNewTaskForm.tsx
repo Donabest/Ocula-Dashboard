@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { LuAsterisk } from "react-icons/lu";
 import { MdOutlineCancel } from "react-icons/md";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import type { tasktype } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
@@ -10,31 +10,57 @@ import FormError from "./FormError";
 import { useProjects } from "../Features/Project/useProject";
 import { useParams } from "react-router-dom";
 import { useActiveTasks } from "../hooks/useActiveTasks";
+import { useEditTask } from "../Features/MyTasks/useEditTask";
+import { RadioGroup, RadioGroupItem } from "#components/ui/radio-group";
+import { Label } from "#components/shacnUi/label";
+import { useEffect } from "react";
 
 type NewTasksProps = {
   handleCancel: () => void;
+  taskToEdit?: Partial<tasktype>;
 };
 
-function AddNewTaskForm({ handleCancel }: NewTasksProps) {
-  const { register, handleSubmit, clearErrors, formState } =
+function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
+  const { id: isEditId } = taskToEdit || {};
+  const isEditSession = isEditId;
+
+  const { register, handleSubmit, clearErrors, formState, reset, control } =
     useForm<tasktype>();
 
   const { createTask, isPending } = useCreateTask();
+  const { editTask, isEditing } = useEditTask();
   const { projects } = useProjects();
   const { currentPage } = useActiveTasks();
   const { projectId } = useParams();
   const { ref } = useClickOutSide(handleCancel);
 
+  useEffect(() => {
+    if (taskToEdit) {
+      reset(taskToEdit);
+    }
+  }, [reset, taskToEdit]);
+
   function onSubmit(data: tasktype) {
     const newTask = { ...data };
-    createTask(
-      { ...newTask },
-      {
-        onSuccess: () => {
-          handleCancel();
+    if (isEditSession) {
+      editTask(
+        { newTaskData: newTask, id: isEditId },
+        {
+          onSuccess: () => {
+            handleCancel();
+          },
         },
-      },
-    );
+      );
+    } else {
+      createTask(
+        { ...newTask },
+        {
+          onSuccess: () => {
+            handleCancel();
+          },
+        },
+      );
+    }
   }
 
   function onError() {
@@ -42,6 +68,8 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
   }
 
   const { errors } = formState;
+
+  const isLoading = isEditing || isPending;
 
   return (
     <AnimatePresence>
@@ -54,7 +82,9 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
           exit={{ opacity: 0, scale: 0 }}
         >
           <div className="flex justify-between items-center border-b border-gray-200 p-2 dark:border-slate-400">
-            <h1 className="font-medium">Create New Task</h1>
+            <h1 className="font-medium">
+              {isEditSession ? "Edit Task" : "Create New Task"}
+            </h1>
             <p
               className="cursor-pointer active:scale-105"
               onClick={handleCancel}
@@ -67,14 +97,14 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
             className="space-y-3"
             onSubmit={handleSubmit(onSubmit, onError)}
           >
-            <div className="flex flex-col pt-3 gap-1.5">
+            <div className="flex flex-col justify-start items-start pt-3 gap-1.5">
               <label htmlFor="title" className="label">
                 Task Name
               </label>
               <input
                 type="text"
                 placeholder="Title"
-                className="input dark:border-slate-600"
+                className="input w-full dark:border-slate-600"
                 {...register("title", {
                   required: "This field is required",
                 })}
@@ -158,23 +188,28 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
                 <p className="flex items-start text-sm font-medium text-gray-500">
                   Priority <LuAsterisk color="red" size={10} />
                 </p>
-                <div className="flex flex-wrap items-center gap-3 text-gray-500 font-medium pt-1.5">
-                  {["High", "Med", "Low"].map((level) => (
-                    <label
-                      key={level}
-                      className="flex items-center gap-2 dark:text-slate-500"
+                <Controller
+                  control={control}
+                  name="priority"
+                  rules={{ required: "This field is required" }}
+                  render={({ field }) => (
+                    <RadioGroup
+                      className="flex flex-wrap items-center gap-3 text-gray-500 font-medium pt-1.5"
+                      onValueChange={field.onChange}
+                      value={field.value}
                     >
-                      <input
-                        type="radio"
-                        value={level}
-                        {...register("priority", {
-                          required: "This field is required",
-                        })}
-                      />
-                      {level}
-                    </label>
-                  ))}
-                </div>
+                      {["High", "Med", "Low"].map((level) => (
+                        <Label
+                          key={level}
+                          className="flex items-center gap-2 dark:text-slate-500"
+                        >
+                          <RadioGroupItem value={level} id={level} />
+                          {level}
+                        </Label>
+                      ))}
+                    </RadioGroup>
+                  )}
+                />
 
                 <FormError
                   error={errors?.priority?.message}
@@ -183,24 +218,31 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </div>
 
               <div className="min-w-0">
-                <p className="text-sm font-medium text-gray-500 ">Status</p>
-                <div className="flex  items-center gap-3 text-gray-500 font-medium pt-1.5">
-                  {["Todo", "InProgress", "Completed"].map((s) => (
-                    <label
-                      key={s}
-                      className="flex items-center gap-2 dark:text-slate-500"
+                <p className="text-sm flex justify-start items-start font-medium text-gray-500 ">
+                  Status
+                </p>
+                <Controller
+                  control={control}
+                  name="status"
+                  rules={{ required: "This field is required" }}
+                  render={({ field }) => (
+                    <RadioGroup
+                      className="flex  items-center gap-3 text-gray-500 font-medium pt-1.5"
+                      onValueChange={field.onChange}
+                      value={field.value}
                     >
-                      <input
-                        type="radio"
-                        value={s}
-                        {...register("status", {
-                          required: "This field is required",
-                        })}
-                      />
-                      {s}
-                    </label>
-                  ))}
-                </div>
+                      {["Todo", "InProgress", "Completed"].map((s) => (
+                        <Label
+                          key={s}
+                          className="flex items-center gap-2 dark:text-slate-500"
+                        >
+                          <RadioGroupItem value={s} id={s} />
+                          {s}
+                        </Label>
+                      ))}
+                    </RadioGroup>
+                  )}
+                />
 
                 <FormError
                   error={errors?.status?.message}
@@ -209,7 +251,7 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </div>
             </div>
 
-            <div className="flex flex-col  space-y-1.5">
+            <div className="flex flex-col justify-start items-start space-y-1.5">
               <label htmlFor="description" className="label">
                 Description
               </label>
@@ -229,10 +271,11 @@ function AddNewTaskForm({ handleCancel }: NewTasksProps) {
               </button>
               <button
                 type="submit"
-                className="bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer active:scale-105 sm:py-1.5"
-                disabled={isPending}
+                className={`bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer sm:py-1.5 ${isLoading && "bg-blue-900"}`}
+                disabled={isLoading}
               >
-                {isPending ? "Creating..." : "Create Task"}
+                {isPending ? "Creating..." : !taskToEdit && "Create Task"}
+                {isEditing ? "Editing..." : taskToEdit && "Edit Task"}
               </button>
             </div>
           </form>
