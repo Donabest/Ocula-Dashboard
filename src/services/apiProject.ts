@@ -18,3 +18,9 @@ export async function createProject(projectName: string) {
 
   return data;
 }
+
+export async function deleteProject(id: number | undefined) {
+  const { data, error } = await supabase.from("Project").delete().eq("id", id);
+  if (error) throw new Error("Project could not be deleted");
+  return data;
+}

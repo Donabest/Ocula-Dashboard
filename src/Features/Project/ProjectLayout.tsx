@@ -9,11 +9,15 @@ import AddNewTaskForm from "../../ui/AddNewTaskForm";
 import MyTasksBoardView from "../MyTasks/MyTasksBoardView";
 import MyTasksCalendar from "../MyTasks/MyTasksCalendar";
 import { FaRProject } from "react-icons/fa";
+import Empty from "../../ui/Empty";
 
 function ProjectLayout() {
   const [activeTab, setactiveTab] = useState<string>("Overview");
   const [isAddNewTask, setIsAddNewTask] = useState<boolean>();
   const { isLoading, currentPage } = useActiveTasks();
+
+  if (!currentPage) return <Empty resourseName="Project" />;
+
   return (
     <section className="pt-20 pb-10 px-8 max-w-7xl">
       <div className="flex flex-col items-start md:justify-between md:items-center md:flex-row ">

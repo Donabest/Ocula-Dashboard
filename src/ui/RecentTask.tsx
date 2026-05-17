@@ -8,7 +8,7 @@ function RecentTask() {
   const RecentTasks = [...tasks].slice(-2);
 
   return (
-    <div className=" bg-white p-4 rounded-lg  dark:bg-slate-800 dark:text-slate-100">
+    <div className=" bg-white p-4 rounded-lg dark:bg-slate-800 dark:text-slate-100">
       <div className="flex items-center justify-between font-poppin font-medium ">
         Recents Tasks
       </div>
