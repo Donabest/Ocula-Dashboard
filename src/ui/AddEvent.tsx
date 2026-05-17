@@ -4,32 +4,58 @@ import { RiArrowRightLongLine } from "react-icons/ri";
 import type { schedule } from "../utilities/type";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateSchedule } from "../Features/Calender/useCreateSchedule";
+import { useEditScheduleTask } from "../Features/Calender/useEditScheduleTask";
+import { useEffect } from "react";
 
 type handlerType = {
   handler: () => void;
+  scheduleToEdit?: Partial<schedule>;
 };
 
-function AddEvent({ handler }: handlerType) {
-  const { register, handleSubmit } = useForm<schedule>();
+function AddEvent({ handler, scheduleToEdit }: handlerType) {
+  const { register, handleSubmit, reset } = useForm<schedule>();
   const { ref } = useClickOutSide(handler);
   const { createScheduleTask, isScheduling } = useCreateSchedule();
+  const { editScheduleTask, isScheduling: isSchedulingTask } =
+    useEditScheduleTask();
 
+  const { id: editId } = scheduleToEdit || {};
+
+  const isEditSession = editId;
+  useEffect(() => {
+    if (isEditSession) {
+      reset(scheduleToEdit);
+    }
+  }, [isEditSession, reset, scheduleToEdit]);
   function onSubmit(data: schedule) {
-    createScheduleTask(
-      { ...data },
-      {
-        onSuccess: () => {
-          handler();
+    // Edit
+    if (isEditSession) {
+      editScheduleTask(
+        { scheduleToEdit: data, id: isEditSession },
+        {
+          onSuccess: () => {
+            reset();
+            handler();
+          },
         },
-      },
-    );
-
-    console.log(data);
+      );
+    } else {
+      // Create
+      createScheduleTask(
+        { ...data },
+        {
+          onSuccess: () => {
+            reset();
+            handler();
+          },
+        },
+      );
+    }
   }
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto hide-scrollbar bg-white/90 backdrop-blur-lg px-4 py-5 rounded-lg border border-gray-300 dark:bg-black/80 dark:border-slate-800"
+        className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto hide-scrollbar bg-white/90 backdrop-blur-lg px-4 py-5 rounded-lg border border-gray-300 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
@@ -46,20 +72,20 @@ function AddEvent({ handler }: handlerType) {
           <input
             type="text"
             placeholder="Event title"
-            className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
+            className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-700"
             {...register("eventTitle", { required: "This field is required" })}
           />
           <div>
             <input
               type="date"
-              className="w-full px-2 py-1  rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
+              className="w-full px-2 py-1  rounded-xl border border-gray-400 outline-0 dark:border-slate-700"
               {...register("date", { required: "This field is required" })}
             />
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <input
               type="time"
-              className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
+              className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-700"
               {...register("startTime", { required: "This field is required" })}
             />
             <span className="hidden text-xl sm:block">
@@ -73,7 +99,7 @@ function AddEvent({ handler }: handlerType) {
           </div>
           <div className="flex flex-col">
             <select
-              className="border border-gray-400 px-2 py-1 outline-0 rounded-lg text-gray-800 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-400"
+              className="border border-gray-400 px-2 py-1 outline-0 rounded-lg text-gray-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400"
               {...register("reminder")}
             >
               <option value="none">Reminder None</option>
@@ -90,14 +116,14 @@ function AddEvent({ handler }: handlerType) {
             <input
               type="text"
               placeholder="meeting"
-              className="px-2 py-1 rounded-xl border border-gray-400 outline-0 w-full dark:border-slate-500"
+              className="px-2 py-1 rounded-xl border border-gray-400 outline-0 w-full dark:border-slate-700"
               {...register("meet", { required: "This field is required" })}
             />
           </div>
           <div>
             <textarea
               id="description"
-              className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-500"
+              className="w-full px-2 py-1 rounded-xl border border-gray-400 outline-0 dark:border-slate-700"
               placeholder="Description"
               {...register("description", {
                 required: "This field is required",
@@ -113,10 +139,13 @@ function AddEvent({ handler }: handlerType) {
               Cancel
             </button>
             <button
-              className="bg-blue-700 text-white rounded-lg px-6 py-2 cursor-pointer active:scale-101"
+              className="bg-blue-700 text-white rounded-lg px-3 py-1.5 cursor-pointer active:scale-101"
               disabled={isScheduling}
             >
-              {isScheduling ? "scheduling.." : "Save"}
+              {isScheduling
+                ? "scheduling..."
+                : !scheduleToEdit && "Create Event"}
+              {isSchedulingTask ? "Editing..." : scheduleToEdit && "Edit Event"}
             </button>
           </div>
         </form>

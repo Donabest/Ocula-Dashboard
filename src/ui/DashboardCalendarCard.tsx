@@ -12,9 +12,12 @@ import Menu from "./Menu";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteScheduleTask } from "../Features/Calender/useDeleteScheduleTask";
+import AddEvent from "./AddEvent";
 
 function DashboardCalendarCard() {
   const [openId, setOpenId] = useState<number | null>();
+  const [editSchedule, setEditSchedule] = useState<number | null>();
+
   const [isDelete, setIsDelete] = useState<boolean>();
 
   const {
@@ -117,7 +120,18 @@ function DashboardCalendarCard() {
           </div>
 
           {openId === task.id && (
-            <Menu handler={() => setOpenId(null)} onDelete={setIsDelete} />
+            <Menu
+              handler={() => setOpenId(null)}
+              onDelete={setIsDelete}
+              setEdit={() => setEditSchedule(task.id)}
+            />
+          )}
+
+          {editSchedule === task.id && (
+            <AddEvent
+              handler={() => setEditSchedule(null)}
+              scheduleToEdit={task}
+            />
           )}
           {isDelete && (
             <ConfirmDelete

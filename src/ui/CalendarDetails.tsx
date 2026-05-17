@@ -15,12 +15,14 @@ import { parseTimeToLocal } from "../utilities/TimeParse";
 import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteScheduleTask } from "../Features/Calender/useDeleteScheduleTask";
+import AddEvent from "./AddEvent";
 
 type props = {
   scheduleDetails: schedule | null;
 };
 function CalendarDetails({ scheduleDetails }: props) {
   const [isDelete, setIsDelete] = useState<boolean>();
+  const [editSchedule, setEditSchedule] = useState<number | null>();
   const { isOpen, setIsOpen } = useCalendar();
   const handleClose = () => setIsOpen(false);
   const { ref } = useClickOutSide(handleClose);
@@ -126,6 +128,10 @@ function CalendarDetails({ scheduleDetails }: props) {
                     <button
                       type="button"
                       className="border border-gray-600 text-black  text-sm px-3 py-1 rounded-lg shadow-lg cursor-pointer  active:scale-101 "
+                      onClick={() => {
+                        setEditSchedule(scheduleDetails.id);
+                        handleClose();
+                      }}
                     >
                       Edit
                     </button>
@@ -145,6 +151,13 @@ function CalendarDetails({ scheduleDetails }: props) {
             </motion.div>
           </div>
         </AnimatePresence>
+      )}
+
+      {editSchedule === scheduleDetails.id && (
+        <AddEvent
+          handler={() => setEditSchedule(null)}
+          scheduleToEdit={scheduleDetails}
+        />
       )}
     </>
   );

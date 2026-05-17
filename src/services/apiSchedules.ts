@@ -17,6 +17,21 @@ export async function createScheduleTask(newScheduleTask: schedule) {
 
   return data;
 }
+export async function editScheduleTask(
+  scheduleToEdit: schedule,
+  id: number,
+): Promise<schedule> {
+  const { data, error } = await supabase
+    .from("SchedulesTask")
+    .update({ ...scheduleToEdit })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) throw new Error("SchedulesTask could not be Edited");
+
+  return data;
+}
 
 export async function deleteScheduleTask(id: number) {
   const { data, error } = await supabase
