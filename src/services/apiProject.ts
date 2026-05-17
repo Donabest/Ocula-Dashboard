@@ -19,6 +19,18 @@ export async function createProject(projectName: string) {
   return data;
 }
 
+export async function editProject(NewProjectName: string, id: number) {
+  const { data, error } = await supabase
+    .from("Project")
+    .update({ projectName: NewProjectName })
+    .eq("id", id)
+    .select();
+
+  if (error) throw new Error("Project Name could not be Edited");
+
+  return data;
+}
+
 export async function deleteProject(id: number | undefined) {
   const { data, error } = await supabase.from("Project").delete().eq("id", id);
   if (error) throw new Error("Project could not be deleted");

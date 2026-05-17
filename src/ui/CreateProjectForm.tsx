@@ -1,22 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateProject } from "../Features/Project/useCreateProject";
+import type { projectType } from "../utilities/type";
+import { useEditProject } from "../Features/Project/useEditProject";
 
-function CreateProjectForm({ handler }: { handler: () => void }) {
+function CreateProjectForm({
+  handler,
+  projectToEdit,
+}: {
+  handler: () => void;
+  projectToEdit?: projectType;
+}) {
   const { createProject, isCreating } = useCreateProject();
+  const { editProject, isProjectEditing } = useEditProject();
 
   const [projectName, setProjectName] = useState<string>("");
 
+  useEffect(() => {
+    if (projectToEdit) {
+      setProjectName(projectToEdit.projectName);
+    }
+  }, [projectToEdit]);
+
   function handleClick() {
     if (!projectName.trim()) return;
-    createProject(projectName, {
-      onSuccess: () => {
-        handler();
-      },
-    });
+
+    if (!projectToEdit) {
+      createProject(projectName, {
+        onSuccess: () => {
+          handler();
+        },
+      });
+    }
+
+    // Edit
+    if (projectToEdit) {
+      editProject(
+        { newProjectName: projectName, id: projectToEdit.id },
+        {
+          onSuccess: () => {
+            handler();
+          },
+        },
+      );
+    }
   }
 
   const { ref } = useClickOutSide(handler);
+
+  const isWorking = isProjectEditing || isCreating;
   return (
     <div className="absolute top-13 z-999" ref={ref}>
       <div className="bg-white/2 backdrop-blur-lg border border-black/5 px-4 py-2 space-y-2 rounded-lg dark:bg-black/10 dark:border-white/10">
@@ -26,6 +58,7 @@ function CreateProjectForm({ handler }: { handler: () => void }) {
         <input
           type="text"
           placeholder="Project Name"
+          value={projectName}
           className="border border-gray-300 px-2 py-0.5 mt-0.5 rounded-lg outline-0 "
           onChange={(e) => setProjectName(e.target.value)}
         />
@@ -34,9 +67,10 @@ function CreateProjectForm({ handler }: { handler: () => void }) {
           <button
             className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-lg cursor-pointer"
             onClick={handleClick}
-            disabled={isCreating}
+            disabled={isWorking}
           >
-            {isCreating ? "..." : "save"}
+            {isCreating ? "..." : !projectToEdit && "save"}
+            {isProjectEditing ? "..." : projectToEdit && "Edit"}
           </button>
           <button
             className="bg-transparent text-sm px-2 py-0.5 border border-gray-300 rounded-lg cursor-pointer"

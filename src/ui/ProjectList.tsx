@@ -5,6 +5,7 @@ import { useProjects } from "../Features/Project/useProject";
 import Menu from "./Menu";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import CreateProjectForm from "./CreateProjectForm";
 
 type ProjectListProps = {
   onNavigate?: () => void;
@@ -17,6 +18,7 @@ function ProjectList({
   onConfirmDelete,
   onOpenedId,
 }: ProjectListProps) {
+  const [isEditing, setIsEditing] = useState<number | null>();
   const [isMenu, setIsMenu] = useState<number | null>();
   const { projects, isLoading } = useProjects();
 
@@ -51,7 +53,18 @@ function ProjectList({
           />
 
           {isMenu === project.id && (
-            <Menu handler={() => setIsMenu(null)} onDelete={onConfirmDelete} />
+            <Menu
+              handler={() => setIsMenu(null)}
+              onDelete={onConfirmDelete}
+              setEdit={() => setIsEditing(project.id)}
+            />
+          )}
+
+          {isEditing === project.id && (
+            <CreateProjectForm
+              handler={() => setIsEditing(null)}
+              projectToEdit={project}
+            />
           )}
         </li>
       ))}
