@@ -54,6 +54,15 @@
   .notify-pref {
     @apply flex justify-between items-center py-5 border-t border-gray-200 dark:border-t-slate-800;
   }
+  .loginWith {
+    @apply flex justify-center items-center w-full gap-2 p-2 bg-gray-100/10 text-gray-500 border border-gray-300 rounded-lg cursor-pointer active:scale-101;
+  }
+  .preview {
+    @apply border-white/10 space-y-1.5 backdrop-blur-md p-2 rounded-xl shadow-xl;
+  }
+  .preview-text {
+    @apply text-xs text-gray-400 font-montserrat;
+  }
 }
 
 @theme inline {
