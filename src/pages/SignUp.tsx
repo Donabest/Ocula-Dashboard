@@ -2,9 +2,9 @@ import SignUpForm from "../Features/Authentication/SignUpForm";
 
 function SignUp() {
   return (
-    <div>
+    <main>
       <SignUpForm />
-    </div>
+    </main>
   );
 }
 

@@ -10,13 +10,13 @@ function SecuritySetting() {
       />
       <form>
         <div className="border-t py-5">
-          <PasswordInput label="Current Password" />
+          <PasswordInput label="Current Password" text="Current Password" />
         </div>
         <div className="border-t py-5">
-          <PasswordInput label="Password" />
+          <PasswordInput label="New Password" text="New Password" />
         </div>
         <div className="border-t py-5">
-          <PasswordInput label="Confirm Password" />
+          <PasswordInput label="Confirm Password" text="Confirm Password" />
         </div>
 
         <div className="space-x-3">

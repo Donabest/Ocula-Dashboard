@@ -4,7 +4,7 @@ import { Label } from "#components/shacnUi/label";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
-function PasswordInput({ label }: { label: string }) {
+function PasswordInput({ label, text }: { label: string; text: string }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -16,7 +16,7 @@ function PasswordInput({ label }: { label: string }) {
         <Input
           className="bg-background font-montserrat"
           id="password-toggle"
-          placeholder="Enter your password"
+          placeholder={text}
           type={showPassword ? "text" : "password"}
         />
         <Button

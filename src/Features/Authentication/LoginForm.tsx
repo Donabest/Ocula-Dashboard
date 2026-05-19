@@ -24,7 +24,7 @@ function LoginForm() {
               className="mt-1.5 font-montserrat"
             />
           </div>
-          <PasswordInput label="Password" />
+          <PasswordInput label="Password" text="Enter Your Password" />
 
           <div className="flex justify-between items-center mt-3">
             <label
@@ -65,7 +65,7 @@ function LoginForm() {
           </div>
           <span className="flex justify-center items-center text-center gap-2 text-sm text-gray-500 mt-5">
             Don't Have an Account ?
-            <NavLink to="SignUp" className="text-blue-800">
+            <NavLink to="/SignUp" className="text-blue-800">
               Register Now
             </NavLink>
           </span>
