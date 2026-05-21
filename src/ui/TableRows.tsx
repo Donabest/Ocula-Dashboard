@@ -36,7 +36,7 @@ function TableRows() {
     <>
       {tasks.map((task, index) => (
         <motion.div
-          className="relative mt-4 rounded-lg border border-gray-200 bg-gray-50 p-3 font-medium text-gray-600 dark:border-slate-700 dark:bg-slate-700/40 dark:text-slate-200 lg:grid lg:min-w-[680px] lg:grid-cols-[4fr_2fr_2fr] lg:gap-5 lg:border-0 lg:border-t-2 lg:bg-transparent lg:p-0 lg:pt-4 lg:mt-5 lg:w-full lg:dark:bg-transparent"
+          className="relative mt-4 rounded-lg border border-gray-200 bg-gray-50 p-3 font-medium text-gray-600 dark:border-slate-700 dark:bg-slate-700/40 dark:text-slate-200 lg:grid lg:min-w-170 lg:grid-cols-[4fr_2fr_2fr] lg:gap-5 lg:border-0 lg:border-t-2 lg:bg-transparent lg:p-0 lg:pt-4 lg:mt-5 lg:w-full lg:dark:bg-transparent"
           initial={{ y: 5, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -48,14 +48,16 @@ function TableRows() {
               className={`${StatusBg[task.status]} p-1.5 rounded-sm cursor-pointer`}
               onMouseDown={(e) => handleOpenMenu(task.id, e)}
             ></span>
-            <span className="break-words lg:truncate">{task.title}</span>
+            <span className="wrap-break-words lg:truncate">{task.title}</span>
           </div>
           <div className="mt-3 flex flex-wrap items-center text-sm gap-3 lg:mt-0 lg:w-fit lg:mx-auto lg:gap-8">
             <span className="text-gray-400 lg:hidden">Start:</span>
             <span>{task.StartDate}</span>
             <span className="text-gray-400 lg:hidden">Due:</span>
             <span
-              className={TimeDiff(task.EndDate) === "Today" ? "text-red-500" : ""}
+              className={
+                TimeDiff(task.EndDate) === "Today" ? "text-red-500" : ""
+              }
             >
               {task.EndDate}
             </span>

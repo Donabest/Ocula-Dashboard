@@ -32,12 +32,14 @@ function ListTaskCard({ tasks, Assignee }: CardProps) {
         />
       ))}
 
-      <button
-        className="flex justify-start sm:pl-3 font-medium cursor-pointer"
-        onClick={() => setIsAddNewTask(true)}
-      >
-        + Add Task
-      </button>
+      {Assignee && (
+        <button
+          className="flex justify-start sm:pl-3 font-medium cursor-pointer"
+          onClick={() => setIsAddNewTask(true)}
+        >
+          + Add Task
+        </button>
+      )}
       {isAddNewTask && (
         <AddNewTaskForm handleCancel={() => setIsAddNewTask(false)} />
       )}

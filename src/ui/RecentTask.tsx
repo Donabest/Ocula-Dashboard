@@ -14,6 +14,11 @@ function RecentTask() {
       </div>
 
       <div className="flex flex-col items-stretch gap-4 mt-3 sm:mx-2">
+        {!RecentTasks.length && (
+          <div className="flex justify-center items-center  h-full">
+            No Recent Tasks
+          </div>
+        )}
         {isLoading ? (
           <Spinner />
         ) : (

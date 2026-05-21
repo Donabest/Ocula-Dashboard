@@ -7,6 +7,7 @@ import { useState } from "react";
 import type { schedule } from "../utilities/type";
 import CalendarDetails from "./CalendarDetails";
 import Spinner from "./Spinner";
+import ScheduleNow from "./ScheduleNow";
 
 function ScheduleTask() {
   const { schedules, isLoading } = useCalendar();
@@ -26,6 +27,13 @@ function ScheduleTask() {
         Schedule
         <BsThreeDots className="cursor-pointer" />
       </div>
+
+      {!LastTwoSchdule.length && (
+        <div className="flex flex-col justify-center items-center h-full space-y-4">
+          <p> No Schedule Task Yet, Schedule Now to get Started : )</p>
+          <ScheduleNow />
+        </div>
+      )}
 
       {isLoading ? (
         <Spinner />

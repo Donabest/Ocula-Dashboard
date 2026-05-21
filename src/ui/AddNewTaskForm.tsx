@@ -14,7 +14,6 @@ import { useEditTask } from "../Features/MyTasks/useEditTask";
 import { RadioGroup, RadioGroupItem } from "#components/ui/radio-group";
 import { Label } from "#components/shacnUi/label";
 import { useEffect } from "react";
-import { useUser } from "../Features/Authentication/useUser";
 
 type NewTasksProps = {
   handleCancel: () => void;

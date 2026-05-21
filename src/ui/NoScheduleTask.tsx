@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCalendar } from "../Context/useCalender";
 import { format, isFuture } from "date-fns";
+import ScheduleNow from "./ScheduleNow";
 
 function NoScheduleTask() {
   const Today = format(new Date(), "MMM dd yyyy");
@@ -13,14 +14,7 @@ function NoScheduleTask() {
           : `No task is schedule for ${selectDay}`}
       </h1>
 
-      {isFuture(selectDay) && (
-        <Link
-          to="/Calender"
-          className="text-sm bg-blue-700 text-white px-6 py-1.5 rounded-lg cursor-pointer transition-all  hover:bg-blue-800"
-        >
-          Schedule Task Now
-        </Link>
-      )}
+      {isFuture(selectDay) && <ScheduleNow />}
     </div>
   );
 }
