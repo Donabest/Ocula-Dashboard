@@ -40,6 +40,7 @@ export type schedule = {
   description: string;
   meet: string;
   notificationDismissed: boolean;
+  userId: string | undefined;
 };
 
 export interface tasktype {
@@ -51,9 +52,11 @@ export interface tasktype {
   id: number;
   status: status;
   title: string;
+  userId: string | undefined;
 }
 
 export interface projectType {
   id: number;
+  userId: string;
   projectName: string;
 }

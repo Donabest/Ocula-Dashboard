@@ -4,8 +4,27 @@ import PasswordInput from "../../ui/PasswordInput";
 import { IoLogoApple } from "react-icons/io";
 import LoginDashBoardPreview from "../../ui/LoginDashBoardPreview";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { useLoginUser } from "./useLoginUser";
 
 function LoginForm() {
+  const [email, setEmail] = useState<string>("dashboardExmple@gmail.com");
+  const [password, setPassword] = useState<string>("Demo123??");
+  const { loginUser, isLoading } = useLoginUser();
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email || !password) return;
+    loginUser(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      },
+    );
+  }
   return (
     <section className="grid grid-cols-2 font-poppin  ">
       <div className="flex flex-col justify-center items-center h-screen border-r ">
@@ -15,16 +34,24 @@ function LoginForm() {
             Enter your email and password to access your dashboard.
           </p>
         </div>
-        <form className="mt-8 space-y-2">
+        <form className="mt-8 space-y-2" onSubmit={handleSubmit}>
           <div className="mb-5 ">
             <label htmlFor="email">Email</label>
             <Input
               type="email"
+              autoComplete="username"
               placeholder="johnDoe@gmail.com"
               className="mt-1.5 font-montserrat"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <PasswordInput label="Password" text="Enter Your Password" />
+          <PasswordInput
+            label="Password"
+            text="Enter Your Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           <div className="flex justify-between items-center mt-3">
             <label
@@ -42,8 +69,9 @@ function LoginForm() {
           <button
             type="submit"
             className="block w-full mt-4 text-center bg-blue-700 text-white py-2 rounded-sm cursor-pointer shadow-blue-700 hover:text-gray-100 shadow-sm active:scale-101"
+            disabled={isLoading}
           >
-            Log In
+            {isLoading ? "...." : " Log In"}
           </button>
 
           <div className="flex justify-between items-center gap-1.5 mt-4">

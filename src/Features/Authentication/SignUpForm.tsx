@@ -44,6 +44,7 @@ function SignUpForm() {
               className="mt-1.5 font-montserrat"
             />
           </div>
+
           <PasswordInput label="Password" text="Enter your password" />
           <PasswordInput
             label="Confirm Password"

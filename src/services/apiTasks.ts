@@ -12,11 +12,14 @@ export async function getTasks(): Promise<tasktype[]> {
 }
 
 export async function createTask(createdTask: tasktype) {
-  const { data, error } = await supabase
-    .from("Tasks")
-    .insert({ ...createdTask, project_id: createdTask.project_id || null });
+  const { data, error } = await supabase.from("Tasks").insert({
+    ...createdTask,
+    project_id: createdTask.project_id || null,
+  });
 
   if (error) throw new Error("Task could not be created");
+
+  console.log(data);
 
   return data;
 }

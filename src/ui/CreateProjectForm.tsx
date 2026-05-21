@@ -3,6 +3,7 @@ import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateProject } from "../Features/Project/useCreateProject";
 import type { projectType } from "../utilities/type";
 import { useEditProject } from "../Features/Project/useEditProject";
+import { useUser } from "../Features/Authentication/useUser";
 
 function CreateProjectForm({
   handler,
@@ -13,6 +14,7 @@ function CreateProjectForm({
 }) {
   const { createProject, isCreating } = useCreateProject();
   const { editProject, isProjectEditing } = useEditProject();
+  const { user } = useUser();
 
   const [projectName, setProjectName] = useState<string>("");
 
@@ -26,11 +28,14 @@ function CreateProjectForm({
     if (!projectName.trim()) return;
 
     if (!projectToEdit) {
-      createProject(projectName, {
-        onSuccess: () => {
-          handler();
+      createProject(
+        { projectName, userId: user?.id },
+        {
+          onSuccess: () => {
+            handler();
+          },
         },
-      });
+      );
     }
 
     // Edit

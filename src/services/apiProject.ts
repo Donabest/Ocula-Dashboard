@@ -9,10 +9,16 @@ export async function getProjects(): Promise<projectType[]> {
   return data ?? [];
 }
 
-export async function createProject(projectName: string) {
+export async function createProject({
+  projectName,
+  userId,
+}: {
+  projectName: string;
+  userId: string | undefined;
+}) {
   const { data, error } = await supabase
     .from("Project")
-    .insert({ projectName });
+    .insert({ projectName, user_id: userId });
 
   if (error) throw new Error("Project Name could not be created");
 

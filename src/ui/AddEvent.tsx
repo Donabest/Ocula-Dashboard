@@ -6,6 +6,7 @@ import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateSchedule } from "../Features/Calender/useCreateSchedule";
 import { useEditScheduleTask } from "../Features/Calender/useEditScheduleTask";
 import { useEffect } from "react";
+import { useUser } from "../Features/Authentication/useUser";
 
 type handlerType = {
   handler: () => void;
@@ -18,6 +19,8 @@ function AddEvent({ handler, scheduleToEdit }: handlerType) {
   const { createScheduleTask, isScheduling } = useCreateSchedule();
   const { editScheduleTask, isScheduling: isSchedulingTask } =
     useEditScheduleTask();
+
+  const { user } = useUser();
 
   const { id: editId } = scheduleToEdit || {};
 
@@ -42,7 +45,7 @@ function AddEvent({ handler, scheduleToEdit }: handlerType) {
     } else {
       // Create
       createScheduleTask(
-        { ...data },
+        { ...data, userId: user?.id },
         {
           onSuccess: () => {
             reset();

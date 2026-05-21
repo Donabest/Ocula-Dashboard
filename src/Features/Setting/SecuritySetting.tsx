@@ -1,7 +1,15 @@
+import { useState } from "react";
 import PasswordInput from "../../ui/PasswordInput";
 import SettingHeader from "../../ui/SettingHeader";
 
 function SecuritySetting() {
+  const [currentPassword, setCurrentPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [newPassword, setNewPassword] = useState<string>("");
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setCurrentPassword(e.target.value);
+  }
+
   return (
     <div>
       <SettingHeader
@@ -10,13 +18,25 @@ function SecuritySetting() {
       />
       <form>
         <div className="border-t py-5">
-          <PasswordInput label="Current Password" text="Current Password" />
+          <PasswordInput
+            label="Current Password"
+            text="Current Password"
+            onChange={(e) => handleChange(e)}
+          />
         </div>
         <div className="border-t py-5">
-          <PasswordInput label="New Password" text="New Password" />
+          <PasswordInput
+            label="New Password"
+            text="New Password"
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
         </div>
         <div className="border-t py-5">
-          <PasswordInput label="Confirm Password" text="Confirm Password" />
+          <PasswordInput
+            label="Confirm Password"
+            text="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </div>
 
         <div className="space-x-3">

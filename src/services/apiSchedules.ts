@@ -9,9 +9,14 @@ export async function getScheduleTasks(): Promise<schedule[]> {
 }
 
 export async function createScheduleTask(newScheduleTask: schedule) {
-  const { data, error } = await supabase
-    .from("SchedulesTask")
-    .insert({ ...newScheduleTask });
+  const { userId, ...scheduleData } = newScheduleTask;
+
+  const payload = {
+    ...scheduleData,
+    user_id: userId,
+  };
+
+  const { data, error } = await supabase.from("SchedulesTask").insert(payload);
 
   if (error) throw new Error("SchedulesTask could not be created");
 
