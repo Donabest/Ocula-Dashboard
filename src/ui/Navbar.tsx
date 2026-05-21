@@ -9,6 +9,8 @@ import { useState } from "react";
 import SeeNotification from "./SeeNotification";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useDark } from "../Context/DarkModeContext";
+import { useLogOut } from "../Features/Authentication/useLogOut";
+import Spinner from "./Spinner";
 
 type NavbarProps = {
   onMenuClick?: () => void;
@@ -16,8 +18,10 @@ type NavbarProps = {
 
 function Navbar({ onMenuClick }: NavbarProps) {
   const { schedules } = useCalendar();
+  const { logOut, isLogingOut } = useLogOut();
   const { ToogleDarkMode, isDarkMode } = useDark();
   const [isHover, setIsHover] = useState<boolean>(false);
+  const [isHoverLogOut, setIsHoverLogOut] = useState<boolean>(false);
   const [isDropDown, setIsDropDown] = useState<boolean | null>(null);
 
   function close() {
@@ -81,8 +85,19 @@ function Navbar({ onMenuClick }: NavbarProps) {
           >
             {isDarkMode ? <LuSunMoon /> : <IoMoonOutline />}
           </li>
-          <li className="px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer dark:hover:bg-slate-800">
-            <HiOutlineLogout />
+          <li
+            className="relative px-2 py-1 hover:bg-gray-200 rounded-lg hover:text-blue-800 cursor-pointer dark:hover:bg-slate-800"
+            onClick={() => logOut()}
+            onMouseEnter={() => setIsHoverLogOut(true)}
+            onMouseLeave={() => setIsHoverLogOut(false)}
+          >
+            {isLogingOut ? <Spinner /> : <HiOutlineLogout />}
+
+            {isHoverLogOut && (
+              <span className="absolute top-7 -left-20 text-xs bg-gray-200 text-center text-gray-600 px-2 rounded-lg dark:bg-slate-800 dark:text-white">
+                See you Soon
+              </span>
+            )}
           </li>
         </ul>
       </div>

@@ -28,3 +28,8 @@ export async function loginUser({
 
   return loginUser;
 }
+
+export async function logOutUser() {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw new Error(error.message);
+}

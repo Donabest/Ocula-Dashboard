@@ -6,10 +6,11 @@ import LoginDashBoardPreview from "../../ui/LoginDashBoardPreview";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useLoginUser } from "./useLoginUser";
+import Spinner from "../../ui/Spinner";
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("dashboardExmple@gmail.com");
-  const [password, setPassword] = useState<string>("Demo123??");
+  const [password, setPassword] = useState<string>("1234567");
   const { loginUser, isLoading } = useLoginUser();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -71,7 +72,7 @@ function LoginForm() {
             className="block w-full mt-4 text-center bg-blue-700 text-white py-2 rounded-sm cursor-pointer shadow-blue-700 hover:text-gray-100 shadow-sm active:scale-101"
             disabled={isLoading}
           >
-            {isLoading ? "...." : " Log In"}
+            {isLoading ? <Spinner /> : " Log In"}
           </button>
 
           <div className="flex justify-between items-center gap-1.5 mt-4">
