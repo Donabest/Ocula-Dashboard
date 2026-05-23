@@ -26,7 +26,7 @@ function SignUpForm() {
       {
         onSettled: () => {
           reset();
-          navigate("/Dashboard");
+          navigate("/Login");
         },
       },
     );

@@ -1,3 +1,4 @@
+import { useUser } from "../Features/Authentication/useUser";
 import type { status, tasktype } from "../utilities/type";
 import { supabase } from "./supabase";
 
@@ -63,4 +64,12 @@ export async function updateStatus({
   if (error) throw new Error("Task status could not be change");
 
   return data;
+}
+
+export async function deleteAllData() {
+  await Promise.all([
+    supabase.from("Tasks").delete().neq("id", 0),
+    supabase.from("SchedulesTask").delete().neq("id", 0),
+    supabase.from("Project").delete().neq("id", 0),
+  ]);
 }

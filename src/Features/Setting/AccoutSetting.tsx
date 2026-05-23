@@ -1,8 +1,13 @@
 import { GoPlus } from "react-icons/go";
 import Avatar from "../../assets/person-1.jpg";
 import { PhoneInput } from "#components/reui/phone-input";
+import { useUser } from "../Authentication/useUser";
 
 function AccoutSetting() {
+  const {
+    user: { email },
+  } = useUser();
+
   return (
     <div className="pl-3">
       <div className="flex justify-between items-center border-b border-b-gray-200 pb-4 dark:border-b-slate-800">
@@ -67,7 +72,7 @@ function AccoutSetting() {
         <div className="flex justify-between items-center py-8  border-b border-b-gray-200 dark:border-b-slate-800">
           <h3 className="font-medium ">Email Address</h3>
           <div className=" text-gray-600 gap-1.5">
-            <input type="email" className="input w-118" />
+            <input type="email" className="input w-118" value={email} />
           </div>
         </div>
         <div className="flex justify-between items-center py-8 border-b border-b-gray-200 dark:border-b-slate-800 ">

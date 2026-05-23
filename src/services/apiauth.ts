@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import type { signUpType } from "../utilities/type";
 import { supabase } from "./supabase";
 
@@ -56,9 +57,28 @@ export async function signUpWithGoogle() {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${window.location.origin}/dashboard`,
+      redirectTo: `${window.location.origin}/Dashboard`,
+      queryParams: {
+        prompt: "select_account",
+      },
     },
   });
 
   if (error) throw new Error(error.message);
+}
+export async function deleteAccount() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-user`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+    },
+    body: JSON.stringify({ user_id: user?.id }),
+  });
+
+  await supabase.auth.signOut();
 }

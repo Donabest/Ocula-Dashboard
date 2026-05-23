@@ -7,12 +7,13 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useLoginUser } from "./useLoginUser";
 import Spinner from "../../ui/Spinner";
+import { useSignUpWithOAuth } from "./useSignUpWithOAuth";
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("dashboardExmple@gmail.com");
   const [password, setPassword] = useState<string>("1234567");
   const { loginUser, isLoading } = useLoginUser();
-
+  const { googleSignUp } = useSignUpWithOAuth();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email || !password) return;
@@ -83,7 +84,7 @@ function LoginForm() {
             <span className="w-full border"></span>
           </div>
           <div className="flex justify-center items-center gap-2 mt-4">
-            <div className="loginWith ">
+            <div className="loginWith " onClick={() => googleSignUp()}>
               <FcGoogle />
               Google
             </div>
