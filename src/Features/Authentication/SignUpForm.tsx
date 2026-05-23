@@ -1,11 +1,36 @@
 import { Input } from "#components/shacnUi/input";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import PasswordInput from "../../ui/PasswordInput";
 import LoginDashBoardPreview from "../../ui/LoginDashBoardPreview";
 import { IoLogoApple } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
+import type { signUpType } from "../../utilities/type";
+import FormError from "../../ui/FormError";
+import { useSignUp } from "./useSignUp";
+import { useSignUpWithOAuth } from "./useSignUpWithOAuth";
 
 function SignUpForm() {
+  const { register, handleSubmit, formState, getValues, clearErrors, reset } =
+    useForm<signUpType>();
+
+  const navigate = useNavigate();
+
+  const { signUp } = useSignUp();
+  const { googleSignUp } = useSignUpWithOAuth();
+  const { errors } = formState;
+
+  function handleOnSubmit({ fullName, email, password }: signUpType) {
+    signUp(
+      { fullName, email, password },
+      {
+        onSettled: () => {
+          reset();
+          navigate("/Dashboard");
+        },
+      },
+    );
+  }
   return (
     <section className="grid grid-cols-2 font-poppin  ">
       <div className="flex flex-col justify-center items-center h-screen border-r ">
@@ -17,7 +42,7 @@ function SignUpForm() {
         </div>
 
         <div className="flex justify-start items-start gap-2 w-1/2 mt-4">
-          <div className="loginWith ">
+          <div className="loginWith " onClick={() => googleSignUp()}>
             <FcGoogle />
             Google
           </div>
@@ -35,20 +60,62 @@ function SignUpForm() {
           <span className="w-full border"></span>
         </div>
 
-        <form className="mt-8 space-y-2 w-1/2">
+        <form
+          className="mt-8 space-y-2 w-1/2"
+          onSubmit={handleSubmit(handleOnSubmit)}
+        >
+          <div className="mb-5 ">
+            <label htmlFor="email">FullName</label>
+            <Input
+              type="fullName"
+              placeholder="John Doe"
+              className="mt-1.5 font-montserrat"
+              {...register("fullName", { required: "This field is required" })}
+            />
+            <FormError error={errors.fullName?.message} clear={clearErrors} />
+          </div>
           <div className="mb-5 ">
             <label htmlFor="email">Email</label>
             <Input
               type="email"
               placeholder="johnDoe@gmail.com"
               className="mt-1.5 font-montserrat"
+              {...register("email", {
+                required: "This field is required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Please provide a valid email address",
+                },
+              })}
             />
+            <FormError error={errors.email?.message} clear={clearErrors} />
           </div>
 
-          <PasswordInput label="Password" text="Enter your password" />
+          <PasswordInput
+            label="Password"
+            text="Enter your password"
+            {...register("password", {
+              required: "This field is required",
+              minLength: {
+                value: 8,
+                message: "password need a minimum of 8 characters",
+              },
+            })}
+          />
+          <FormError error={errors.password?.message} clear={clearErrors} />
+
           <PasswordInput
             label="Confirm Password"
             text="Confirm your password"
+            {...register("confirmPassword", {
+              required: "This field is required",
+              validate: (value) =>
+                value === getValues().password || "Password need to match",
+            })}
+          />
+          <FormError
+            error={errors.confirmPassword?.message}
+            clear={clearErrors}
           />
 
           <label

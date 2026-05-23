@@ -60,3 +60,10 @@ export interface projectType {
   userId: string;
   projectName: string;
 }
+
+export interface signUpType {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}

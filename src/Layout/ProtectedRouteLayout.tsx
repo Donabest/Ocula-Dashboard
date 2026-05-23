@@ -5,7 +5,7 @@ import Spinner from "../ui/Spinner";
 
 function ProtectedRouteLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
-  const { user, isLoading, isAuthenticated } = useUser();
+  const { isLoading, isAuthenticated } = useUser();
 
   //   if not authenticated redirect to login page
   if (!isAuthenticated && !isLoading) navigate("/Login");

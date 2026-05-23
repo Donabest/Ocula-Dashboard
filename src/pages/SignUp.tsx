@@ -2,7 +2,7 @@ import SignUpForm from "../Features/Authentication/SignUpForm";
 
 function SignUp() {
   return (
-    <main>
+    <main className="dark:bg-[#111827]">
       <SignUpForm />
     </main>
   );

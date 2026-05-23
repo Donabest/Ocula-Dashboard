@@ -69,6 +69,9 @@ function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
 
   const { errors } = formState;
 
+  function clearError() {
+    clearErrors();
+  }
   const isLoading = isEditing || isPending;
 
   return (
@@ -109,7 +112,7 @@ function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
                   required: "This field is required",
                 })}
               />
-              <FormError error={errors.title?.message} clear={clearErrors} />
+              <FormError error={errors.title?.message} clear={clearError} />
             </div>
 
             <div className="space-y-1.5">
@@ -160,7 +163,7 @@ function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
 
                 <FormError
                   error={errors?.StartDate?.message}
-                  clear={clearErrors}
+                  clear={clearError}
                 />
               </div>
               <div className="space-y-1.5">
@@ -178,7 +181,7 @@ function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
 
                 <FormError
                   error={errors?.EndDate?.message}
-                  clear={clearErrors}
+                  clear={clearError}
                 />
               </div>
             </div>
@@ -213,7 +216,7 @@ function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
 
                 <FormError
                   error={errors?.priority?.message}
-                  clear={clearErrors}
+                  clear={clearError}
                 />
               </div>
 
@@ -244,10 +247,7 @@ function AddNewTaskForm({ handleCancel, taskToEdit }: NewTasksProps) {
                   )}
                 />
 
-                <FormError
-                  error={errors?.status?.message}
-                  clear={clearErrors}
-                />
+                <FormError error={errors?.status?.message} clear={clearError} />
               </div>
             </div>
 

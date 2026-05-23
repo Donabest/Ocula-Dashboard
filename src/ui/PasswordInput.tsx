@@ -2,19 +2,22 @@ import { Button } from "#components/shacnUi/button";
 import { Input } from "#components/shacnUi/input";
 import { Label } from "#components/shacnUi/label";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+
+type passwordInputProps = {
+  label: string;
+  text: string;
+  value?: Partial<string>;
+  onChange: Partial<(e: React.ChangeEvent<HTMLInputElement>) => void>;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 function PasswordInput({
   label,
   text,
   onChange,
   value,
-}: {
-  label: string;
-  text: string;
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
+  ...props
+}: passwordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -30,6 +33,7 @@ function PasswordInput({
           placeholder={text}
           value={value}
           onChange={(e) => onChange(e)}
+          {...props}
           type={showPassword ? "text" : "password"}
         />
         <Button
