@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getcurrentUser } from "../../services/apiauth";
 import { toast } from "react-hot-toast";
+import type { User, UserMetadata } from "@supabase/supabase-js";
 
 export function useUser() {
   const {

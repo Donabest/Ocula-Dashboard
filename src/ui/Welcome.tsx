@@ -5,10 +5,22 @@ import { GiEmptyHourglass } from "react-icons/gi";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { useTasks } from "../services/useTasks";
+import { useUser } from "../Features/Authentication/useUser";
 
 function Welcome() {
   const { completedTasks, inProgressTasks, isLoading } = useTasks();
+  const { user } = useUser();
+
+  const { fullName } = user?.user_metadata || {};
+  const [f, lastName] = fullName.split(" ");
+
   const Today = format(new Date(), "eeee, do MMMM");
+
+  const dayPeriod = new Intl.DateTimeFormat("en-US", {
+    dayPeriod: "short",
+  })
+    .format(new Date())
+    .slice(-8);
   const navigate = useNavigate();
   return (
     <div className="flex flex-col px-4 sm:px-7 py-6 gap-3 pt-24 lg:pt-25">
@@ -20,7 +32,7 @@ function Welcome() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          Good Evening! Don,
+          {` Good ${dayPeriod}! ${lastName}`}
         </motion.h1>
         <motion.div
           className="flex items-center pt-4"

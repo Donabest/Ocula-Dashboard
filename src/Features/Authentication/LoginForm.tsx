@@ -11,7 +11,7 @@ import { useSignUpWithOAuth } from "./useSignUpWithOAuth";
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("dashboardExmple@gmail.com");
-  const [password, setPassword] = useState<string>("1234567");
+  const [password, setPassword] = useState<string>("Abest123??");
   const { loginUser, isLoading } = useLoginUser();
   const { googleSignUp } = useSignUpWithOAuth();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
