@@ -9,12 +9,16 @@ function User() {
   return (
     <div className="flex justify-start items-center w-full  mx-auto gap-2 px-2 py-1  border border-gray-300 rounded-lg ">
       <img
-        src={user?.user_metadata.avatar_url ?? ProfileImage}
+        src={
+          user?.user_metadata.has_custom_avatar
+            ? user?.user_metadata.custom_avatar
+            : (user?.user_metadata.picture ?? ProfileImage)
+        }
         alt={ProfileImage}
         className="h-8 w-8 rounded-full"
       />
       <div className="flex flex-col justify-center  items-center text-sm ">
-        <p>Hi, {lastName ?? "Demo"}</p>
+        <p>Hi, {lastName ?? "User Example"}</p>
         <div className="flex items-center gap-1.5">
           <span className=" bg-green-300 p-1 rounded-full"></span>
           <span className=" text-gray-400">online </span>

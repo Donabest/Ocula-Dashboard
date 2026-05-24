@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useLoginUser } from "./useLoginUser";
 import Spinner from "../../ui/Spinner";
 import { useSignUpWithOAuth } from "./useSignUpWithOAuth";
+import { toast } from "react-hot-toast";
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("dashboardExmple@gmail.com");
@@ -84,7 +85,16 @@ function LoginForm() {
             <span className="w-full border"></span>
           </div>
           <div className="flex justify-center items-center gap-2 mt-4">
-            <div className="loginWith " onClick={() => googleSignUp()}>
+            <div
+              className="loginWith "
+              onClick={() =>
+                googleSignUp(undefined, {
+                  onError: (err) => {
+                    toast.error(err.message);
+                  },
+                })
+              }
+            >
               <FcGoogle />
               Google
             </div>

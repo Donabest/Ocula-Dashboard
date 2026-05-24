@@ -22,7 +22,7 @@ function DangerZone() {
   const { deleteAccount, isPending: isAccountDeleting } = useDeleteAccount();
 
   function handleDeleteData() {
-    if (!tasks.length || !schedules.length || !projects.length) {
+    if (!tasks.length && !schedules.length && !projects.length) {
       toast.error("No data to delete");
       setIsDeleteAccount(false);
       return;

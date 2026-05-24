@@ -5,12 +5,6 @@ import { toast } from "react-hot-toast";
 export function useSignUpWithOAuth() {
   const { mutate: googleSignUp, isPending } = useMutation({
     mutationFn: signUpWithGoogle,
-    onSettled: () => {
-      toast.success("Account Created Successfully");
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
   });
 
   return { googleSignUp, isPending };

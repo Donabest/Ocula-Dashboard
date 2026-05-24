@@ -9,6 +9,7 @@ import { useRemoveAvatar } from "./useRemoveAvatar";
 
 function AccoutSetting() {
   const { user } = useUser();
+  console.log(user);
   const { updateUser } = useUpdateUser();
   const { removeAvatar, isPending } = useRemoveAvatar();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -49,7 +50,7 @@ function AccoutSetting() {
             onClick={() => {
               setFirstName(first);
               setLastName(Last);
-              setAvatar(user?.user_metadata.avatar_url);
+              setAvatar(user?.user_metadata.custom_avatar);
             }}
           >
             cancel
@@ -67,7 +68,13 @@ function AccoutSetting() {
 
       <div className="flex items-center justify-start gap-6 py-5 border-b border-b-gray-200 dark:border-b-slate-800">
         <img
-          src={preview ?? user?.user_metadata.avatar_url ?? Avatar}
+          src={
+            preview ??
+            (user?.user_metadata?.has_custom_avatar
+              ? user?.user_metadata?.custom_avatar
+              : user?.user_metadata?.picture) ??
+            Avatar
+          }
           alt="Avatar image"
           className="h-15 w-15 rounded-full"
         />

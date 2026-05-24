@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import useClickOutSide from "../hooks/useClickOutSide";
+import { cn } from "#lib/utils";
 
 function ConfirmDelete({
   handleClick,
@@ -40,7 +41,10 @@ function ConfirmDelete({
               </button>
               <button
                 type="button"
-                className="px-5 py-2 rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-500 active:scale-101"
+                className={cn(
+                  "px-5 py-2 rounded-lg text-white bg-blue-600 cursor-pointer hover:bg-blue-500 active:scale-101",
+                  pending && "cursor-not-allowed",
+                )}
                 onClick={handleDelete}
                 disabled={pending}
               >

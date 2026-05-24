@@ -1,7 +1,7 @@
-import { Currency } from "lucide-react";
 import type { signUpType } from "../utilities/type";
 import { supabase, supabaseUrl } from "./supabase";
 
+// Get the log in User
 export async function getcurrentUser() {
   const { data: session } = await supabase.auth.getSession();
 
@@ -13,6 +13,8 @@ export async function getcurrentUser() {
 
   return data.user;
 }
+
+// Log user In
 
 export async function loginUser({
   email,
@@ -36,6 +38,7 @@ export async function logOutUser() {
   if (error) throw new Error(error.message);
 }
 
+// Sign in With email and password
 export async function signUpUser({ fullName, email, password }: signUpType) {
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -53,6 +56,7 @@ export async function signUpUser({ fullName, email, password }: signUpType) {
   return data;
 }
 
+// Sign in to dashboard with google
 export async function signUpWithGoogle() {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -66,6 +70,8 @@ export async function signUpWithGoogle() {
 
   if (error) throw new Error(error.message);
 }
+
+// Delete User Account
 export async function deleteAccount() {
   const {
     data: { user },
@@ -82,6 +88,8 @@ export async function deleteAccount() {
 
   await supabase.auth.signOut();
 }
+
+// Update User Account
 
 export async function updateCurrentUser({
   avatar,
@@ -102,19 +110,22 @@ export async function updateCurrentUser({
 
   if (!avatar) return data;
 
-  const fileName = `Avatar-${data.user.id}-${Math.random()}`;
+  const fileName = `Avatar-${data.user.id}`;
 
   const { error: storageError } = await supabase.storage
     .from("Avatar")
-    .upload(fileName, avatar);
+    .upload(fileName, avatar, { upsert: true });
 
   if (storageError) throw new Error(storageError.message);
-  // https://vvmxejfpbgcakdpnsacz.supabase.co/storage/v1/object/public/Avatar/cropped-image-of-basketball-player-playing-basketb-2022-12-16-20-45-01-utc.jpg
+
+  // { Image format
+  // https://supabaseUrl/storage/v1/object/public/Avatar/cropped-image-of-basketball-player-playing-basketb-2022-12-16-20-45-01-utc.jpg}
 
   const { data: updateUser, error: updateError } =
     await supabase.auth.updateUser({
       data: {
-        avatar_url: `${supabaseUrl}/storage/v1/object/public/Avatar/${fileName}`,
+        custom_avatar: `${supabaseUrl}/storage/v1/object/public/Avatar/${fileName}`,
+        has_custom_avatar: true,
       },
     });
 
@@ -123,10 +134,12 @@ export async function updateCurrentUser({
   return updateUser;
 }
 
+// Remove User Avatar
 export async function removeUserAvatar() {
   const { data, error } = await supabase.auth.updateUser({
     data: {
-      avatar_url: null,
+      custom_avatar: null,
+      has_custom_avatar: false,
     },
   });
 
@@ -134,6 +147,8 @@ export async function removeUserAvatar() {
 
   return data;
 }
+
+// Update user Password
 
 export async function updatePassword({
   currentPassword,

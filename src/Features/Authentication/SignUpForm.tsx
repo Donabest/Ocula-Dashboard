@@ -9,6 +9,7 @@ import type { signUpType } from "../../utilities/type";
 import FormError from "../../ui/FormError";
 import { useSignUp } from "./useSignUp";
 import { useSignUpWithOAuth } from "./useSignUpWithOAuth";
+import { toast } from "react-hot-toast";
 
 function SignUpForm() {
   const { register, handleSubmit, formState, getValues, clearErrors, reset } =
@@ -42,7 +43,16 @@ function SignUpForm() {
         </div>
 
         <div className="flex justify-start items-start gap-2 w-1/2 mt-4">
-          <div className="loginWith " onClick={() => googleSignUp()}>
+          <div
+            className="loginWith "
+            onClick={() =>
+              googleSignUp(undefined, {
+                onError: (err) => {
+                  toast.error(err.message);
+                },
+              })
+            }
+          >
             <FcGoogle />
             Google
           </div>
@@ -55,7 +65,7 @@ function SignUpForm() {
         <div className="flex justify-start items-center w-1/2  gap-1.5 mt-4 ">
           <span className="w-full border"></span>
           <span className="w-full text-center text-gray-400 text-sm ">
-            Or logIn with
+            Or Sign Up with
           </span>
           <span className="w-full border"></span>
         </div>
