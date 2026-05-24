@@ -9,22 +9,19 @@ import { useRemoveAvatar } from "./useRemoveAvatar";
 
 function AccoutSetting() {
   const { user } = useUser();
-  console.log(user);
   const { updateUser } = useUpdateUser();
   const { removeAvatar, isPending } = useRemoveAvatar();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>();
 
-  const { fullName } = user?.user_metadata ?? {};
+  const { firstName: first, lastName: last } = user?.user_metadata ?? {};
 
-  const [first = "", Last = ""] = fullName?.split(" ") ?? [];
   const [firstName, setFirstName] = useState<string>(first);
-  const [lastName, setLastName] = useState<string>(Last);
+  const [lastName, setLastName] = useState<string>(last);
   const [avatar, setAvatar] = useState<File | null>(null);
 
   function handleSubmit() {
-    const fullName = firstName + " " + lastName;
-    if (!fullName) return;
+    if (!firstName && !lastName) return;
     updateUser(
       { firstName, lastName, avatar },
       {

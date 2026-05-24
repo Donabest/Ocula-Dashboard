@@ -3,8 +3,8 @@ import { useUser } from "../Features/Authentication/useUser";
 
 function User() {
   const { user } = useUser();
-  const { fullName } = user?.user_metadata ?? {};
-  const [first, lastName] = fullName?.split(" ") ?? [];
+  console.log(user);
+  const { lastName } = user?.user_metadata ?? {};
 
   return (
     <div className="flex justify-start items-center w-full  mx-auto gap-2 px-2 py-1  border border-gray-300 rounded-lg ">

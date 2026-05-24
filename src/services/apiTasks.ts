@@ -1,4 +1,3 @@
-import { useUser } from "../Features/Authentication/useUser";
 import type { status, tasktype } from "../utilities/type";
 import { supabase } from "./supabase";
 
@@ -19,8 +18,6 @@ export async function createTask(createdTask: tasktype) {
   });
 
   if (error) throw new Error("Task could not be created");
-
-  console.log(data);
 
   return data;
 }

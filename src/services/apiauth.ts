@@ -39,13 +39,19 @@ export async function logOutUser() {
 }
 
 // Sign in With email and password
-export async function signUpUser({ fullName, email, password }: signUpType) {
+export async function signUpUser({
+  firstName,
+  lastName,
+  email,
+  password,
+}: signUpType) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
-        fullName,
+        firstName,
+        lastName,
         avatar: "",
       },
     },
@@ -102,8 +108,8 @@ export async function updateCurrentUser({
 }) {
   let updateData;
 
-  const fullName = firstName + " " + lastName;
-  if (firstName && lastName) updateData = { data: { fullName } };
+  // const fullName = firstName + " " + lastName;
+  if (firstName && lastName) updateData = { data: { firstName, lastName } };
 
   const { data, error } = await supabase.auth.updateUser({ ...updateData });
   if (error) throw new Error(error.message);

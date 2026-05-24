@@ -21,9 +21,14 @@ function SignUpForm() {
   const { googleSignUp } = useSignUpWithOAuth();
   const { errors } = formState;
 
-  function handleOnSubmit({ fullName, email, password }: signUpType) {
+  function handleOnSubmit({
+    firstName,
+    lastName,
+    email,
+    password,
+  }: signUpType) {
     signUp(
-      { fullName, email, password },
+      { firstName, lastName, email, password },
       {
         onSettled: () => {
           reset();
@@ -75,14 +80,24 @@ function SignUpForm() {
           onSubmit={handleSubmit(handleOnSubmit)}
         >
           <div className="mb-5 ">
-            <label htmlFor="email">FullName</label>
+            <label htmlFor="email">First Name</label>
             <Input
               type="fullName"
-              placeholder="John Doe"
+              placeholder="John"
               className="mt-1.5 font-montserrat"
-              {...register("fullName", { required: "This field is required" })}
+              {...register("firstName", { required: "This field is required" })}
             />
-            <FormError error={errors.fullName?.message} clear={clearErrors} />
+            <FormError error={errors.firstName?.message} clear={clearErrors} />
+          </div>
+          <div className="mb-5 ">
+            <label htmlFor="email">last Name</label>
+            <Input
+              type="fullName"
+              placeholder=" Doe"
+              className="mt-1.5 font-montserrat"
+              {...register("lastName", { required: "This field is required" })}
+            />
+            <FormError error={errors.lastName?.message} clear={clearErrors} />
           </div>
           <div className="mb-5 ">
             <label htmlFor="email">Email</label>

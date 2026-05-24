@@ -27,9 +27,9 @@ function SecuritySetting() {
       { currentPassword, newPassword },
       {
         onSuccess: () => {
-          setConfirmPassword(" ");
-          setCurrentPassword(" ");
-          setNewPassword(" ");
+          setConfirmPassword("");
+          setCurrentPassword("");
+          setNewPassword("");
         },
       },
     );

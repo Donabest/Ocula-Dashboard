@@ -11,16 +11,14 @@ function Welcome() {
   const { completedTasks, inProgressTasks, isLoading } = useTasks();
   const { user } = useUser();
 
-  const { fullName } = user?.user_metadata || {};
-  const [f, lastName] = fullName.split(" ");
+  const { lastName } = user?.user_metadata || {};
 
   const Today = format(new Date(), "eeee, do MMMM");
 
   const dayPeriod = new Intl.DateTimeFormat("en-US", {
     dayPeriod: "short",
-  })
-    .format(new Date())
-    .slice(-8);
+  }).format(new Date());
+
   const navigate = useNavigate();
   return (
     <div className="flex flex-col px-4 sm:px-7 py-6 gap-3 pt-24 lg:pt-25">

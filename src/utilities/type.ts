@@ -62,7 +62,8 @@ export interface projectType {
 }
 
 export interface signUpType {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword?: string;
