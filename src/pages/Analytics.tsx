@@ -1,5 +1,7 @@
+import AnalyticsLayout from "../Features/Analytics/AnalyticsLayout";
+
 function Analytics() {
-  return <div></div>;
+  return <AnalyticsLayout />;
 }
 
 export default Analytics;

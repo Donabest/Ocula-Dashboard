@@ -1,6 +1,6 @@
 interface headerProp {
   title: string | undefined;
-  description: string;
+  description?: string;
 }
 
 function PageHeader({ title, description }: headerProp) {

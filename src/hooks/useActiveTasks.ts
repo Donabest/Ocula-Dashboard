@@ -34,6 +34,10 @@ export function useActiveTasks() {
   const filteredTodo = projectId
     ? todoTasks.filter((t) => t.project_id === Number(projectId))
     : todoTasks;
+
+  const overDueTask = tasks.filter(
+    (t) => t.status !== "Completed" && new Date(t.EndDate) < new Date(),
+  );
   const currentPage = projects.find(
     (project) => project.id === Number(projectId),
   );
@@ -44,6 +48,7 @@ export function useActiveTasks() {
     inProgressTasks: filteredInProgress,
     upCommingTasks: filteredUpComming,
     todoTasks: filteredTodo,
+    overDueTask,
     isLoading,
     currentPage,
   };
