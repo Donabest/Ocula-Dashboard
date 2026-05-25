@@ -5,6 +5,7 @@ import AddNewTaskForm from "./AddNewTaskForm";
 
 function BoardTaskCard({ Tasks }: { Tasks: tasktype[] }) {
   const [isAddNewTask, setIsAddNewTask] = useState<boolean>();
+
   return (
     <>
       <div className=" space-y-4 bg-slate-200/60 p-3 h-fit rounded-lg dark:bg-slate-800">

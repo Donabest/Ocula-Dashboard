@@ -3,7 +3,6 @@ import { useUser } from "../Features/Authentication/useUser";
 
 function User() {
   const { user } = useUser();
-  console.log(user);
   const { lastName } = user?.user_metadata ?? {};
 
   return (
