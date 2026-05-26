@@ -10,6 +10,7 @@ import { RiTodoFill } from "react-icons/ri";
 import PieChartAnalytics from "./PieChartAnalytics";
 import PriorityBarChartAnalytics from "./PriorityBarChartAnalytics";
 import TaskCreatedOverTimeAreaChart from "./TaskCreatedOverTimeAreaChart";
+import CompletionRateByPriorityChart from "./CompletionRateByPriorityChart";
 
 function AnalyticsLayout() {
   const {
@@ -72,6 +73,7 @@ function AnalyticsLayout() {
         <PriorityBarChartAnalytics tasks={tasks} />
       </div>
       <TaskCreatedOverTimeAreaChart tasks={tasks} />
+      <CompletionRateByPriorityChart tasks={tasks} />
     </section>
   );
 }

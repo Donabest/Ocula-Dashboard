@@ -4,6 +4,7 @@ type ChartPayload = {
   name?: string | number;
   value?: TooltipValueType;
   color?: string;
+  percentage?: string;
 };
 
 function formatValue(value: TooltipValueType | undefined) {
@@ -23,7 +24,7 @@ function ChartTooltip({
         const color = chartData.color ?? item.color ?? item.fill ?? "#475569";
         const name = chartData.name ?? item.name;
         const value = formatValue(chartData.value ?? item.value);
-
+        const percentage = chartData.percentage ?? item.payload.percentage;
         return (
           <p
             className="flex items-center gap-1.5 font-medium leading-tight"
@@ -34,9 +35,16 @@ function ChartTooltip({
               className="h-2 w-2 rounded-full"
               style={{ backgroundColor: color }}
             ></span>
-            <span>
-              {name}: {value}
-            </span>
+            {percentage ? (
+              <p className="flex flex-col">
+                {name}
+                <span>{`${percentage}: ${value}%`}</span>
+              </p>
+            ) : (
+              <span>
+                {name}: {value}
+              </span>
+            )}
           </p>
         );
       })}
