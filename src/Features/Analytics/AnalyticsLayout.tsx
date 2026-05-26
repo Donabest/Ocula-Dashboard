@@ -51,7 +51,7 @@ function AnalyticsLayout() {
     },
   ];
   return (
-    <section className="max-w-6xl pt-24 pl-4">
+    <main className="max-w-6xl pt-24 pl-4">
       <PageHeader
         title="Analytics"
         description="manage,view and track your task data"
@@ -74,7 +74,7 @@ function AnalyticsLayout() {
       </div>
       <TaskCreatedOverTimeAreaChart tasks={tasks} />
       <CompletionRateByPriorityChart tasks={tasks} />
-    </section>
+    </main>
   );
 }
 

@@ -3,6 +3,7 @@ import type { ListType } from "../../utilities/type";
 import { HiNumberedList } from "react-icons/hi2";
 import { PiKanbanThin } from "react-icons/pi";
 import { SlCalender } from "react-icons/sl";
+import { useSearchParams } from "react-router-dom";
 
 const TasksTabs: ListType[] = [
   {
@@ -29,12 +30,20 @@ interface tabsProps {
 }
 
 function TaskTabs({ active, handleActive }: tabsProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  function handleUrlChange(list: string) {
+    searchParams.set("", list);
+    setSearchParams(searchParams);
+  }
   return (
     <div className="flex items-center gap-5 overflow-x-auto hide-scrollbar pt-8 sm:gap-6">
       {TasksTabs.map((tab, index) => (
         <div
           className={`flex shrink-0 items-center gap-1 pb-2 text-gray-700 ${active === tab.list && "border-b-2 border-b-purple-700"} cursor-pointer dark:text-slate-300`}
-          onClick={() => handleActive(tab.list)}
+          onClick={() => {
+            handleActive(tab.list);
+            handleUrlChange(tab.list);
+          }}
           key={index}
         >
           {tab.icon}

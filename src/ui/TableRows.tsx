@@ -4,8 +4,8 @@ import User from "../assets/person-1.jpg";
 import type { priorityBg, status } from "../utilities/type";
 import { useState } from "react";
 import StatusToggleMenu from "./StatusToggleMenu";
-import { useActiveTasks } from "../hooks/useActiveTasks";
 import TimeDiff from "../utilities/TimeDiff";
+import { useSortTask } from "../Features/MyTasks/useSortTask";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
@@ -20,7 +20,7 @@ const priorityBg: Record<priorityBg, string> = {
 };
 
 function TableRows() {
-  const { tasks } = useActiveTasks();
+  const { sortedTask } = useSortTask();
   const [openId, setOpenId] = useState<number | null>();
 
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
@@ -34,7 +34,7 @@ function TableRows() {
 
   return (
     <>
-      {tasks.map((task, index) => (
+      {sortedTask.map((task, index) => (
         <motion.div
           className="relative mt-4 rounded-lg border border-gray-200 bg-gray-50 p-3 font-medium text-gray-600 dark:border-slate-700 dark:bg-slate-700/40 dark:text-slate-200 lg:grid lg:min-w-170 lg:grid-cols-[4fr_2fr_2fr] lg:gap-5 lg:border-0 lg:border-t-2 lg:bg-transparent lg:p-0 lg:pt-4 lg:mt-5 lg:w-full lg:dark:bg-transparent"
           initial={{ y: 5, opacity: 0 }}

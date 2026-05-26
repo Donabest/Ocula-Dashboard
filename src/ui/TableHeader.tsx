@@ -1,7 +1,15 @@
+import { useSearchParams } from "react-router-dom";
 import { useActiveTasks } from "../hooks/useActiveTasks";
 
 function TableHeader() {
   const { tasks, isLoading } = useActiveTasks();
+
+  const [searchParamas, setSearchParams] = useSearchParams();
+  function handleSortedUrl(e) {
+    searchParamas.set("Sorted", e.target.value);
+    setSearchParams(searchParamas);
+  }
+
   return (
     <div>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -13,22 +21,23 @@ function TableHeader() {
         </h1>
 
         <div className="flex flex-wrap items-center gap-3">
-          <label htmlFor="filter">Filter :</label>
+          <label htmlFor="sort">Sort :</label>
           <select
-            name="filter"
-            id="filter"
+            name="sort"
+            id="sort"
             className="bg-gray-100 px-4 py-1 border-0 outline-0 rounded-lg dark:bg-slate-700"
+            onClick={handleSortedUrl}
           >
-            <option value="By Completed">Completed First</option>
-            <option value="By InProgress">InProgress First</option>
-            <option value="By Todo">Todo First</option>
-            <option value="By StartDate">By start Date</option>
-            <option value="By EndDate">By End Date</option>
+            <option value="ByCompleted">Completed First</option>
+            <option value="ByInprogress">InProgress First</option>
+            <option value="ByTodo">Todo First</option>
+            <option value="ByStartDate"> start Date</option>
+            <option value="ByDueDate"> Due Date</option>
           </select>
         </div>
       </div>
 
-      <div className="hidden min-w-[680px] grid-cols-[4fr_2fr_2fr] text-gray-400 font-medium mt-8 w-full lg:grid">
+      <div className="hidden min-w-170 grid-cols-[4fr_2fr_2fr] text-gray-400 font-medium mt-8 w-full lg:grid">
         <p>Name</p>
         <div className="flex items-center text-center gap-8 ">
           <span>Start Date</span>
