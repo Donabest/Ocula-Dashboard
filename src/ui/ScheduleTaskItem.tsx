@@ -1,11 +1,12 @@
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
 
-import User from "../assets/person-1.jpg";
+import User from "../assets/default-avatar.jpg";
 import type { schedule } from "../utilities/type";
 import TimeDiff from "../utilities/TimeDiff";
 import { useCalendar } from "../Context/useCalender";
 import { parseTimeToLocal } from "../utilities/TimeParse";
+import { useUser } from "../Features/Authentication/useUser";
 
 interface scheduleTaskItemProps {
   task: schedule;
@@ -14,6 +15,8 @@ interface scheduleTaskItemProps {
 }
 
 function ScheduleTaskItem({ task, detail, setSelect }: scheduleTaskItemProps) {
+  const { user } = useUser();
+
   const { setIsOpen } = useCalendar();
   const handleClick = (task: schedule) => {
     setSelect?.(task);
@@ -50,7 +53,15 @@ function ScheduleTaskItem({ task, detail, setSelect }: scheduleTaskItemProps) {
 
         {detail && (
           <div className="flex justify-between items-center pt-3 border-t-2 border-gray-300 dark:border-slate-600">
-            <img src={User} alt={User} className="w-7 h-7 rounded-full" />
+            <img
+              src={
+                user?.user_metadata.has_custom_avatar
+                  ? user?.user_metadata.custom_avatar
+                  : (user?.user_metadata.picture ?? User)
+              }
+              alt={User}
+              className="w-7 h-7 rounded-full"
+            />
             <button
               className="flex  items-center gap-2 cursor-pointer"
               onClick={() => handleClick(task)}

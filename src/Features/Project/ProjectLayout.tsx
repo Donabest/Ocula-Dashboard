@@ -1,3 +1,4 @@
+import { FaRProject } from "react-icons/fa";
 import { useState } from "react";
 import PageHeader from "../../ui/PageHeader";
 import Button from "../../ui/Button";
@@ -8,7 +9,6 @@ import { useActiveTasks } from "../../hooks/useActiveTasks";
 import AddNewTaskForm from "../../ui/AddNewTaskForm";
 import MyTasksBoardView from "../MyTasks/MyTasksBoardView";
 import MyTasksCalendar from "../MyTasks/MyTasksCalendar";
-import { FaRProject } from "react-icons/fa";
 import Empty from "../../ui/Empty";
 
 function ProjectLayout() {

@@ -3,7 +3,7 @@ import TimeDiff from "../utilities/TimeDiff";
 import type { priorityBg, status, tasktype } from "../utilities/type";
 import StatusToggleMenu from "./StatusToggleMenu";
 
-import Assignee from "../assets/person-1.jpg";
+import Assignee from "../assets/default-avatar.jpg";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Menu from "./Menu";
 import { useState } from "react";
@@ -11,6 +11,7 @@ import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 import AddNewTaskForm from "./AddNewTaskForm";
 import { cn } from "#lib/utils";
+import { useUser } from "../Features/Authentication/useUser";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
@@ -32,6 +33,7 @@ interface props {
 }
 
 function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
+  const { user } = useUser();
   const [isEditing, setIsEditing] = useState<number | null>();
   const { deleteTask, isDeleting } = useDeleteTask();
   const [isActive, setIsActive] = useState<boolean>(true);
@@ -104,7 +106,11 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
         {AssignTo && (
           <div className="relative flex shrink-0 items-center gap-3">
             <img
-              src={Assignee}
+              src={
+                user?.user_metadata.has_custom_avatar
+                  ? user?.user_metadata.custom_avatar
+                  : (user?.user_metadata.picture ?? Assignee)
+              }
               alt="Assignee"
               className="w-8 h-8 rounded-full"
             />

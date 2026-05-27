@@ -1,11 +1,12 @@
 import { CiFlag1 } from "react-icons/ci";
 import { motion } from "motion/react";
-import User from "../assets/person-1.jpg";
+import User from "../assets/default-avatar.jpg";
 import type { priorityBg, status } from "../utilities/type";
 import { useState } from "react";
 import StatusToggleMenu from "./StatusToggleMenu";
 import TimeDiff from "../utilities/TimeDiff";
 import { useSortTask } from "#hooks/useSortTask";
+import { useUser } from "../Features/Authentication/useUser";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",
@@ -22,7 +23,7 @@ const priorityBg: Record<priorityBg, string> = {
 function TableRows() {
   const { sortedTask } = useSortTask();
   const [openId, setOpenId] = useState<number | null>();
-
+  const { user } = useUser();
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
     e.stopPropagation();
     setOpenId((prevId) => (prevId === id ? null : id));
@@ -63,7 +64,15 @@ function TableRows() {
             </span>
           </div>
           <div className="mt-3 flex items-center gap-4 lg:col-end-6 lg:mt-0 lg:gap-12 lg:text-right">
-            <img src={User} alt={User} className="w-8 h-8 rounded-full " />
+            <img
+              src={
+                user?.user_metadata.has_custom_avatar
+                  ? user?.user_metadata.custom_avatar
+                  : (user?.user_metadata.picture ?? User)
+              }
+              alt={User}
+              className="w-8 h-8 rounded-full "
+            />
             <span
               className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-sm ${priorityBg[task.priority]} `}
             >

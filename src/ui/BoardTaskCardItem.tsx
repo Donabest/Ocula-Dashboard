@@ -3,11 +3,12 @@ import Menu from "./Menu";
 import { useState } from "react";
 import type { priorityBg, tasktype } from "../utilities/type";
 
-import Assignee from "../assets/person-1.jpg";
+import Assignee from "../assets/default-avatar.jpg";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 import AddNewTaskForm from "./AddNewTaskForm";
 import { useDraggable } from "@dnd-kit/react";
+import { useUser } from "../Features/Authentication/useUser";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 text-red-600 dark:bg-red-300 ",
@@ -16,6 +17,7 @@ const priorityBg: Record<priorityBg, string> = {
 };
 
 function BoardTaskCardItem({ task }: { task: tasktype }) {
+  const { user } = useUser();
   const [isEditing, setIsEditing] = useState<number | null>();
   const [openId, setOpenId] = useState<number | null>(null);
   const [isDelete, setIsDelete] = useState<boolean>();
@@ -67,7 +69,15 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
             {task.description}
           </p>
         </div>
-        <img src={Assignee} alt="Assignee" className="w-8 -8 rounded-full" />
+        <img
+          src={
+            user?.user_metadata.has_custom_avatar
+              ? user?.user_metadata.custom_avatar
+              : (user?.user_metadata.picture ?? Assignee)
+          }
+          alt="Assignee"
+          className="w-8 -8 rounded-full"
+        />
         {openId === task.id && (
           <Menu
             handler={close}
