@@ -1,4 +1,4 @@
-function FormRow({ label }) {
+function FormRow({ label }: { label: string }) {
   return (
     <label
       htmlFor={label}

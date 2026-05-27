@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import PasswordInput from "../../ui/PasswordInput";
 import SettingHeader from "../../ui/SettingHeader";
 import { toast } from "react-hot-toast";
@@ -16,7 +16,7 @@ function SecuritySetting() {
     setCurrentPassword(e.target.value);
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (confirmPassword !== newPassword) {
       toast.error("password need to match");

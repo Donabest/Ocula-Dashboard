@@ -16,7 +16,7 @@ function RecentTasksList({ task }: { task: tasktype }) {
   const [isEditing, setIsEditing] = useState<number | null>();
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
-  const { deleteTask, isPending } = useDeleteTask();
+  const { deleteTask, isDeleting } = useDeleteTask();
 
   function handleOpenMenu(id: number, e: React.MouseEvent<SVGElement>) {
     e.stopPropagation();
@@ -68,7 +68,7 @@ function RecentTasksList({ task }: { task: tasktype }) {
         <ConfirmDelete
           handleDelete={() => handleDeleteTask(task.id)}
           handleClick={() => setIsDelete(false)}
-          pending={isPending}
+          pending={isDeleting}
         />
       )}
       {isEditing === task.id && (

@@ -103,7 +103,7 @@ function CalenderProvider({ children }: { children: ReactNode }) {
 }
 function useCalendar(): CalenderContextType {
   const context = useContext(CalenderContext);
-  if (context === undefined)
+  if (!context)
     throw new Error("CalenderConter was used outside ContextProvider");
 
   return context;
