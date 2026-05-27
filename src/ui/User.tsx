@@ -6,7 +6,7 @@ function User() {
   const { lastName } = user?.user_metadata ?? {};
 
   return (
-    <div className="flex justify-start items-center w-full  mx-auto gap-2 px-2 py-1  border border-gray-300 rounded-lg ">
+    <div className="flex justify-start items-center w-full  mx-auto gap-4 px-2 py-1  border border-gray-300 rounded-lg ">
       <img
         src={
           user?.user_metadata.has_custom_avatar
@@ -16,7 +16,7 @@ function User() {
         alt={ProfileImage}
         className="h-8 w-8 rounded-full"
       />
-      <div className="flex flex-col justify-center  items-center text-sm ">
+      <div className="flex flex-col justify-center items-center text-sm ">
         <p>Hi, {lastName ?? "User Example"}</p>
         <div className="flex items-center gap-1.5">
           <span className=" bg-green-300 p-1 rounded-full"></span>

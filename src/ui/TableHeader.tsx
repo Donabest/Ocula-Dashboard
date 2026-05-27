@@ -1,12 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 import { useActiveTasks } from "../hooks/useActiveTasks";
+import type React from "react";
 
 function TableHeader() {
   const { tasks, isLoading } = useActiveTasks();
 
   const [searchParamas, setSearchParams] = useSearchParams();
-  function handleSortedUrl(e) {
-    searchParamas.set("Sorted", e.target.value);
+  function handleSortedUrl(e: React.ChangeEvent<HTMLSelectElement>) {
+    searchParamas.set("Sorted", e.currentTarget.value);
     setSearchParams(searchParamas);
   }
 
@@ -26,7 +27,7 @@ function TableHeader() {
             name="sort"
             id="sort"
             className="bg-gray-100 px-4 py-1 border-0 outline-0 rounded-lg dark:bg-slate-700"
-            onClick={handleSortedUrl}
+            onChange={handleSortedUrl}
           >
             <option value="ByCompleted">Completed First</option>
             <option value="ByInprogress">InProgress First</option>

@@ -5,7 +5,7 @@ import type { priorityBg, status } from "../utilities/type";
 import { useState } from "react";
 import StatusToggleMenu from "./StatusToggleMenu";
 import TimeDiff from "../utilities/TimeDiff";
-import { useSortTask } from "../Features/MyTasks/useSortTask";
+import { useSortTask } from "#hooks/useSortTask";
 
 const StatusBg: Record<status, string> = {
   Inprogress: "bg-green-300",

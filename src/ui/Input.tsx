@@ -1,20 +1,50 @@
+import type { FormEvent } from "react";
 import LogoSymbol from "../assets/logo-symbol.png";
 
-interface placeholder {
+type InputProps = {
+  disabled?: boolean;
+  onChange?: (value: string) => void;
+  onSubmit?: (value: string) => void;
   placeholder: string;
-}
+  value?: string;
+};
 
-function Input({ placeholder }: placeholder) {
+function Input({
+  disabled = false,
+  onChange,
+  onSubmit,
+  placeholder,
+  value = "",
+}: InputProps) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue || disabled) return;
+
+    onSubmit?.(trimmedValue);
+  }
+
   return (
-    <div className="relative flex items-center justify-center w-full">
+    <form
+      className="relative flex w-full items-center justify-center"
+      onSubmit={handleSubmit}
+    >
       <input
+        value={value}
         placeholder={placeholder}
-        className="w-full rounded-lg bg-white px-4 py-3 pr-16 outline-0 drop-shadow-gray-300 drop-shadow-2xl focus:scale-101 dark:drop-shadow-slate-800 dark:text-black"
+        disabled={disabled}
+        className="w-full rounded-2xl border border-white/80 bg-white px-4 py-3 pr-16 text-sm shadow-xl shadow-slate-300/40 outline-0 transition  disabled:cursor-not-allowed disabled:opacity-70 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:shadow-slate-950/40"
+        onChange={(event) => onChange?.(event.currentTarget.value)}
       />
-      <button className="absolute right-3 rounded-lg bg-blue-700 cursor-pointer hover:bg-blue-300 active:scale-95">
-        <img src={LogoSymbol} alt={LogoSymbol} className="invert h-8 w-8" />
+      <button
+        className="absolute right-2 rounded-xl bg-blue-700 p-1.5 transition hover:bg-blue-600 active:scale-95 disabled:cursor-not-allowed disabled:bg-blue-900"
+        disabled={disabled || !value.trim()}
+        type="submit"
+      >
+        <img src={LogoSymbol} alt="Ask Ocula" className="h-7 w-7 invert" />
       </button>
-    </div>
+    </form>
   );
 }
 

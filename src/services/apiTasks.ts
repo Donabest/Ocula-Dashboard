@@ -11,9 +11,12 @@ export async function getTasks(): Promise<tasktype[]> {
   return data ?? [];
 }
 
-export async function createTask(createdTask: tasktype) {
+export async function createTask(createdTask: Partial<tasktype>) {
+  const taskData = { ...createdTask };
+  delete taskData.id;
+
   const { data, error } = await supabase.from("Tasks").insert({
-    ...createdTask,
+    ...taskData,
     project_id: createdTask.project_id || null,
   });
 

@@ -24,9 +24,9 @@ function CompletionRateByPriorityChart({ tasks }: { tasks: tasktype[] }) {
   ).length;
   const totalComplete = CompleteByPriority.length;
 
-  const High = (HighCompleted / totalComplete) * 100;
-  const Low = (LowCompleted / totalComplete) * 100;
-  const Med = (MedCompleted / totalComplete) * 100;
+  const High = Math.ceil((HighCompleted / totalComplete) * 100);
+  const Low = Math.ceil((LowCompleted / totalComplete) * 100);
+  const Med = Math.ceil((MedCompleted / totalComplete) * 100);
 
   const data = [
     {
@@ -63,6 +63,7 @@ function CompletionRateByPriorityChart({ tasks }: { tasks: tasktype[] }) {
           <CartesianGrid strokeDasharray="2 2" vertical={false} />
           <XAxis dataKey="name" axisLine={false} tickLine={false} />
           <YAxis
+            allowDecimals={false}
             domain={[0, 100]}
             tickFormatter={(value) => `${value}%`}
             tickLine={false}

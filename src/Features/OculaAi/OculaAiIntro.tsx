@@ -1,24 +1,37 @@
+import { useState } from "react";
 import { motion } from "motion/react";
-
 import LogoSymbol from "../../assets/logo-symbol.png";
 import Input from "../../ui/Input";
 
-const SuggestPrompt: string[] = [
-  "Let's talk about...",
-  "Help me with..",
-  "Teach me to..",
-  "Analyse this topic...",
-  "Write story about...",
+const suggestPrompts = [
+  "Show me my overdue tasks and what to do first",
+  "Create a high priority task to review today's project blockers",
+  "Move my most urgent todo task to in progress",
+  "Suggest 3 tasks I should focus on this week",
+  "Delete the task I no longer need after I name it",
 ];
 
-function OculaAiIntro() {
+function OculaAiIntro({
+  isLoading,
+  onPromptSubmit,
+}: {
+  isLoading: boolean;
+  onPromptSubmit: (prompt: string) => void;
+}) {
+  const [prompt, setPrompt] = useState("");
+
+  function handleSubmit(value: string) {
+    onPromptSubmit(value);
+    setPrompt("");
+  }
+
   return (
-    <div className="flex min-h-[calc(100vh-6rem)] w-full max-w-2xl flex-col items-center justify-center mx-auto text-center space-y-8 sm:space-y-10 dark:text-white">
-      <div className="flex flex-col justify-center items-center space-y-2">
+    <div className="mx-auto flex min-h-[calc(100vh-6rem)] w-full max-w-3xl flex-col items-center justify-center space-y-8 text-center dark:text-white sm:space-y-10">
+      <div className="flex flex-col items-center justify-center space-y-2">
         <img
           src={LogoSymbol}
-          alt={LogoSymbol}
-          className=" h-8 w-8 dark:invert"
+          alt="Ocula AI"
+          className="h-9 w-9 dark:invert"
         />
         <h1 className="font-raleway text-2xl font-medium">
           Good Evening, <span>Don</span>
@@ -26,25 +39,32 @@ function OculaAiIntro() {
       </div>
 
       <div className="flex flex-col items-center space-y-4">
-        <h1 className="text-4xl font-raleway font-bold sm:text-5xl lg:text-6xl">
-          How can i help you?
+        <h1 className="font-raleway text-4xl font-bold sm:text-5xl lg:text-6xl">
+          How can I help with your tasks?
         </h1>
         <p className="w-full max-w-xl text-sm text-gray-500 font-raleway dark:text-gray-300">
-          it all start with a prompt.write your owm request or get inspired by
-          one of the suggested ones
+          Ask about priorities, deadlines, project work, or tell Ocula to
+          create, edit, or delete a task.
         </p>
       </div>
 
-      <Input placeholder="Type a prompt" />
+      <Input
+        disabled={isLoading}
+        onChange={setPrompt}
+        onSubmit={handleSubmit}
+        placeholder="Ask about your tasks"
+        value={prompt}
+      />
 
-      <ul className="flex w-full flex-wrap items-center justify-center gap-3 pt-6 sm:pt-8 border-t border-gray-300 dark:border-slate-400">
-        {SuggestPrompt.map((suggest, index) => (
+      <ul className="grid w-full grid-cols-1 gap-3 border-t border-gray-300 pt-6 dark:border-slate-700 sm:grid-cols-2 sm:pt-8">
+        {suggestPrompts.map((suggest, index) => (
           <motion.li
-            key={index}
-            className="px-4 py-2 text-sm text-white bg-slate-950 rounded-full cursor-pointer active:scale-95 dark:bg-slate-700 sm:px-6 sm:py-2.5 sm:text-base"
+            key={suggest}
+            className="cursor-pointer rounded-2xl border border-white/70 bg-white px-4 py-3 text-left text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md active:scale-[0.99] dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index / 10 }}
+            transition={{ duration: 0.4, delay: index / 12 }}
+            onClick={() => handleSubmit(suggest)}
           >
             {suggest}
           </motion.li>
