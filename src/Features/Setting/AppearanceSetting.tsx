@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "#components/reui/Select";
+} from "../../components/reui/Select";
 import { useDark } from "../../Context/DarkModeContext";
 import AppearancePreviewCard from "../../ui/AppearancePreviewCard";
 import SettingHeader from "../../ui/SettingHeader";

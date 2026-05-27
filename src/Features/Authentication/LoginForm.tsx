@@ -1,4 +1,4 @@
-import { Input } from "#components/shacnUi/input";
+import { Input } from "../../components/shacnUi/input";
 import { FcGoogle } from "react-icons/fc";
 import PasswordInput from "../../ui/PasswordInput";
 import { IoLogoApple } from "react-icons/io";
@@ -46,7 +46,9 @@ function LoginForm() {
               placeholder="johnDoe@gmail.com"
               className="mt-1.5 font-montserrat"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(
+                e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
+              ) => setEmail(e.target.value)}
             />
           </div>
           <PasswordInput

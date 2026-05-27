@@ -1,4 +1,4 @@
-import { Input } from "#components/shacnUi/input";
+import { Input } from "../../components/shacnUi/input";
 import { NavLink, useNavigate } from "react-router-dom";
 import PasswordInput from "../../ui/PasswordInput";
 import LoginDashBoardPreview from "../../ui/LoginDashBoardPreview";

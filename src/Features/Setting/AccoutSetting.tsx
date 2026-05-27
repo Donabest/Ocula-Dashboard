@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 import { GoPlus } from "react-icons/go";
 import Avatar from "../../assets/default-avatar.jpg";
-import { PhoneInput } from "#components/reui/phone-input";
+import { PhoneInput } from "../../components/reui/phone-input";
 import { useUser } from "../Authentication/useUser";
 import { useRef, useState } from "react";
 import { useUpdateUser } from "../Authentication/useUpdateUser";

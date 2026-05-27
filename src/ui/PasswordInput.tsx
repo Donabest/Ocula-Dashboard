@@ -1,6 +1,6 @@
-import { Button } from "#components/shacnUi/button";
-import { Input } from "#components/shacnUi/input";
-import { Label } from "#components/shacnUi/label";
+import { Button } from "../components/shacnUi/button";
+import { Input } from "../components/shacnUi/input";
+import { Label } from "../components/shacnUi/label";
 import { Eye, EyeOff } from "lucide-react";
 import React, { useState } from "react";
 
@@ -32,7 +32,9 @@ function PasswordInput({
           autoComplete="password"
           placeholder={text}
           value={value}
-          onChange={(e) => onChange(e)}
+          onChange={(
+            e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
+          ) => onChange(e)}
           {...props}
           type={showPassword ? "text" : "password"}
         />
