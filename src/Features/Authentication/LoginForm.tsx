@@ -1,6 +1,6 @@
-import { Input } from "../../components/shacnUi/input";
 import { FcGoogle } from "react-icons/fc";
 import PasswordInput from "../../ui/PasswordInput";
+import { Input } from "../../components/shacnUi/input";
 import { IoLogoApple } from "react-icons/io";
 import LoginDashBoardPreview from "../../ui/LoginDashBoardPreview";
 import { NavLink } from "react-router-dom";
