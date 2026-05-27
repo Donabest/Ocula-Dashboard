@@ -20,7 +20,7 @@ import AddEvent from "./AddEvent";
 type props = {
   scheduleDetails: schedule | null;
 };
-function CalendarDetails({ scheduleDetails }: props) {
+function DisplayDetails({ scheduleDetails }: props) {
   const [isDelete, setIsDelete] = useState<boolean>();
   const [editSchedule, setEditSchedule] = useState<number | null>();
   const { isOpen, setIsOpen } = useCalendar();
@@ -65,7 +65,7 @@ function CalendarDetails({ scheduleDetails }: props) {
         <AnimatePresence>
           <div className="fixed inset-0 z-100 bg-black/20 font-raleway">
             <motion.div
-              className="w-xl mx-auto mt-50"
+              className=" mx-6 mt-50 sm:w-xl sm:mx-auto "
               ref={ref}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -163,4 +163,4 @@ function CalendarDetails({ scheduleDetails }: props) {
   );
 }
 
-export default CalendarDetails;
+export default DisplayDetails;

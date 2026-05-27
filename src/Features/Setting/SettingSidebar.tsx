@@ -9,6 +9,7 @@ import { PiMagicWandLight } from "react-icons/pi";
 import { CgDanger } from "react-icons/cg";
 import type { ListType } from "../../utilities/type";
 import { useSearchParams } from "react-router-dom";
+import { cn } from "#lib/utils";
 
 const settingList: ListType[] = [
   {
@@ -53,11 +54,13 @@ function SettingSidebar({
   }
 
   return (
-    <ul className="text-center pt-4 pr-2 space-y-2 border-r border-r-gray-200 w-50 h-[80vh] dark:border-r-slate-800">
+    <ul className="grid grid-cols-2 space-x-3 text-center pt-4 pb-3 sm:pr-2 space-y-2 border-b w-full sm:border-r border-r-gray-200  dark:border-r-slate-800 sm:block sm:w-50 sm:pb-0 sm:h-[80vh] sm:border-b-0">
       {settingList.map((setting) => (
         <motion.li
-          className={`flex justify-start items-center gap-2 px-4 py-1.5 rounded-lg cursor-pointer hover:bg-gray-200 dark:text-slate-100 hover:dark:bg-slate-800 dark:hover:text-slate-300
-            ${current === setting.list && "bg-gray-200 dark:bg-slate-800"}`}
+          className={cn(
+            "flex justify-start items-center gap-2  px-3 py-1.5 rounded-lg cursor-pointer hover:bg-gray-200 dark:text-slate-100 hover:dark:bg-slate-800 dark:hover:text-slate-300 sm:px-4",
+            current === setting.list && "bg-gray-200 dark:bg-slate-800",
+          )}
           whileHover={{ y: -2 }}
           transition={{ type: "spring", stiffness: 800, damping: 20 }}
           onClick={() => {

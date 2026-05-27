@@ -51,19 +51,19 @@ function AnalyticsLayout() {
     },
   ];
   return (
-    <main className="max-w-6xl pt-24 pl-4">
+    <main className="max-w-7xl pt-24 px-4 sm:px-7">
       <PageHeader
         title="Analytics"
         description="manage,view and track your task data"
       />
 
-      <div className="flex items-center justify-start gap-2 mt-4">
+      <div className="flex flex-col gap-2 mt-4  sm:items-center sm:justify-start sm:flex-row sm:flex-wrap">
         {Tab.map((card, index) => (
           <OverAllStatItems card={card} key={index} loading={isLoading} />
         ))}
       </div>
 
-      <div className="flex items-center justify-center gap-2 mt-10">
+      <div className="flex flex-col items-center justify-center gap-2 mt-10 sm:flex-row">
         <PieChartAnalytics
           completedTasks={completedTasks.length}
           inProgressTasks={inProgressTasks.length}

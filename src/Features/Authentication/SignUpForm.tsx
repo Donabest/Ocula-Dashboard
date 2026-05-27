@@ -38,16 +38,16 @@ function SignUpForm() {
     );
   }
   return (
-    <section className="grid grid-cols-2 font-poppin  ">
-      <div className="flex flex-col justify-center items-center h-screen border-r ">
-        <div className="flex flex-col justify-start items-start text-start w-1/2 space-y-4">
-          <h1 className="text-4xl  font-normal">Get Started Now</h1>
+    <section className="xl:grid grid-cols-2 font-poppin max-w-9xl p-8">
+      <div className="flex flex-col justify-center items-center h-full lg:border-r ">
+        <div className="flex flex-col justify-start items-start text-start space-y-4 md:w-1/2">
+          <h1 className="text-4xl font-normal">Get Started Now</h1>
           <p className="text-gray-500  text-sm">
             Enter your crediential to access your dashboard.
           </p>
         </div>
 
-        <div className="flex justify-start items-start gap-2 w-1/2 mt-4">
+        <div className="flex justify-start items-start gap-2 mt-4 max-w-sm w-full lg:w-1/2">
           <div
             className="loginWith "
             onClick={() =>
@@ -67,7 +67,7 @@ function SignUpForm() {
           </div>
         </div>
 
-        <div className="flex justify-start items-center w-1/2  gap-1.5 mt-4 ">
+        <div className="flex justify-start items-center w-sm   gap-1.5 mt-4 lg:w-1/2 ">
           <span className="w-full border"></span>
           <span className="w-full text-center text-gray-400 text-sm ">
             Or Sign Up with
@@ -76,7 +76,7 @@ function SignUpForm() {
         </div>
 
         <form
-          className="mt-8 space-y-2 w-1/2"
+          className="mt-8 space-y-2 w-full max-w-xl lg:w-1/2"
           onSubmit={handleSubmit(handleOnSubmit)}
         >
           <div className="mb-5 ">

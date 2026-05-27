@@ -5,7 +5,7 @@ function Spinner() {
     <div className="flex items-center justify-center ">
       <PiSpinnerBold
         size={28}
-        className=" animate-spin [animation-duration:1.6s] dark:text-white"
+        className=" animate-spin animation-duration-[1.6s] dark:text-white"
       />
     </div>
   );

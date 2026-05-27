@@ -29,7 +29,7 @@ function PieChartAnalytics({
   ];
 
   return (
-    <div className="w-full border py-6 rounded-lg bg-gray-200/10 dark:bg-slate-700/10 ">
+    <div className="w-full border py-6 mb-3 rounded-lg bg-gray-200/10 dark:bg-slate-700/10 sm:mb-0">
       <h1 className="pl-8 text-sm ">Task by status</h1>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart

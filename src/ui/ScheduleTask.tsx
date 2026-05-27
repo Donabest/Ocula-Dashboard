@@ -1,13 +1,13 @@
+import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { motion } from "motion/react";
 
 import ScheduleTaskItem from "./ScheduleTaskItem";
 import { useCalendar } from "../Context/useCalender";
-import { useState } from "react";
 import type { schedule } from "../utilities/type";
-import CalendarDetails from "./CalendarDetails";
 import Spinner from "./Spinner";
 import ScheduleNow from "./ScheduleNow";
+import DisplayDetails from "./DisplayDetails";
 
 function ScheduleTask() {
   const { schedules, isLoading } = useCalendar();
@@ -48,7 +48,7 @@ function ScheduleTask() {
         ))
       )}
       {selectedSchedule && (
-        <CalendarDetails scheduleDetails={selectedSchedule} />
+        <DisplayDetails scheduleDetails={selectedSchedule} />
       )}
     </motion.section>
   );

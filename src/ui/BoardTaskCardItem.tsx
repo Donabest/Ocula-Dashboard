@@ -63,7 +63,7 @@ function BoardTaskCardItem({ task }: { task: tasktype }) {
           <h1 className="font-medium text-[17px] dark:text-slate-100">
             {task.title}
           </h1>
-          <p className="font-raleway text-gray-500 truncate text-sm dark:text-slate-300">
+          <p className="font-raleway text-gray-500 wrap-break-word text-sm dark:text-slate-300">
             {task.description}
           </p>
         </div>

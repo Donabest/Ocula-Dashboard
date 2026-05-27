@@ -1,4 +1,4 @@
-import { FaChevronDown } from "react-icons/fa6";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import TimeDiff from "../utilities/TimeDiff";
 import type { priorityBg, status, tasktype } from "../utilities/type";
 import StatusToggleMenu from "./StatusToggleMenu";
@@ -10,6 +10,7 @@ import { useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteTask } from "../Features/MyTasks/useDeleteTask";
 import AddNewTaskForm from "./AddNewTaskForm";
+import { cn } from "#lib/utils";
 
 const priorityBg: Record<priorityBg, string> = {
   High: "bg-red-200 dark:bg-red-700",
@@ -31,11 +32,12 @@ interface props {
 }
 
 function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
-  const { deleteTask, isDeleting } = useDeleteTask();
   const [isEditing, setIsEditing] = useState<number | null>();
-
+  const { deleteTask, isDeleting } = useDeleteTask();
+  const [isActive, setIsActive] = useState<boolean>(true);
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
+
   function handleOpenMenu(id: number, e: React.MouseEvent<HTMLSpanElement>) {
     e.stopPropagation();
     openMenu((prevId) => (prevId === id ? null : id));
@@ -54,16 +56,34 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
   }
   return (
     <div className="list-card">
-      <div className="flex min-w-0 items-start gap-2 lg:col-span-2 lg:items-center">
-        <FaChevronDown className="mt-1 shrink-0 cursor-pointer lg:mt-0" />
+      <div className="flex min-w-0 items-start gap-2 lg:col-span-2 sm:items-start">
         <span
-          className={`${StatusBg[task.status]} mt-1 p-1.5 rounded-sm cursor-pointer lg:mt-0`}
+          onClick={() => setIsActive((show) => !show)}
+          className=" shrink-0 cursor-pointer mt-2  "
+        >
+          {isActive ? <FaChevronUp /> : <FaChevronDown />}
+        </span>
+
+        <span
+          className={`${StatusBg[task.status]} mt-2 p-1.5 rounded-sm cursor-pointer `}
           onMouseDown={(e) => handleOpenMenu(task.id, e)}
         ></span>
-        <span className="min-w-0 flex-1 wrap-break-word font-medium lg:truncate lg:font-normal">
+        <div className="min-w-0 flex-1 text-black wrap-break-word font-medium dark:text-white lg:truncate lg:font-normal">
           {task.title}
-        </span>
+          {isActive && (
+            <div className="w-full my-2 text-sm items-start hidden sm:block">
+              <span className="text-gray-500 dark:text-slate-400">
+                {task.description}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
+      {isActive && (
+        <div className="w-full my-2 text-sm items-start text-gray-500 dark:text-slate-400 sm:hidden">
+          <span>{task.description}</span>
+        </div>
+      )}
 
       <div className="mt-3 flex items-center justify-between gap-3 text-center lg:mt-0">
         <div className="flex items-center gap-3 lg:gap-6">
@@ -73,7 +93,10 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
             {task.priority}
           </span>
           <span
-            className={`text-sm ${TimeDiff(task.EndDate) === "Today" && "text-red-500"}`}
+            className={cn(
+              "text-sm",
+              TimeDiff(task.EndDate) === "Today" && "text-red-500",
+            )}
           >
             {TimeDiff(task.EndDate)}
           </span>

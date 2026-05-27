@@ -21,7 +21,7 @@ function PasswordInput({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-300 max-w-sm space-y-3">
+    <div className="w-full space-y-3">
       <Label htmlFor="password-toggle" className="text-[15px] font-normal">
         {label}
       </Label>

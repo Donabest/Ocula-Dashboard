@@ -7,7 +7,7 @@ type Props = {
 };
 function OverAllStatItems({ card, loading }: Props) {
   return (
-    <div className=" grow bg-white p-4 space-y-6 rounded-lg shadow-md dark:bg-slate-800 dark:text-white">
+    <div className="grow bg-white p-4 space-y-6 rounded-lg shadow-md dark:bg-slate-800 dark:text-white">
       <div className="flex justify-between items-center ">
         {card.icon}
         <p className="flex items-center font-medium text-gray-500 text-sm cursor-pointer dark:text-slate-500">

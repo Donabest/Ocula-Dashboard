@@ -13,6 +13,7 @@ import Settings from "./pages/Settings.tsx";
 import LogIn from "./pages/LogIn.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import ProtectedRouteLayout from "./Layout/ProtectedRouteLayout.tsx";
+import PageNotFound from "./pages/PageNotFound.tsx";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ function App() {
             </Route>
             <Route path="Login" element={<LogIn />} />
             <Route path="SignUp" element={<SignUp />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
 
           <Toaster

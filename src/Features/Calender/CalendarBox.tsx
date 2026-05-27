@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useCalendar } from "../../Context/useCalender";
 import CalendarTaskBlock from "../../ui/CalendarTaskBlock";
-import CalendarDetails from "../../ui/CalendarDetails";
 import type { schedule } from "../../utilities/type";
-import { useEffect, useState } from "react";
+import DisplayDetails from "../../ui/DisplayDetails";
 
 const TIME: string[] = [
   "12:00 AM",
@@ -36,8 +36,8 @@ function CalendarBox() {
     return () => window.removeEventListener("resize", updateVisibleDays);
   }, []);
 
-  const WEEKDAYS = First5DaysArray.slice(index, index + visibleDays).map((day) =>
-    format(day, "EEE dd"),
+  const WEEKDAYS = First5DaysArray.slice(index, index + visibleDays).map(
+    (day) => format(day, "EEE dd"),
   );
   const [selectedSchedule, setSelectedSchedule] = useState<schedule | null>(
     null,
@@ -51,7 +51,10 @@ function CalendarBox() {
           </h1>
           <div className=" border border-gray-200 dark:border-slate-800">
             {TIME.map((time, index) => (
-              <div className="w-full h-30 pt-5 text-xs sm:text-base" key={index}>
+              <div
+                className="w-full h-30 pt-5 text-xs sm:text-base"
+                key={index}
+              >
                 {time}
               </div>
             ))}
@@ -102,7 +105,7 @@ function CalendarBox() {
             ))}
           </div>
           {selectedSchedule && (
-            <CalendarDetails scheduleDetails={selectedSchedule} />
+            <DisplayDetails scheduleDetails={selectedSchedule} />
           )}
         </div>
       </div>

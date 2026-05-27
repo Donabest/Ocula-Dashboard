@@ -16,7 +16,7 @@ function DashboardTodoTasksList({ active, handler }: Props) {
       <div className="flex items-center gap-3 pl-3">
         <span onClick={() => handler("Todo")}>
           {active === "Todo" ? <FaChevronUp /> : <FaChevronDown />}
-        </span>{" "}
+        </span>
         <p className="bg-gray-200 text-sm font-poppin px-3 py-1 rounded-lg uppercase dark:bg-slate-700">
           To Do
         </p>

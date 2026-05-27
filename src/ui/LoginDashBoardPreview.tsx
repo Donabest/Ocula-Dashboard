@@ -8,7 +8,7 @@ function LoginDashBoardPreview() {
   const constraintsRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative flex flex-col justify-center items-start h-screen space-y-10 pl-20 ">
+    <div className="relative hidden  flex-col justify-center items-start h-screen space-y-10 pl-20 xl:flex ">
       <div className="space-y-4">
         <h1 className=" font-poppin font-medium text-3xl w-[70%]">
           The Simplest Way to Manage Your WorkSpace.
@@ -24,7 +24,7 @@ function LoginDashBoardPreview() {
         <img
           src={PreviewImage}
           alt="dashboardPreviewImage"
-          className=" w-xl rounded-4xl -rotate-3 shadow-xl"
+          className=" max-w-lg w-xl rounded-4xl -rotate-3 shadow-xl"
         />
 
         <motion.div

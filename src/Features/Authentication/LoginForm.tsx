@@ -29,15 +29,15 @@ function LoginForm() {
     );
   }
   return (
-    <section className="grid grid-cols-2 font-poppin  ">
-      <div className="flex flex-col justify-center items-center h-screen border-r ">
-        <div className="text-center space-y-4">
+    <section className="xl:grid grid-cols-2 font-poppin  ">
+      <div className="flex flex-col justify-center items-center h-screen xl:border-r ">
+        <div className="text-center space-y-4 w-xs">
           <h1 className="text-4xl  font-medium">Welcome Back</h1>
           <p className="text-gray-500  text-sm">
             Enter your email and password to access your dashboard.
           </p>
         </div>
-        <form className="mt-8 space-y-2" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-2 w-xs" onSubmit={handleSubmit}>
           <div className="mb-5 ">
             <label htmlFor="email">Email</label>
             <Input

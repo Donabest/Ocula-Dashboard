@@ -53,7 +53,7 @@ function SecuritySetting() {
             value={currentPassword}
           />
         </div>
-        <div className="border-t py-5">
+        <div className="border-t py-5 ">
           <PasswordInput
             label="New Password"
             className={cn(

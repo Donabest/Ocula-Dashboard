@@ -63,6 +63,9 @@
   .preview-text {
     @apply text-xs text-gray-400 font-montserrat;
   }
+  .Account_Form_Group {
+    @apply flex flex-col justify-between items-start space-y-2  py-8 border-b border-b-gray-200 dark:border-b-slate-800 sm:flex-row sm:items-center sm:space-y-0;
+  }
 }
 
 @theme inline {

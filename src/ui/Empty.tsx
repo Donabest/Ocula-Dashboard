@@ -4,10 +4,12 @@ import { HiOutlineFingerPrint } from "react-icons/hi";
 function Empty({ resourseName }: { resourseName: string }) {
   const back = useMoveBack();
   return (
-    <div className="flex flex-col justify-center items-center h-screen space-y-2">
-      <h1 className="text-[15rem] font-raleway font-medium">404</h1>
+    <div className="flex flex-col justify-center items-center h-screen space-y-2 ">
+      <h1 className="text-[10rem] font-raleway font-medium  md:text-[15rem]">
+        404
+      </h1>
       <h2 className="text-lg">{resourseName} not found.</h2>
-      <p className="mt-1.5 dark:text-gray-200">
+      <p className="mt-1.5 w-sm text-center dark:text-gray-200 md:w-full ">
         This {resourseName} may have been deleted or no longer exists.
       </p>
 

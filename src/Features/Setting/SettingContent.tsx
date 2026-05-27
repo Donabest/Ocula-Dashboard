@@ -7,7 +7,7 @@ import SecuritySetting from "./SecuritySetting";
 
 function SettingContent({ currentTab }: { currentTab: string }) {
   return (
-    <div className="flex-1 pt-4">
+    <div className="flex-1 pt-4 w-full">
       {currentTab === "Account" && <AccoutSetting />}
       {currentTab === "Appearance" && <AppearanceSetting />}
       {currentTab === "Notification" && <NotificationSetting />}

@@ -1,10 +1,10 @@
+import { toast } from "react-hot-toast";
 import { GoPlus } from "react-icons/go";
 import Avatar from "../../assets/default-avatar.jpg";
 import { PhoneInput } from "#components/reui/phone-input";
 import { useUser } from "../Authentication/useUser";
 import { useRef, useState } from "react";
 import { useUpdateUser } from "../Authentication/useUpdateUser";
-import { toast } from "react-hot-toast";
 import { useRemoveAvatar } from "./useRemoveAvatar";
 
 function AccoutSetting() {
@@ -32,21 +32,21 @@ function AccoutSetting() {
     );
   }
   return (
-    <div className="pl-3">
-      <div className="flex justify-between items-center border-b border-b-gray-200 pb-4 dark:border-b-slate-800">
+    <div className="pl-0 sm:pl-3">
+      <div className="flex flex-col border-b border-b-gray-200 pb-4 dark:border-b-slate-800 sm:justify-between sm:items-center sm:flex-row">
         <div>
           <h1 className="text-xl font-medium">Account Information</h1>
           <span className="text-sm text-gray-500">
             Update your photo and personal details here.
           </span>
         </div>
-        <div className="space-x-3 ">
+        <div className="flex justify-end space-x-1 pt-2 sm:space-x-3 sm:pt-0">
           <button
             type="button"
-            className="text-sm px-6 py-1 border border-gray-500 rounded-2xl cursor-pointer hover:active:scale-102"
+            className="text-sm px-2 py-1 border border-gray-500 rounded-2xl cursor-pointer hover:active:scale-102 sm:px-6"
             onClick={() => {
               setFirstName(first);
-              setLastName(Last);
+              setLastName(lastName);
               setAvatar(user?.user_metadata.custom_avatar);
             }}
           >
@@ -55,7 +55,7 @@ function AccoutSetting() {
 
           <button
             type="button"
-            className="text-sm px-4 py-1.5 rounded-3xl bg-blue-700 text-white cursor-pointer hover:active:scale-102"
+            className="text-sm px-2 py-1.5 rounded-3xl bg-blue-700 text-white cursor-pointer hover:active:scale-102 sm:px-4"
             onClick={handleSubmit}
           >
             Save Changes
@@ -116,7 +116,7 @@ function AccoutSetting() {
       </div>
 
       <form>
-        <div className="flex justify-between items-center py-8 border-b border-b-gray-200 dark:border-b-slate-800 ">
+        <div className="Account_Form_Group ">
           <h3 className="font-medium ">Name</h3>
           <div className="flex justify-center items-center gap-4 ">
             <div className="flex flex-col text-gray-600 gap-1.5">
@@ -139,7 +139,7 @@ function AccoutSetting() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center py-8  border-b border-b-gray-200 dark:border-b-slate-800">
+        <div className="Account_Form_Group">
           <h3 className="font-medium ">Email Address</h3>
           <div className=" text-gray-600 gap-1.5">
             <input
@@ -150,7 +150,7 @@ function AccoutSetting() {
             />
           </div>
         </div>
-        <div className="flex justify-between items-center py-8 border-b border-b-gray-200 dark:border-b-slate-800 ">
+        <div className="Account_Form_Group ">
           <h3 className="font-medium ">Phone Number</h3>
           <div className=" text-gray-600 gap-1.5">
             <PhoneInput
