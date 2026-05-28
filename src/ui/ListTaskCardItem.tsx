@@ -36,7 +36,7 @@ function ListTaskCardItem({ task, AssignTo, openMenu, Open }: props) {
   const { user } = useUser();
   const [isEditing, setIsEditing] = useState<number | null>();
   const { deleteTask, isDeleting } = useDeleteTask();
-  const [isActive, setIsActive] = useState<boolean>(true);
+  const [isActive, setIsActive] = useState<boolean>(false);
   const [openId, setOpenId] = useState<number | null>();
   const [isDelete, setIsDelete] = useState<boolean>();
 
