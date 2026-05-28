@@ -2,9 +2,10 @@ import { MdEditNote } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { AnimatePresence, motion } from "motion/react";
+import type { ReactNode } from "react";
 
 type menuType = {
-  icon: any;
+  icon: ReactNode;
   text: string;
 };
 

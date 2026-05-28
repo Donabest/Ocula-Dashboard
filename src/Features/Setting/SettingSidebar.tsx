@@ -54,11 +54,11 @@ function SettingSidebar({
   }
 
   return (
-    <ul className="grid grid-cols-2 space-x-3 text-center pt-4 pb-3 sm:pr-2 space-y-2 border-b w-full sm:border-r border-r-gray-200  dark:border-r-slate-800 sm:block sm:w-50 sm:pb-0 sm:h-[80vh] sm:border-b-0">
+    <ul className="grid w-full grid-cols-2 gap-2 border-b pt-4 pb-3 text-center sm:grid-cols-3 lg:grid-cols-6 dark:border-b-slate-800">
       {settingList.map((setting) => (
         <motion.li
           className={cn(
-            "flex justify-start items-center gap-2  px-3 py-1.5 rounded-lg cursor-pointer hover:bg-gray-200 dark:text-slate-100 hover:dark:bg-slate-800 dark:hover:text-slate-300 sm:px-4",
+            "flex min-w-0 items-center justify-start gap-2 rounded-lg px-3 py-1.5 cursor-pointer hover:bg-gray-200 dark:text-slate-100 hover:dark:bg-slate-800 dark:hover:text-slate-300 sm:px-4",
             current === setting.list && "bg-gray-200 dark:bg-slate-800",
           )}
           whileHover={{ y: -2 }}
@@ -70,7 +70,7 @@ function SettingSidebar({
           key={setting.list}
         >
           <span>{setting.icon}</span>
-          <span>{setting.list}</span>
+          <span className="truncate text-xs sm:text-sm">{setting.list}</span>
         </motion.li>
       ))}
     </ul>

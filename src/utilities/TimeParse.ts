@@ -1,6 +1,7 @@
 export function parseTime(timeStr: string) {
   const [time, modifier] = timeStr.split(" ");
-  let [hours, minutes] = time.split(":").map(Number);
+  const [hoursText, minutes] = time.split(":").map(Number);
+  let hours = hoursText;
   if (modifier === "PM" && hours !== 12) {
     hours += 12;
   }

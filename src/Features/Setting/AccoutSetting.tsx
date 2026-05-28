@@ -40,10 +40,10 @@ function AccoutSetting() {
             Update your photo and personal details here.
           </span>
         </div>
-        <div className="flex justify-end space-x-1 pt-2 sm:space-x-3 sm:pt-0">
+        <div className="flex w-full justify-end gap-2 pt-2 sm:w-auto sm:gap-3 sm:pt-0">
           <button
             type="button"
-            className="text-sm px-2 py-1 border border-gray-500 rounded-2xl cursor-pointer hover:active:scale-102 sm:px-6"
+            className="whitespace-nowrap text-sm px-2 py-1 border border-gray-500 rounded-2xl cursor-pointer hover:active:scale-102 sm:px-6"
             onClick={() => {
               setFirstName(first);
               setLastName(lastName);
@@ -55,7 +55,7 @@ function AccoutSetting() {
 
           <button
             type="button"
-            className="text-sm px-2 py-1.5 rounded-3xl bg-blue-700 text-white cursor-pointer hover:active:scale-102 sm:px-4"
+            className="whitespace-nowrap text-sm px-2 py-1.5 rounded-3xl bg-blue-700 text-white cursor-pointer hover:active:scale-102 sm:px-4"
             onClick={handleSubmit}
           >
             Save Changes
@@ -78,7 +78,7 @@ function AccoutSetting() {
         <div className="text-sm space-y-1.5">
           <div className="flex items-center justify-start gap-2">
             <button
-              className="flex items-center gap-1 px-4 py-1.5  bg-black text-white rounded-lg cursor-pointer dark:bg-slate-800"
+              className="flex items-center gap-1 px-2 py-1.5 text-xs bg-black text-white rounded-lg cursor-pointer dark:bg-slate-800 sm:px-4 sm:text-sm"
               onClick={() => fileInputRef.current?.click()}
             >
               <GoPlus />
@@ -99,7 +99,7 @@ function AccoutSetting() {
             />
 
             <button
-              className="  px-4 py-1.5 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer  dark:border-slate-700 dark:bg-slate-900"
+              className="px-2 py-1.5 text-xs bg-gray-200 border border-gray-300 rounded-lg cursor-pointer dark:border-slate-700 dark:bg-slate-900 sm:px-4 sm:text-sm"
               onClick={() => {
                 setPreview(null);
                 removeAvatar();
@@ -118,7 +118,7 @@ function AccoutSetting() {
       <form>
         <div className="Account_Form_Group ">
           <h3 className="font-medium ">Name</h3>
-          <div className="flex justify-center items-center gap-4 ">
+          <div className="grid w-full grid-cols-1 gap-4 sm:w-auto sm:grid-cols-2">
             <div className="flex flex-col text-gray-600 gap-1.5">
               <label htmlFor="FirstName">First Name</label>
               <input
@@ -141,10 +141,10 @@ function AccoutSetting() {
         </div>
         <div className="Account_Form_Group">
           <h3 className="font-medium ">Email Address</h3>
-          <div className=" text-gray-600 gap-1.5">
+          <div className="w-full text-gray-600 gap-1.5 sm:w-auto">
             <input
               type="email"
-              className="input w-118 bg-gray-200 dark:bg-slate-800 cursor-not-allowed"
+              className="input w-full bg-gray-200 dark:bg-slate-800 cursor-not-allowed sm:w-118"
               value={user?.email}
               disabled
             />
@@ -152,11 +152,11 @@ function AccoutSetting() {
         </div>
         <div className="Account_Form_Group ">
           <h3 className="font-medium ">Phone Number</h3>
-          <div className=" text-gray-600 gap-1.5">
+          <div className="w-full text-gray-600 gap-1.5 sm:w-auto">
             <PhoneInput
               placeholder="Enter phone number"
               defaultCountry="US"
-              className="input w-118"
+              className="input w-full sm:w-118"
             />
           </div>
         </div>

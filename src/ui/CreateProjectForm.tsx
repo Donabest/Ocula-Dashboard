@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useClickOutSide from "../hooks/useClickOutSide";
 import { useCreateProject } from "../Features/Project/useCreateProject";
 import type { projectType } from "../utilities/type";
@@ -16,13 +16,9 @@ function CreateProjectForm({
   const { editProject, isProjectEditing } = useEditProject();
   const { user } = useUser();
 
-  const [projectName, setProjectName] = useState<string>("");
-
-  useEffect(() => {
-    if (projectToEdit) {
-      setProjectName(projectToEdit.projectName);
-    }
-  }, [projectToEdit]);
+  const [projectName, setProjectName] = useState<string>(
+    projectToEdit?.projectName ?? "",
+  );
 
   function handleClick() {
     if (!projectName.trim()) return;
