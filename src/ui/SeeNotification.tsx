@@ -18,7 +18,7 @@ function SeeNotification() {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed right-4 left-4 top-18 z-99 max-h-[70vh] overflow-y-auto hide-scrollbar rounded-lg border border-white/20 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-lg dark:bg-black/80 dark:border-white/9 sm:left-auto sm:right-8 sm:w-[min(40rem,calc(100vw-4rem))] sm:px-6 lg:top-16"
+        className="fixed right-4 left-4 top-18 z-99 max-h-[30vh] overflow-y-auto hide-scrollbar rounded-lg border border-white/20 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-lg dark:bg-black/80 dark:border-white/9 sm:left-auto sm:right-8 sm:w-[min(40rem,calc(100vw-4rem))] sm:px-6 lg:top-16 md:max-h-[50vh]"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 1 }}
