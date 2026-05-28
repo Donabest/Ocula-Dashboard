@@ -14,7 +14,7 @@ function SettingLayout() {
         <CiSettings size={16} className="dark:text-slate-200" />
       </div>
 
-      <div className="flex flex-col justify-start gap-2 items-start">
+      <div className="flex flex-col justify-start gap-2 items-start md:flex-row md:h-[80vh]">
         <SettingSidebar setCurrentTab={setSelectedTab} current={selectedTab} />
         <SettingContent currentTab={selectedTab} />
       </div>

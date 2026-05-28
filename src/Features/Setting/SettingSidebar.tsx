@@ -54,7 +54,7 @@ function SettingSidebar({
   }
 
   return (
-    <ul className="grid w-full grid-cols-2 gap-2 border-b pt-4 pb-3 text-center sm:grid-cols-3 lg:grid-cols-6 dark:border-b-slate-800">
+    <ul className="grid w-full grid-cols-2 gap-2 border-b pt-4 pb-3 text-center sm:grid-cols-3 md:block md:w-50 md:h-[80vh] md:border-r md:border-b-0 md:border-r-gray-200 md:pr-2 md:pb-0 md:space-y-2 dark:border-b-slate-800 dark:md:border-r-slate-800">
       {settingList.map((setting) => (
         <motion.li
           className={cn(
