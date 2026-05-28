@@ -2,13 +2,19 @@ import { useNavigate } from "react-router-dom";
 import ProfileImage from "../assets/default-avatar.jpg";
 import { useUser } from "../Features/Authentication/useUser";
 
-function User() {
+function User({ onNavigate }: { onNavigate?: () => void }) {
   const { user } = useUser();
   const { lastName } = user?.user_metadata ?? {};
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-start items-center w-full  mx-auto gap-4 px-2 py-1  border border-gray-300 rounded-lg ">
+    <div
+      className="flex justify-start items-center w-full  mx-auto gap-4 px-2 py-1  border border-gray-300 rounded-lg cursor-pointer "
+      onClick={() => {
+        navigate("/settings");
+        onNavigate?.();
+      }}
+    >
       <img
         src={
           user?.user_metadata.has_custom_avatar
@@ -18,10 +24,7 @@ function User() {
         alt={ProfileImage}
         className="h-8 w-8 rounded-full"
       />
-      <div
-        className="flex flex-col justify-center items-center text-sm cursor-pointer "
-        onClick={() => navigate("/settings")}
-      >
+      <div className="flex flex-col justify-center items-center text-sm  ">
         <p>Hi, {lastName ?? "User Example"}</p>
         <div className="flex items-center gap-1.5">
           <span className=" bg-green-300 p-1 rounded-full"></span>

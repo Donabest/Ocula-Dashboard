@@ -41,7 +41,7 @@ function Sidebar({ isDrawer = false, onNavigate }: SidebarProps) {
         className={`${isDrawer ? "relative w-full" : "fixed w-66"} pb-4 px-7 pt-10`}
       >
         <div className="flex flex-col items-center justify-center">
-          <User />
+          <User onNavigate={onNavigate} />
           <SidebarList onNavigate={onNavigate} />
 
           {/* divide line */}
@@ -72,7 +72,7 @@ function Sidebar({ isDrawer = false, onNavigate }: SidebarProps) {
           </div>
 
           <div className="mt-10">
-            <Setting />
+            <Setting onNavigate={onNavigate} />
             <Invite />
           </div>
         </div>
