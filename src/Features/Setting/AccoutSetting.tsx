@@ -6,10 +6,11 @@ import { useUser } from "../Authentication/useUser";
 import { useRef, useState } from "react";
 import { useUpdateUser } from "../Authentication/useUpdateUser";
 import { useRemoveAvatar } from "./useRemoveAvatar";
+import { cn } from "#lib/utils";
 
 function AccoutSetting() {
   const { user } = useUser();
-  const { updateUser } = useUpdateUser();
+  const { updateUser, isUpdating } = useUpdateUser();
   const { removeAvatar, isPending } = useRemoveAvatar();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>();
@@ -55,10 +56,19 @@ function AccoutSetting() {
 
           <button
             type="button"
-            className="whitespace-nowrap text-sm px-2 py-1.5 rounded-3xl bg-blue-700 text-white cursor-pointer hover:active:scale-102 sm:px-4"
+            className={cn(
+              "whitespace-nowrap text-sm px-2 py-1.5 rounded-3xl bg-blue-700 text-white cursor-pointer hover:active:scale-102 sm:px-4",
+              firstName === first &&
+                lastName === last &&
+                !avatar &&
+                "cursor-not-allowed",
+            )}
+            disabled={
+              firstName === first && lastName === last && !avatar ? true : false
+            }
             onClick={handleSubmit}
           >
-            Save Changes
+            {isUpdating ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </div>

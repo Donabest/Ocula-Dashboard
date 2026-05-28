@@ -116,11 +116,11 @@ export async function updateCurrentUser({
 
   if (!avatar) return data;
 
-  const fileName = `Avatar-${data.user.id}`;
+  const fileName = `Avatar-${data.user.id}-${Math.random()}`;
 
   const { error: storageError } = await supabase.storage
     .from("Avatar")
-    .upload(fileName, avatar, { upsert: true });
+    .upload(fileName, avatar);
 
   if (storageError) throw new Error(storageError.message);
 
