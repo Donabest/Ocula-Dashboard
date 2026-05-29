@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import LogoSymbol from "../../assets/logo-symbol.png";
 import Input from "../../ui/Input";
+import { useUser } from "../Authentication/useUser";
 
 const suggestPrompts = [
   "Show me my overdue tasks and what to do first",
@@ -10,6 +11,14 @@ const suggestPrompts = [
   "Suggest 3 tasks I should focus on this week",
   "Delete the task I no longer need after I name it",
 ];
+const greetings = [
+  "Good Night",
+  "Good Morning",
+  "Good Afternoon",
+  "Good Evening",
+];
+const hours = new Date().getHours();
+const greeting = greetings[Math.floor(hours / 6) % 4];
 
 function OculaAiIntro({
   isLoading,
@@ -19,7 +28,7 @@ function OculaAiIntro({
   onPromptSubmit: (prompt: string) => void;
 }) {
   const [prompt, setPrompt] = useState("");
-
+  const { user } = useUser();
   function handleSubmit(value: string) {
     onPromptSubmit(value);
     setPrompt("");
@@ -28,13 +37,9 @@ function OculaAiIntro({
   return (
     <div className="mx-auto flex min-h-[calc(100vh-6rem)] w-full max-w-3xl flex-col items-center justify-center space-y-8 text-center dark:text-white sm:space-y-10">
       <div className="flex flex-col items-center justify-center space-y-2">
-        <img
-          src={LogoSymbol}
-          alt="Ocula AI"
-          className="h-9 w-9 dark:invert"
-        />
+        <img src={LogoSymbol} alt="Ocula AI" className="h-9 w-9 dark:invert" />
         <h1 className="font-raleway text-2xl font-medium">
-          Good Evening, <span>Don</span>
+          {greeting}, <span>{user?.user_metadata.lastName}</span>
         </h1>
       </div>
 

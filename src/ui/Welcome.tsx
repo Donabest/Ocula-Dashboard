@@ -15,10 +15,15 @@ function Welcome() {
 
   const Today = format(new Date(), "eeee, do MMMM");
 
-  const dayPeriod = new Intl.DateTimeFormat("en-US", {
-    dayPeriod: "short",
-  }).format(new Date());
+  const greetings = [
+    "Good Night",
+    "Good Morning",
+    "Good Afternoon",
+    "Good Evening",
+  ];
 
+  const hours = new Date().getHours();
+  const greating = greetings[Math.floor(hours / 6) % 4];
   const navigate = useNavigate();
   return (
     <div className="flex flex-col px-4 sm:px-7 py-6 gap-3 pt-24 lg:pt-25">
@@ -30,7 +35,7 @@ function Welcome() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          {` Good ${dayPeriod}! ${lastName}`}
+          {`${greating}! ${lastName}`}
         </motion.h1>
         <motion.div
           className="flex items-center pt-4"
