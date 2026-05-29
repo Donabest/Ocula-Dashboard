@@ -15,7 +15,13 @@ import SignUp from "./pages/SignUp.tsx";
 import ProtectedRouteLayout from "./Layout/ProtectedRouteLayout.tsx";
 import PageNotFound from "./pages/PageNotFound.tsx";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
   return (

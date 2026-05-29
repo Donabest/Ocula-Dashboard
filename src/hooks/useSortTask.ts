@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import { useTasks } from "../services/useTasks";
+import { useActiveTasks } from "./useActiveTasks";
 
 export function useSortTask() {
-  const { tasks } = useTasks();
+  const { tasks } = useActiveTasks();
   const [searchParamas] = useSearchParams();
   const sortBy = searchParamas.get("Sorted") || "";
   const currentSort = sortBy.slice(2);

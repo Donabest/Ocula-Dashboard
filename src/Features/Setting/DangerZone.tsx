@@ -61,7 +61,7 @@ function DangerZone() {
           description="permanently delete your account and all data."
         />
         <button
-          className="px-3 py-2 text-white text-sm bg-red-600 rounded-lg cursor-pointer active:scale-101"
+          className="px-5 py-2 text-white text-sm bg-red-600 rounded-lg cursor-pointer active:scale-101"
           onClick={() => setIsDeleteAccount(true)}
         >
           Delete Account
